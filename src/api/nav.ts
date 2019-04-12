@@ -7,4 +7,7 @@ import { NavList } from '@/constant/nav'
 /**
  * 根据加密用户名获取导航
  */
-export const getNavList = () => Promise.resolve(NavList)
+export const getNavList = () => Promise.resolve({
+    rows: [...NavList],
+    success: true,
+})

@@ -38,15 +38,29 @@
           <p class="white--text subheading mt-1">AqingCyan，您好！</p>
         </v-flex>
       </v-layout>
-      <v-list v-if="!value">
-        <v-list-tile v-for="nav in navList" :key="nav.title" router :to="nav.route">
-          <v-list-tile-action>
-            <v-icon class="white--text">{{ nav.icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title class="white--text">{{ nav.title }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+      <v-list v-if="!navLoading">
+        <template v-for="i in nav1">
+          <v-menu
+            v-if="i.isParent"
+            :key="i.id"
+            open-on-hover
+            nudge-right="100"
+            transition="slide-x-transition"
+            style="display: block"
+          >
+            <v-list-tile :key="i.id" slot="activator">
+              <v-list-tile-content>{{ i.name }}</v-list-tile-content>
+            </v-list-tile>
+            <v-list dense class="deepDark grey--text">
+              <v-list-tile v-for="j in getChildNav(i.id)" :key="j.name" :to="j.path">
+                <v-list-tile-content>{{ j.name }}</v-list-tile-content>
+              </v-list-tile>
+            </v-list>
+          </v-menu>
+          <v-list-tile v-else :key="i.id" :to="i.path">
+            <v-list-tile-content>{{ i.name }}</v-list-tile-content>
+          </v-list-tile>
+        </template>
       </v-list>
       <app-loading v-else></app-loading>
     </v-navigation-drawer>
@@ -55,18 +69,24 @@
 
 <script lang='ts'>
   import { Component, Vue, Prop } from 'vue-property-decorator'
+  import {namespace} from 'vuex-class'
   import Dashboard from '@/views/Dashboard.vue'
   import AppLoading from '@/components/app-loading.vue'
   import { openLink } from '@/commons/util'
   import { NavItem } from '@/model/nav'
-  import { getNavList } from '@/api/nav';
+
+  const Nav = namespace('nav')
 
   @Component({
     name: 'AppNavbar',
     components: { AppLoading },
   })
   export default class AppNavbar extends Vue {
-    @Prop() public value!: boolean
+    @Nav.State('loading') public navLoading!: boolean
+    @Nav.Getter public nav1!: NavItem[]
+    @Nav.Getter public nav2!: NavItem[]
+    @Nav.Action public getNavList!: any
+
     public avatar: string =  'https://img2.woyaogexing.com/2019/04/11/1434ade0198c4cb89d90eafd618c8301!400x400.jpeg'
     public drawer: boolean = true
     // platform 集合凝果屋的各个系统，点击后跳转至相应系统中并实现单点登录
@@ -74,18 +94,15 @@
       title: '凝果社区 - 内容管理系统',
       link: 'https://gitlab.com/ningowood',
     }]
-    public navList: NavItem[] = []
 
     public created() {
-      this.getNavList()
+      this.getNavList().then()
     }
-
-    public async getNavList() {
-      this.navList = await getNavList()
-    }
-
     public openLink(url: string, param: string) {
       openLink(url, param)
+    }
+    public getChildNav(id: string) {
+      return this.nav2.filter((i) => i.pid === id)
     }
   }
 </script>
