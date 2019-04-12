@@ -40,11 +40,11 @@
   export default class AppDashboard extends Vue {
     public testDeveloper: TestDeveloperItem[] = []
 
-    created() {
+    public created() {
       this.getTestDeveloper()
     }
 
-    async getTestDeveloper() {
+    public async getTestDeveloper() {
       this.testDeveloper = await getTestDeveloper()
     }
   }

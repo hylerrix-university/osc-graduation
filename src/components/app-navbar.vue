@@ -3,8 +3,8 @@
     <v-toolbar flat app>
       <v-toolbar-side-icon class="grey--text" @click="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title class="text-uppercase grey--text">
-        <span class="font-weight-light">Ningo</span>
-        <span>Wood</span>
+        <span class="font-weight-light">凝果</span>
+        <span>社区</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
@@ -13,18 +13,18 @@
         <template v-slot:activator="{ on }">
           <v-btn flat v-on="on" color="grey">
             <v-icon>expand_more</v-icon>
-            <span>Menu</span>
+            <span>平台</span>
           </v-btn>
         </template>
         <v-list>
-          <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
-            <v-list-tile-title>{{ link.text }}</v-list-tile-title>
+          <v-list-tile v-for="p in paltform" :key="p.title" router :to="p.link">
+            <v-list-tile-title>{{ p.title }}</v-list-tile-title>
           </v-list-tile>
         </v-list>
       </v-menu>
 
       <v-btn flat color="grey">
-        <span>Sign Out</span>
+        <span>注销</span>
         <v-icon right>exit_to_app</v-icon>
       </v-btn>
     </v-toolbar>
@@ -35,16 +35,16 @@
           <v-avatar size="100">
             <img :src="avatar" alt="myavatar">
           </v-avatar>
-          <p class="white--text subheading mt-1">AqingCyan</p>
+          <p class="white--text subheading mt-1">AqingCyan，您好！</p>
         </v-flex>
       </v-layout>
       <v-list>
-        <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
+        <v-list-tile v-for="nav in navList" :key="nav.title" router :to="nav.route">
           <v-list-tile-action>
-            <v-icon class="white--text">{{link.icon}}</v-icon>
+            <v-icon class="white--text">{{ nav.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title class="white--text">{{link.text}}</v-list-tile-title>
+            <v-list-tile-title class="white--text">{{ nav.title }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -54,18 +54,35 @@
 
 <script lang='ts'>
   import { Component, Vue } from 'vue-property-decorator'
+  import Dashboard from '@/views/Dashboard.vue'
+  import { openLink } from '@/commons/util'
+  import { NavItem } from '@/model/nav'
+  import { getNavList } from '@/api/nav';
 
   @Component({
-    name: 'AppNavbar'
+    name: 'AppNavbar',
+    components: {},
   })
   export default class AppNavbar extends Vue {
-    // 数据暂时处理这样，后用store管理
     public avatar: string =  'https://img2.woyaogexing.com/2019/04/11/1434ade0198c4cb89d90eafd618c8301!400x400.jpeg'
     public drawer: boolean = true
-    public links: any =  [
-      {icon: 'dashboard', text: '仪表盘', route: '/'},
-      {icon: 'folder', text: 'My Projects', route: '/projects'},
-      {icon: 'person', text: 'Team', route: '/team'},
-    ]
+    // platform 集合凝果屋的各个系统，点击后跳转至相应系统中并实现单点登录
+    public paltform: any = [{
+      title: '凝果社区 - 内容管理系统',
+      link: 'javascript:;',
+    }]
+    public navList: NavItem[] = []
+
+    public created() {
+      this.getNavList()
+    }
+
+    public async getNavList() {
+      this.navList = await getNavList()
+    }
+
+    public openLink(url: string, param: string) {
+      openLink(url, param)
+    }
   }
 </script>
