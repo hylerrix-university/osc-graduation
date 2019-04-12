@@ -17,7 +17,7 @@
           </v-btn>
         </template>
         <v-list>
-          <v-list-tile v-for="p in paltform" :key="p.title" router :to="p.link">
+          <v-list-tile v-for="p in paltform" :key="p.title" router @click="openLink(p.link)">
             <v-list-tile-title>{{ p.title }}</v-list-tile-title>
           </v-list-tile>
         </v-list>
@@ -38,7 +38,7 @@
           <p class="white--text subheading mt-1">AqingCyan，您好！</p>
         </v-flex>
       </v-layout>
-      <v-list>
+      <v-list v-if="!value">
         <v-list-tile v-for="nav in navList" :key="nav.title" router :to="nav.route">
           <v-list-tile-action>
             <v-icon class="white--text">{{ nav.icon }}</v-icon>
@@ -48,28 +48,31 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
+      <app-loading v-else></app-loading>
     </v-navigation-drawer>
   </nav>
 </template>
 
 <script lang='ts'>
-  import { Component, Vue } from 'vue-property-decorator'
+  import { Component, Vue, Prop } from 'vue-property-decorator'
   import Dashboard from '@/views/Dashboard.vue'
+  import AppLoading from '@/components/app-loading.vue'
   import { openLink } from '@/commons/util'
   import { NavItem } from '@/model/nav'
   import { getNavList } from '@/api/nav';
 
   @Component({
     name: 'AppNavbar',
-    components: {},
+    components: { AppLoading },
   })
   export default class AppNavbar extends Vue {
+    @Prop() public value!: boolean
     public avatar: string =  'https://img2.woyaogexing.com/2019/04/11/1434ade0198c4cb89d90eafd618c8301!400x400.jpeg'
     public drawer: boolean = true
     // platform 集合凝果屋的各个系统，点击后跳转至相应系统中并实现单点登录
     public paltform: any = [{
       title: '凝果社区 - 内容管理系统',
-      link: 'javascript:;',
+      link: 'https://gitlab.com/ningowood',
     }]
     public navList: NavItem[] = []
 

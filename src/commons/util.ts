@@ -5,7 +5,8 @@
  * @param param GET 请求中 ? 问号后面的参数
  */
 export const openLink = (url: string, param: string) => {
-    window.open(url + '?' + param, '_blank')
+    param ? window.open(url + '?' + param, '_blank') :
+        window.open(url)
 }
 
 /**
