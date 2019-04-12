@@ -2,7 +2,6 @@
   "name": "ningo-cms-electron",
   "version": "0.0.1",
   "private": true,
-  "main": "src/main.ts",
   "author": "hylerrix@foxmail.com <hylerrix@foxmail.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -33,9 +32,13 @@
     "fibers": "^3.1.1",
     "sass": "^1.17.2",
     "sass-loader": "^7.1.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
     "ts-jest": "^23.0.0",
     "typescript": "^3.2.1",
     "vue-cli-plugin-vuetify": "^0.5.0",
-    "vue-template-compiler": "^2.5.21"
-  }
+    "vue-template-compiler": "^2.5.21",
+    "vuetify-loader": "^1.0.5"
+  },
+  "main": "src/main.ts"
 }
