@@ -8,15 +8,20 @@
 </template>
 
 <script lang='ts'>
-import { Component, Vue } from 'vue-property-decorator'
-import NavBar from '@/components/NavBar.vue'
-import Dashboard from '@/views/Dashboard.vue'
-@Component({
-  components: {
-    NavBar,
-    Dashboard,
-  },
-})
-export default class App extends Vue {
-}
+  import { Component, Vue } from 'vue-property-decorator'
+  import NavBar from '@/components/NavBar.vue'
+  import AppDashboard from '@/views/app-dashboard/index.vue'
+
+  @Component({
+    components: {
+      NavBar,
+      AppDashboard,
+    },
+  })
+  export default class App extends Vue {
+  }
 </script>
+
+<style scoped>
+
+</style>

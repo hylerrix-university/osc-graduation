@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Dashboard from './views/Dashboard.vue'
+import AppDashboard from '@/views/app-dashboard/index.vue'
 
 Vue.use(Router)
 
@@ -9,9 +9,9 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'dashboard',
-      component: Dashboard,
+      path: '/dashboard',
+      name: 'AppDashboard',
+      component: AppDashboard,
     },
   ],
 })
