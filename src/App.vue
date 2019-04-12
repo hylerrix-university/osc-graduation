@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <nav-bar></nav-bar>
+    <app-navbar></app-navbar>
     <v-content class="mx-4 mb-4">
       <router-view></router-view>
     </v-content>
@@ -9,12 +9,12 @@
 
 <script lang='ts'>
   import { Component, Vue } from 'vue-property-decorator'
-  import NavBar from '@/components/NavBar.vue'
+  import AppNavbar from '@/components/app-navbar.vue'
   import AppDashboard from '@/views/app-dashboard/index.vue'
 
   @Component({
     components: {
-      NavBar,
+      AppNavbar,
       AppDashboard,
     },
   })

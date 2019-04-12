@@ -53,16 +53,19 @@
 </template>
 
 <script lang='ts'>
-import { Component, Vue } from 'vue-property-decorator'
-@Component({})
-export default class NavBar extends Vue {
-  // 数据暂时处理这样，后用store管理
-  public avatar: string =  'https://img2.woyaogexing.com/2019/04/11/1434ade0198c4cb89d90eafd618c8301!400x400.jpeg'
-  public drawer: boolean = true
-  public links: any =  [
-    {icon: 'dashboard', text: 'Dashboard', route: '/'},
-    {icon: 'folder', text: 'My Projects', route: '/projects'},
-    {icon: 'person', text: 'Team', route: '/team'},
-  ]
-}
+  import { Component, Vue } from 'vue-property-decorator'
+
+  @Component({
+    name: 'AppNavbar'
+  })
+  export default class AppNavbar extends Vue {
+    // 数据暂时处理这样，后用store管理
+    public avatar: string =  'https://img2.woyaogexing.com/2019/04/11/1434ade0198c4cb89d90eafd618c8301!400x400.jpeg'
+    public drawer: boolean = true
+    public links: any =  [
+      {icon: 'dashboard', text: '仪表盘', route: '/'},
+      {icon: 'folder', text: 'My Projects', route: '/projects'},
+      {icon: 'person', text: 'Team', route: '/team'},
+    ]
+  }
 </script>
