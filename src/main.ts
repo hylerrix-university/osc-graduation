@@ -1,11 +1,8 @@
 import Vue from 'vue'
-import Vuetify from 'vuetify'
+import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
-import store from './store'
-
-import 'vuetify/dist/vuetify.min.css'
-Vue.use(Vuetify)
+import store from './store/index'
 
 Vue.config.productionTip = false
 
