@@ -29,7 +29,7 @@
       </v-btn>
     </v-toolbar>
 
-    <v-navigation-drawer v-model="drawer" app class="primary">
+    <v-navigation-drawer v-model="drawer" app class="primary" width="230px" temporary>
       <v-layout column align-center>
         <v-flex class="mt-5">
           <v-avatar size="100">
@@ -47,6 +47,7 @@
             nudge-right="100"
             transition="slide-x-transition"
             style="display: block"
+            class="white--text"
           >
             <v-list-tile :key="i.id" slot="activator">
               <v-list-tile-content>{{ i.name }}</v-list-tile-content>
