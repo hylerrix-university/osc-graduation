@@ -1,9 +1,13 @@
 <template>
-  <v-app>
+  <v-app dark>
     <app-navbar></app-navbar>
     <v-content class="mx-4 mb-4">
       <router-view></router-view>
     </v-content>
+    <v-footer fixed inset>
+      <v-spacer></v-spacer>
+      <span class="caption mx-3">&copy; 2019 - {{ new Date().getFullYear() }}, 凝果屋@ningowood</span>
+    </v-footer>
   </v-app>
 </template>
 

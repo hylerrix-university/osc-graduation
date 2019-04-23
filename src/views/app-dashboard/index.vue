@@ -1,6 +1,5 @@
 <template>
   <div class="team">
-    <h1 class="subheading grey--text">Team</h1>
     <!-- 卡片暂时这么处理一下，一会儿改成创享堆的卡片 -->
     <v-container fluid class="my-5">
       <v-layout row wrap>

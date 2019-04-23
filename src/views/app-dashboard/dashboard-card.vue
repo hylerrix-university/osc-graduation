@@ -1,20 +1,18 @@
 <template>
-  <div>
-    <v-card flat class="text-xs-center ma-3">
-      <v-card-title class="white--text error">
-        默认标题嗷
-      </v-card-title>
-      <div class="slot">
-        <slot></slot>
-      </div>
-      <!-- <v-card-actions>
-        <v-btn flat color="grey">
-          <v-icon small left>message</v-icon>
-          <span>操作</span>
-        </v-btn>
-      </v-card-actions> -->
-    </v-card>
-  </div>
+  <v-card flat class="text-xs-center ma-3">
+    <v-card-title class="white--text success">
+      默认标题嗷
+    </v-card-title>
+    <div class="slot">
+      <slot></slot>
+    </div>
+    <!-- <v-card-actions>
+      <v-btn flat color="grey">
+        <v-icon small left>message</v-icon>
+        <span>操作</span>
+      </v-btn>
+    </v-card-actions> -->
+  </v-card>
 </template>
 
 <script lang='ts'>

@@ -1,41 +1,21 @@
 <template>
   <nav>
-    <v-toolbar flat app>
-      <v-toolbar-side-icon class="grey--text" @click="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title class="text-uppercase grey--text">
-        <span class="font-weight-light">凝果</span>
-        <span>社区</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-
-      <!-- dropdown menu -->
-      <v-menu offset-y>
-        <template v-slot:activator="{ on }">
-          <v-btn flat v-on="on" color="grey">
-            <v-icon>expand_more</v-icon>
-            <span>平台</span>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-tile v-for="p in paltform" :key="p.title" router @click="openLink(p.link)">
-            <v-list-tile-title>{{ p.title }}</v-list-tile-title>
-          </v-list-tile>
-        </v-list>
-      </v-menu>
-
-      <v-btn flat color="grey">
-        <span>注销</span>
-        <v-icon right>exit_to_app</v-icon>
-      </v-btn>
-    </v-toolbar>
-
-    <v-navigation-drawer v-model="drawer" app class="primary" width="230px" temporary>
+    <v-navigation-drawer
+      v-model="drawer.open"
+      :fixed="drawer.fixed"
+      :clipped="drawer.clipped"
+      :permanent="drawer.permanent"
+      :mini-variant.sync="drawer.mini"
+      app
+      hide-overlay
+      width="116"
+    >
       <v-layout column align-center>
         <v-flex class="mt-5">
-          <v-avatar size="100">
-            <img :src="avatar" alt="myavatar">
+          <v-avatar size="80">
+            <img :src="avatar" alt="我的头像">
           </v-avatar>
-          <p class="white--text subheading mt-1">AqingCyan，您好！</p>
+          <p class="white--text subheading mt-1">欢迎回来！</p>
         </v-flex>
       </v-layout>
       <v-list v-if="!navLoading">
@@ -65,6 +45,44 @@
       </v-list>
       <app-loading v-else></app-loading>
     </v-navigation-drawer>
+    
+    <v-toolbar
+      app
+      :fixed="toolbar.fixed"
+      :clipped-left="toolbar.clippedLeft"
+    >
+      <v-toolbar-side-icon
+        class="grey--text"
+        @click.stop="toggleDrawer"
+      ></v-toolbar-side-icon>
+        <router-link 
+          tag="v-toolbar-title"
+          class="grey--text link-title"
+          to="/"
+        >
+          <span>凝果社区 - 后台管理系统</span>
+          <span class="sub-title"> v0.0.1</span>
+        </router-link>
+      <v-spacer></v-spacer>
+      <v-menu offset-y>
+        <template v-slot:activator="{ on }">
+          <v-btn flat v-on="on" color="grey">
+            <v-icon>expand_more</v-icon>
+            <span>平台</span>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-tile v-for="p in paltform" :key="p.title" router @click="openLink(p.link)">
+            <v-list-tile-title>{{ p.title }}</v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
+
+      <v-btn flat color="grey">
+        <span>注销</span>
+        <v-icon right>exit_to_app</v-icon>
+      </v-btn>
+    </v-toolbar>
   </nav>
 </template>
 
@@ -88,8 +106,18 @@
     @Nav.Getter public nav2!: NavItem[]
     @Nav.Action public getNavList!: any
 
-    public avatar: string =  'https://img2.woyaogexing.com/2019/04/11/1434ade0198c4cb89d90eafd618c8301!400x400.jpeg'
-    public drawer: boolean = true
+    public avatar: string =  'https://avatars0.githubusercontent.com/u/19285461?s=460&v=4'
+    public drawer: any = {
+      open: true,
+      clipped: false,
+      fixed: false,
+      permanent: true,
+      mini: false,
+    }
+    public toolbar: any =  {
+      fixed: true,
+      clippedLeft: false,
+    }
     // platform 集合凝果屋的各个系统，点击后跳转至相应系统中并实现单点登录
     public paltform: any = [{
       title: '凝果社区 - 内容管理系统',
@@ -105,5 +133,20 @@
     public getChildNav(id: string) {
       return this.nav2.filter((i) => i.pid === id)
     }
+    public toggleDrawer() {
+      this.drawer.permanent = !this.drawer.permanent
+      this.drawer.clipped = !this.drawer.clipped
+      this.toolbar.clippedLeft = !this.toolbar.clippedLeft
+    }
   }
 </script>
+
+<style scoped>
+  .link-title {
+    cursor: pointer;
+  }
+
+  .sub-title {
+    font-size: 60%;
+  }
+</style>
