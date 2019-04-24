@@ -2,7 +2,9 @@
   <v-app dark>
     <app-navbar></app-navbar>
     <v-content class="mx-4 mb-4">
-      <router-view></router-view>
+      <v-container>
+        <router-view></router-view>
+      </v-container>
     </v-content>
     <v-footer fixed inset>
       <v-spacer></v-spacer>

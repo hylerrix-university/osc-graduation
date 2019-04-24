@@ -12,9 +12,9 @@
     >
       <v-layout column align-center>
         <v-flex class="mt-5">
-          <v-avatar size="80">
+          <!-- <v-avatar size="80">
             <img :src="avatar" alt="我的头像">
-          </v-avatar>
+          </v-avatar> -->
           <p class="white--text subheading mt-1">欢迎回来！</p>
         </v-flex>
       </v-layout>
@@ -106,7 +106,7 @@
     @Nav.Getter public nav2!: NavItem[]
     @Nav.Action public getNavList!: any
 
-    public avatar: string =  'https://avatars0.githubusercontent.com/u/19285461?s=460&v=4'
+    public avatar: string = 'https://avatars0.githubusercontent.com/u/19285461?s=460&v=4'
     public drawer: any = {
       open: true,
       clipped: false,
