@@ -10,7 +10,7 @@ export const NavList: NavItem[] = [
     name: '仪表盘',
     icon: 'dashboard',
     description: '',
-    pid: '0000',
+    pid: '000',
   },
   // 核心运营管理
   {

@@ -39,6 +39,7 @@ const getters = {
       }
       curNav.children = childNavArr
     })
+    console.log(tempNavTree)
     return tempNavTree
   },
 }

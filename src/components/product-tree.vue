@@ -13,7 +13,6 @@
       <v-treeview
         class="app-tree"
         :items="treeList"
-        :open.sync="openedTreeKey"
         :search="search"
         activatable
         :active.sync="treeSel"
@@ -40,8 +39,11 @@
       treeList: false,
     }
     public treeSel: any = []
-    public openedTreeKey: any = []
     public search: string = ''
+
+    public created() {
+      // BUG：默认选择第一个
+    }
 
     @Watch('treeSel')
     public onTreeSelChange() {
