@@ -8,8 +8,8 @@
 <script lang='ts'>
   import { Component, Vue } from 'vue-property-decorator'
   import AppWindow from '@/components/app-window.vue'
-  import AuthManage from './auth-manage.vue'
-  import RoleManage from './role-manage.vue'
+  import AuthManage from './auth-manage/index.vue'
+  import RoleManage from './role-manage/index.vue'
 
   import { AppWindowItem } from '@/model/app.ts'
 

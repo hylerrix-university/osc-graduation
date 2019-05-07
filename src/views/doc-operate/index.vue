@@ -8,8 +8,8 @@
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
   import AppWindow from '@/components/app-window.vue'
-  import OperateList from './operate-list.vue'
-  import OperateDeploy from './operate-deploy.vue'
+  import OperateList from './operate-list/index.vue'
+  import OperateDeploy from './operate-deploy/index.vue'
 
   import { AppWindowItem } from '@/model/app.ts'
 
