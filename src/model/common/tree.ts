@@ -4,3 +4,9 @@ export interface ProductTreeItem extends NavItem {
   // ...
   children: [],
 }
+
+export interface NodeAuthItem {
+  group: string,
+  path: string,
+  type: string,
+}
