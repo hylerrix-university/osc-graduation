@@ -9,7 +9,11 @@
       >
         {{ i.title }}
       </v-btn>
-      <v-window-item v-for="(i, index) in windowList" :key="index + '-item'" lazy :value="index">
+      <v-window-item
+        v-for="(i, index) in windowList"
+        :key="index + '-item'"
+        lazy
+        :value="index">
         <component :is="i.comp"></component>
       </v-window-item>
     </v-window>
@@ -17,18 +21,21 @@
 </template>
 
 <script lang="ts">
-    import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-    import { AppWindowItem } from '@/model/app.ts'
+  import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+  import { AppWindowItem } from '@/model/app.ts'
 
-    @Component({
-        name: 'AppWindow',
-        components: {},
-    })
-    export default class AppWindow extends Vue {
-      @Prop() public window!: number
-      @Prop() public windowList!: AppWindowItem[]
-    }
+  @Component({
+    name: 'AppWindow',
+    components: {},
+  })
+  export default class AppWindow extends Vue {
+    @Prop() public windowList!: AppWindowItem[]
+    public window: number = 0
+  }
 </script>
 
 <style scoped>
+  .window-card {
+    width: 100%;
+  }
 </style>

@@ -1,11 +1,10 @@
-import { NavItem } from '@/model/nav'
+import { NavItem } from '@/model/common/nav'
 
 // 9 位 id: 123456789 —— 123 代表产品 ID、456 代表树 ID、789 代表功能 ID
 export const NavList: NavItem[] = [
   // 通用页面
   {
     id: '000000001',
-    parent: false,
     isParent: false,
     path: '/',
     name: '仪表盘',
@@ -16,7 +15,6 @@ export const NavList: NavItem[] = [
   // 核心运营管理
   {
     id: '000001',
-    parent: true,
     isParent: true,
     path: '/core',
     name: '核心运营管理',
@@ -26,7 +24,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000001001',
-    parent: false,
     isParent: false,
     path: '/core/org',
     name: '组织架构管理',
@@ -36,7 +33,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000001002',
-    parent: false,
     isParent: false,
     path: '/core/admin',
     name: '运营人员管理',
@@ -46,7 +42,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000001003',
-    parent: false,
     isParent: false,
     path: '/core/role',
     name: '权限角色管理',
@@ -56,7 +51,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000001004',
-    parent: false,
     isParent: false,
     path: '/core/menu',
     name: '平台导航管理',
@@ -66,7 +60,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000001005',
-    parent: false,
     isParent: false,
     path: '/core/card',
     name: '平台卡片管理',
@@ -77,7 +70,6 @@ export const NavList: NavItem[] = [
   // 社区服务管理
   {
     id: '000002',
-    parent: true,
     isParent: true,
     path: '/service',
     name: '社区服务管理',
@@ -87,7 +79,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000002001',
-    parent: false,
     isParent: false,
     path: '/service/activity/third',
     name: '三方活动管理',
@@ -97,7 +88,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000002002',
-    parent: false,
     isParent: false,
     path: '/service/recruit/third',
     name: '三方招聘管理',
@@ -107,7 +97,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000002003',
-    parent: false,
     isParent: false,
     path: '/service/chat/third',
     name: '三方群聊管理',
@@ -117,7 +106,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000002004',
-    parent: false,
     isParent: false,
     path: '/service/form/third',
     name: '三方表单管理',
@@ -128,7 +116,6 @@ export const NavList: NavItem[] = [
   // 社区建设管理
   {
     id: '000003',
-    parent: true,
     isParent: true,
     path: '/external',
     name: '社区建设管理',
@@ -138,7 +125,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000003001',
-    parent: false,
     isParent: false,
     path: '/external/member',
     name: '社区成员管理',
@@ -148,7 +134,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000003002',
-    parent: false,
     isParent: false,
     path: '/external/notice',
     name: '社区公告管理',
@@ -159,7 +144,6 @@ export const NavList: NavItem[] = [
   // 平台资源管理
   {
     id: '000004',
-    parent: true,
     isParent: true,
     path: '/resource',
     name: '平台资源管理',
@@ -169,7 +153,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000004001',
-    parent: false,
     isParent: false,
     path: '/resource/platform',
     name: '三方平台管理',
@@ -179,7 +162,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000004002',
-    parent: false,
     isParent: false,
     path: '/resource/entity',
     name: '实体物资管理',
@@ -189,7 +171,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000004003',
-    parent: false,
     isParent: false,
     path: '/resource/account',
     name: '虚拟账号管理',
@@ -199,7 +180,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000004004',
-    parent: false,
     isParent: false,
     path: '/resource/file',
     name: '线上账号管理',
@@ -209,7 +189,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000004005',
-    parent: false,
     isParent: false,
     path: '/resource/asset',
     name: '金融资产管理',
@@ -220,7 +199,6 @@ export const NavList: NavItem[] = [
   // 平台建设管理
   {
     id: '000005',
-    parent: true,
     isParent: true,
     path: '/internal',
     name: '平台建设管理',
@@ -230,7 +208,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000005001',
-    parent: false,
     isParent: false,
     path: '/internal/lector',
     name: '社区讲师管理',
@@ -240,7 +217,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000005002',
-    parent: false,
     isParent: false,
     path: '/internal/yard',
     name: '社区场地管理',
@@ -250,7 +226,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000005003',
-    parent: false,
     isParent: false,
     path: '/internal/sponsor',
     name: '社区赞助管理',
@@ -261,7 +236,6 @@ export const NavList: NavItem[] = [
   // 平台文档管理
   {
     id: '000006',
-    parent: true,
     isParent: true,
     path: '/doc',
     name: '平台文档管理',
@@ -271,7 +245,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000006001',
-    parent: false,
     isParent: false,
     path: '/doc/dictionary',
     name: '数据字典管理',
@@ -281,7 +254,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000006002',
-    parent: false,
     isParent: false,
     path: '/doc/operate',
     name: '操作日志管理',
@@ -292,7 +264,6 @@ export const NavList: NavItem[] = [
   // 运营人员中心
   {
     id: '000007',
-    parent: true,
     isParent: true,
     path: '/admin',
     name: '运营人员中心',
@@ -302,7 +273,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000007001',
-    parent: false,
     isParent: false,
     path: '/admin/profile',
     name: '个人资料管理',
@@ -312,7 +282,6 @@ export const NavList: NavItem[] = [
   },
   {
     id: '000007002',
-    parent: false,
     isParent: false,
     path: '/admin/custom',
     name: '平台定制管理',

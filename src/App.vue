@@ -2,7 +2,7 @@
   <v-app dark>
     <app-navbar></app-navbar>
     <v-content class="mx-4 mb-4">
-      <v-container>
+      <v-container class="ma-0">
         <router-view></router-view>
       </v-container>
     </v-content>

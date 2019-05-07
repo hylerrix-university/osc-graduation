@@ -1,6 +1,5 @@
 <template>
   <app-window
-    :window="window"
     :windowList="windowList">
   </app-window>
 </template>
@@ -18,7 +17,6 @@
     components: { AppWindow },
   })
   export default class CoreRole extends Vue {
-    public window: number = 0
     public windowList: AppWindowItem[] = [
       { title: '角色授权', comp: RoleManage},
       { title: '权限管理', comp: AuthManage},

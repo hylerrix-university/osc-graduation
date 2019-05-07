@@ -1,0 +1,11 @@
+.app-tree .v-treeview-node__root {
+  height: 26px;
+}
+
+.app-tree .v-treeview-node {
+  cursor: pointer;
+}
+
+.app-tree .v-treeview-node__label {
+  font-size: 1rem;
+}

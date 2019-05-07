@@ -1,10 +1,9 @@
 export interface NavItem {
     id: string,
+    pid: string,
     name: string,
-    parent: boolean,
-    isParent: boolean,
     path: string,
     icon: string,
+    isParent: boolean,
     description: string,
-    pid: string,
 }
