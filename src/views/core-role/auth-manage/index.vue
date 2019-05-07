@@ -7,14 +7,24 @@
           @on-tree-sel-change="onTreeSelChange"
         ></product-tree>
       </v-flex>
-      <v-flex xs6 class="mx-2">
-        <tree-node
-          :treeNode="treeNode"
-        ></tree-node>
-      </v-flex>
-      <v-flex xs3>
-        <node-info></node-info>
-      </v-flex>
+      <template v-if="!treeNode">
+        <v-flex xs9 class="mx-2">
+          请选择产品节点
+        </v-flex>
+      </template>
+      <template v-if="treeNode">
+        <v-flex xs5 class="mx-2">
+          <tree-node
+            :treeNode="treeNode"
+            @on-selected-node-change="onSelectedNodeChange"
+          ></tree-node>
+        </v-flex>
+        <v-flex xs4>
+          <node-info
+            :nodeInfo="nodeInfo"
+          ></node-info>
+        </v-flex>
+      </template>
     </v-layout>
   </v-container>
 </template>
@@ -39,18 +49,24 @@
   })
   export default class AuthManage extends Vue {
     @Nav.Getter public navTree!: ProductTreeItem[]
-    // BUG：这样报错 public treeNode!: ProductTreeItem
-    public treeNode: any
-
-    public created() {
-      // 默认点击仪表盘
-      this.treeNode = this.navTree[0]
+    // BUG(TS 初始化)：这样报错 public treeNode!: ProductTreeItem
+    // BUG(组件传参)：必须初始化 {} 子组件才能跟随 prop 改变
+    // 因此，先手动初始化为通用页面
+    public treeNode: ProductTreeItem = {
+      id: '000000', isParent: true, path: '/',
+      name: '通用页面', icon: 'dashboard', description: '',
+      pid: '000', children: [],
     }
+    // BUG(组件传参)：必须初始化 {} 子组件才能跟随 prop 改变
+    // 因此，先手动初始化为仪表盘
+    public nodeInfo: ProductTreeItem = this.treeNode
 
     public onTreeSelChange(treeSel: ProductTreeItem[]) {
-      console.log('onTreeSelChange')
       this.treeNode = treeSel[0]
-      console.log(this.treeNode)
+    }
+
+    public onSelectedNodeChange(nodeSel: ProductTreeItem) {
+      this.nodeInfo = nodeSel
     }
   }
 </script>

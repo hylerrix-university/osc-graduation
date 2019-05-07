@@ -4,13 +4,22 @@ import { NavItem } from '@/model/common/nav'
 export const NavList: NavItem[] = [
   // 通用页面
   {
+    id: '000000',
+    isParent: true,
+    path: '/',
+    name: '通用页面',
+    icon: 'dashboard',
+    description: '',
+    pid: '000',
+  },
+  {
     id: '000000001',
     isParent: false,
     path: '/',
     name: '仪表盘',
     icon: 'dashboard',
     description: '',
-    pid: '000',
+    pid: '000000',
   },
   // 核心运营管理
   {

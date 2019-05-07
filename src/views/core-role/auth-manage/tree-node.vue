@@ -1,9 +1,9 @@
 <template>
   <v-card>
     <v-card-text>
-      当前节点：{{ treeNode.name }}
+      {{ treeNode.name }}
     </v-card-text>
-    {{ treeNode }} 
+    <!-- {{ treeNode }} -->
     <v-data-table
       :headers="headers"
       :items="treeNode.children"
@@ -11,9 +11,11 @@
       hide-actions
     >
       <template v-slot:items="props">
-        <td>{{ props.item.name }}</td>
-        <td>{{ props.item.path }}</td>
-        <td>{{ props.item.id }}</td>
+        <tr @click="selectNode(props)">
+          <td>{{ props.item.name }}</td>
+          <td>{{ props.item.path }}</td>
+          <td>{{ props.item.id }}</td>
+        </tr>
       </template>
     </v-data-table>
   </v-card>
@@ -29,17 +31,31 @@
     components: {},
   })
   export default class TreeNode extends Vue {
-    @Prop() public treeNode!: ProductTreeItem
+    @Prop({
+      // BUG：必须手动编写 default 才能刚加载时不报错说操作的是 undefined
+      default: () => {
+        return {
+          id: '000000001', isParent: false, path: '/',
+          name: '仪表盘', icon: 'dashboard', description: '',
+          pid: '000', children: [],
+        }
+      },
+    }) public treeNode!: ProductTreeItem
     public headers: any[] = [
       { text: '节点名称', sortable: false, value: 'name' },
       { text: '节点路径', sortable: false, value: 'path' },
       { text: '节点编号', sortable: false, value: 'id' },
     ]
-    // public nodeList: any[] = []
+    // public nodeList: [] = []
+
+    public selectNode(tdNode: any) {
+      this.$emit('on-selected-node-change', tdNode.item)
+    }
 
     @Watch('treeNode')
     public onTreeNodeChange() {
-      console.log(this.treeNode)
+      const children = this.treeNode.children.slice()
+      this.$emit('on-selected-node-change', children.pop())
     }
   }
 </script>

@@ -1,16 +1,20 @@
 <template>
-  <div>正在开发中...</div>
+  <div>
+    {{ nodeInfo }}
+  </div>
 </template>
 
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+
+  import { ProductTreeItem } from '@/model/common/tree.ts'
 
   @Component({
     name: 'NodeInfo',
     components: {},
   })
   export default class NodeInfo extends Vue {
-    // @Prop() public value!: boolean
+    @Prop() public nodeInfo!: ProductTreeItem
   }
 </script>
 
