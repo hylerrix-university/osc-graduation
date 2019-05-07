@@ -49,7 +49,7 @@ export const NavList: NavItem[] = [
     parent: false,
     isParent: false,
     path: '/core/role',
-    name: '平台角色管理',
+    name: '权限角色管理',
     icon: 'dashboard',
     description: '',
     pid: '000001',
