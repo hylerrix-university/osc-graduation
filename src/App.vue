@@ -2,6 +2,8 @@
   <v-app dark>
     <app-navbar></app-navbar>
     <v-content class="mx-4 mb-4">
+      <!-- 待做：面包屑功能尚未实现 -->
+      <!-- <app-breadcrumbs></app-breadcrumbs> -->
       <v-container class="ma-0" fluid>
         <router-view></router-view>
       </v-container>
@@ -16,18 +18,23 @@
 <script lang='ts'>
   import { Component, Vue } from 'vue-property-decorator'
   import AppNavbar from '@/components/app-navbar.vue'
+  import AppBreadcrumbs from '@/components/app-breadcrumbs.vue'
   import AppDashboard from '@/views/app-dashboard/index.vue'
 
   @Component({
     components: {
       AppNavbar,
       AppDashboard,
+      AppBreadcrumbs,
     },
   })
   export default class App extends Vue {
   }
 </script>
 
-<style scoped>
-
+<style>
+  p {
+    margin: 0;
+    padding: 0;
+  }
 </style>

@@ -19,10 +19,10 @@
   import { Component, Vue } from 'vue-property-decorator'
 
   @Component({
-    name: 'DashboardCard',
+    name: 'CommonCard',
     components: {},
   })
-  export default class DashboardCard extends Vue {
+  export default class CommonCard extends Vue {
   }
 </script>
 

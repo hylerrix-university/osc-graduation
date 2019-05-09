@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -161,3 +161,29 @@ export default new Router({
     },
   ],
 })
+
+
+
+/**
+ * 全局路由守卫
+ */
+router.beforeEach((to: any, from: any, next: any) => {
+  // const nextRoute = ['home', 'good-list', 'good-detail', 'cart', 'profile']
+  // let isLogin = global.isLogin;  // 是否登录
+  // // 未登录状态；当路由到 nextRoute 指定页时，跳转至login
+  // if (nextRoute.indexOf(to.name) >= 0) {
+  //   if (!isLogin) {
+  //     console.log('what fuck');
+  //     router.push({ name: 'login' })
+  //   }
+  // }
+  // // 已登录状态；当路由到 login 时，跳转至 home
+  // if (to.name === 'login') {
+  //   if (isLogin) {
+  //     router.push({ name: 'home' })
+  //   }
+  // }
+  next();
+})
+
+export default router

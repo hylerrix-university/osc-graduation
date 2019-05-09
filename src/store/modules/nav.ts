@@ -1,4 +1,5 @@
 import { getNavList } from '@/api/nav'
+import { RouterItem } from '@/model/base/vue-router'
 import { NavItem } from '@/model/common/nav'
 import { ProductTreeItem } from '@/model/common/tree'
 
@@ -8,8 +9,9 @@ interface NavState {
 }
 
 const state = {
-  list: [],
-  loading: false,
+  list: [], // NavItem[]
+  loading: false, // boolean
+  curNav: {}, // NavItem
 }
 
 const getters = {
@@ -39,13 +41,12 @@ const getters = {
       }
       curNav.children = childNavArr
     })
-    console.log(tempNavTree)
     return tempNavTree
   },
 }
 
 const actions = {
-  async getNavList({commit}: any) {
+  async setNavList({ commit }: any) {
     commit('LOADING_START')
     const {rows}: any = await getNavList()
     if (rows) {
@@ -57,8 +58,8 @@ const actions = {
 
 const mutations = {
   ['LOADING_START']: (s: NavState) => s.loading = true,
-  ['LOADING_END']: (s: NavState) => s.loading = false,
   ['SET_NAV_LIST']: (s: NavState, data: NavItem[]) => s.list = data,
+  ['LOADING_END']: (s: NavState) => s.loading = false,
 }
 
 const namespaced = true

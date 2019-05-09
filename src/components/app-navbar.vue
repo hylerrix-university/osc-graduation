@@ -104,7 +104,7 @@
     @Nav.State('loading') public navLoading!: boolean
     @Nav.Getter public nav1!: NavItem[]
     @Nav.Getter public nav2!: NavItem[]
-    @Nav.Action public getNavList!: any
+    @Nav.Action public setNavList!: any
 
     public avatar: string = 'https://avatars0.githubusercontent.com/u/19285461?s=460&v=4'
     public drawer: any = {
@@ -125,7 +125,7 @@
     }]
 
     public created() {
-      this.getNavList().then()
+      this.setNavList().then()
     }
     public openLink(url: string, param: string) {
       openLink(url, param)
