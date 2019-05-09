@@ -88,12 +88,12 @@
 
 <script lang='ts'>
   import { Component, Vue, Prop } from 'vue-property-decorator'
-  import {namespace} from 'vuex-class'
   import Dashboard from '@/views/Dashboard.vue'
   import AppLoading from '@/components/app-loading.vue'
   import { openLink } from '@/commons/util'
   import { NavItem } from '@/model/common/nav'
 
+  import {namespace} from 'vuex-class'
   const Nav = namespace('nav')
 
   @Component({

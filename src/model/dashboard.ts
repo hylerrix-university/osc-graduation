@@ -1,6 +1,6 @@
 export interface LittleCardItem {
   title: string,
-  count: string,
+  count: number,
   unit: string,
   icon: string,
 }

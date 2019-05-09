@@ -3,10 +3,15 @@
     <v-layout style="line-height: 100px;">
       <v-flex xs6 justify-center align-center>
         <!-- {{ cardInfo.icon }} -->
-        <p class="tx-center">{{ cardInfo.title }}</p>
+        <p class="tx-center">
+          {{ cardInfo.title }}
+        </p>
       </v-flex>
       <v-flex xs6>
-        <p class="tx-center">{{ cardInfo.count }} {{ cardInfo.unit }}</p>
+        <p class="tx-center">
+          {{ cardInfo.count }}
+          {{ cardInfo.unit }}
+        </p>
       </v-flex>
     </v-layout>
   </v-card>
