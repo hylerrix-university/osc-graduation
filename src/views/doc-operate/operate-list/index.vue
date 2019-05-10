@@ -19,7 +19,11 @@
       :rows-per-page-items="table.rowsPerPageItems"
       class="elevation-1"
     >
-      <v-progress-linear v-slot:progress color="blue" indeterminate></v-progress-linear>
+      <!-- <v-progress-linear
+        v-slot:progress
+        color="blue"
+        indeterminate
+      ></v-progress-linear> -->
       <template v-slot:items="props">
         <td>{{ props.item.id }}</td>
         <td>{{ props.item.tableName }}</td>
@@ -51,7 +55,7 @@
 
 <script lang='ts'>
   import { Component, Vue } from 'vue-property-decorator'
-  import { OperateLogItem } from '@/model/doc'
+  import { OperateLogItem } from '@/model/log'
 
   @Component({
     name: 'OperateList',

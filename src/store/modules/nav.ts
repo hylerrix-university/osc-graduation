@@ -23,14 +23,11 @@ const getters = {
   navTree: (s: NavState) => {
     let tempNavTree: ProductTreeItem[] = []
     tempNavTree = s.list.map((nav) => {
-      return {
-        ...nav,
-        children: [],
-      }
+      return { ...nav, children: [] }
     })
     tempNavTree.forEach((curNav: any) => {
       const childNavArr: any = []
-      // 寻找所有子节点
+      // 组装所有子节点
       // 由于有 splice 方法这里采用普通 for 循环
       for (let i = 0; i < tempNavTree.length; i++) {
         const nextNav = tempNavTree[i]
