@@ -7,7 +7,7 @@ export const OrgList: OrgItem[] = [
     isParent: true,
     name: '城市拓展部',
     description: '',
-    owner: '1',
+    owners: '1',
     pid: '000',
   },
   {
@@ -15,7 +15,7 @@ export const OrgList: OrgItem[] = [
     isParent: true,
     name: '文案媒体部',
     description: '',
-    owner: '1',
+    owners: '1,2',
     pid: '000',
   },
   {
@@ -23,7 +23,7 @@ export const OrgList: OrgItem[] = [
     isParent: true,
     name: '社区运营部',
     description: '',
-    owner: '1',
+    owners: '1,2',
     pid: '000',
   },
   {
@@ -31,7 +31,7 @@ export const OrgList: OrgItem[] = [
     isParent: true,
     name: '人力资源部',
     description: '',
-    owner: '1',
+    owners: '1,2',
     pid: '000',
   },
   {
@@ -39,7 +39,7 @@ export const OrgList: OrgItem[] = [
     isParent: true,
     name: '开源项目部',
     description: '',
-    owner: '1',
+    owners: '1,2',
     pid: '000',
   },
   {
@@ -47,7 +47,7 @@ export const OrgList: OrgItem[] = [
     isParent: true,
     name: '志愿者团队',
     description: '',
-    owner: '1',
+    owners: '2',
     pid: '000',
   },
 ]

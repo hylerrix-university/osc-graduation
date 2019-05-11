@@ -39,8 +39,8 @@
 
     @Watch('nodeInfo')
     public async onNodeInfoChange() {
-      const { rows } = await getNodeAuthList()
-      this.nodeAuthList = rows
+      const { data } = await getNodeAuthList()
+      this.nodeAuthList = data
     }
   }
 </script>

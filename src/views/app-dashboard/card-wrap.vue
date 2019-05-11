@@ -8,7 +8,7 @@
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   import NavShow from './dashboard-card/nav-show.vue'
 
-  // import {namespace} from 'vuex-class'
+  // import { namespace } from 'vuex-class'
   // const Nav = namespace('nav')
 
   @Component({

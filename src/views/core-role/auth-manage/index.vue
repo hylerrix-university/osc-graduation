@@ -49,17 +49,15 @@
   })
   export default class AuthManage extends Vue {
     @Nav.Getter public navTree!: ProductTreeItem[]
-    // BUG(TS 初始化)：这样报错 public treeNode!: ProductTreeItem
-    // BUG(组件传参)：必须初始化 {} 子组件才能跟随 prop 改变
-    // 因此，先手动初始化为通用页面
-    public treeNode: ProductTreeItem = {
-      id: '000000', isParent: true, path: '/',
-      name: '通用页面', icon: 'dashboard', status: 'CODING',
-      description: '', pid: '000', children: [],
+    public treeNode: any = {}
+    public nodeInfo: any = {}
+
+    public created() {
+      this.treeNode = this.navTree[0]
+      if (this.treeNode.children.length) {
+        this.nodeInfo = this.treeNode.children[0]
+      }
     }
-    // BUG(组件传参)：必须初始化 {} 子组件才能跟随 prop 改变
-    // 因此，先手动初始化为仪表盘
-    public nodeInfo: ProductTreeItem = this.treeNode
 
     public onTreeSelChange(treeSel: ProductTreeItem[]) {
       this.treeNode = treeSel[0]

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import nav from './modules/nav'
 import org from './modules/org'
+import admin from './modules/admin'
 import createLogger from 'vuex/dist/logger'
 
 Vue.use(Vuex)
@@ -14,6 +15,7 @@ export default new Vuex.Store({
   modules: {
     nav,
     org,
+    admin,
   },
 
   strict: debug,

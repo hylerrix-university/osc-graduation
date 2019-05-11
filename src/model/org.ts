@@ -3,7 +3,7 @@ export interface OrgItem {
   isParent: boolean,
   name: string,
   description: string,
-  owner: string,
+  owners: string,
   pid: string,
 }
 

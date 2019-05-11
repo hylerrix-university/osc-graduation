@@ -25,11 +25,11 @@ const getters = {
 const actions = {
   async setOrgList({ commit }: any) {
     commit('LOADING_ORG_START')
-    const {rows}: any = await getOrgList()
-    if (rows) {
-      commit('SET_ORG_LIST', rows)
+    const { data }: any = await getOrgList()
+    if (data) {
+      commit('SET_ORG_LIST', data)
     }
-    commit('LOADING_ORG_END', rows)
+    commit('LOADING_ORG_END', data)
   },
 }
 

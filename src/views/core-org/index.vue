@@ -37,16 +37,20 @@
     @Org.Getter public orgTree!: OrgTreeItem[]
     @Org.Action public setOrgList!: any
 
-    // BUG: 以下两种方式均错，第一种不能初始化，第二种必须初始化时不能为 undefined 或 null
+    // BUG: 以下两种方式均错，必须用 any 解决
+    // * 第一种不初始化视图没数据
+    // * 第二种初始化时不能为 {}、undefined 或 null，只能写死
     // public treeNode!: OrgTreeItem
-    // public treeNode: OrgTreeItem = {}
-    public treeNode: OrgTreeItem = {
-      id: '000001', isParent: true, name: '城市拓展部',
-      description: '', owner: '1', pid: '000', children: [],
-    }
+    // public treeNode: OrgTreeItem = {
+    //   id: '000001', isParent: true, name: '城市拓展部',
+    //   description: '', owner: '1', pid: '000', children: [],
+    // }
+    public treeNode: any = {}
 
     public created() {
-      this.setOrgList().then()
+      this.setOrgList().then(() => {
+        this.treeNode = this.orgTree[0]
+      })
     }
 
     public onTreeSelChange(treeSel: OrgTreeItem[]) {

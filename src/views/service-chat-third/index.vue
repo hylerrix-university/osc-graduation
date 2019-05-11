@@ -23,7 +23,7 @@
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
   import { NavItem } from '@/model/common/nav'
-  import {namespace} from 'vuex-class'
+  import { namespace } from 'vuex-class'
   const Nav = namespace('nav')
 
   @Component({

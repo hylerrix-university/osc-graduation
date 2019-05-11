@@ -13,7 +13,7 @@
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
   import { ProductTreeItem } from '@/model/common/tree'
-  import {namespace} from 'vuex-class'
+  import { namespace } from 'vuex-class'
   const Nav = namespace('nav')
 
   @Component({

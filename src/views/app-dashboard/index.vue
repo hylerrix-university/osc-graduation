@@ -25,7 +25,7 @@
 
   import { NavItem } from '@/model/common/nav'
   import { LittleCardItem } from '@/model/dashboard'
-  import {namespace} from 'vuex-class'
+  import { namespace } from 'vuex-class'
   const Nav = namespace('nav')
 
   @Component({

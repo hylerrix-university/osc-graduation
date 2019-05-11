@@ -93,7 +93,7 @@
   import { openLink } from '@/commons/util'
   import { NavItem } from '@/model/common/nav'
 
-  import {namespace} from 'vuex-class'
+  import { namespace } from 'vuex-class'
   const Nav = namespace('nav')
 
   @Component({

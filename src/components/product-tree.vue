@@ -18,6 +18,7 @@
         :active.sync="treeSel"
         return-object
         item-text="name"
+        hoverable
       ></v-treeview>
     </v-card-text>
   </v-card>
@@ -39,8 +40,6 @@
     @Prop({
       required: true,
     }) public treeList!: any
-    // BUG: 异步 treeList 无法直接写在 v-treeview 里否则视图先加载报错没数据
-    // public lazyTreeList: OrgTreeItem[] = []
     public loading = {
       treeList: false,
     }
@@ -48,7 +47,7 @@
     public search: string = ''
 
     public created() {
-      // BUG：默认选择第一个
+      // 待做：默认选择第一个
     }
 
     // @Watch('treeList')

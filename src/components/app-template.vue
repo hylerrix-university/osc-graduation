@@ -5,7 +5,7 @@
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
-  // import {namespace} from 'vuex-class'
+  // import { namespace } from 'vuex-class'
   // const Nav = namespace('nav')
 
   @Component({

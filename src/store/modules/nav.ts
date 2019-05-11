@@ -45,11 +45,11 @@ const getters = {
 const actions = {
   async setNavList({ commit }: any) {
     commit('LOADING_NAV_START')
-    const {rows}: any = await getNavList()
-    if (rows) {
-      commit('SET_NAV_LIST', rows)
+    const { data }: any = await getNavList()
+    if (data) {
+      commit('SET_NAV_LIST', data)
     }
-    commit('LOADING_NAV_END', rows)
+    commit('LOADING_NAV_END', data)
   },
 }
 
