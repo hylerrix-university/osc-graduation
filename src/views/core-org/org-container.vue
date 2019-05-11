@@ -2,10 +2,14 @@
   <v-container fluid class="ma-0 pa-0">
     <v-layout row wrap>
       <v-flex xs12>
-        <org-header></org-header>
+        <org-header
+          :treeNode="treeNode"
+        ></org-header>
       </v-flex>
       <v-flex xs12 class="mt-4">
-        <org-content></org-content>
+        <org-content
+          :treeNode="treeNode"
+        ></org-content>
       </v-flex>
     </v-layout>
   </v-container>
@@ -16,8 +20,7 @@
   import OrgHeader from './org-header.vue'
   import OrgContent from './org-content.vue'
 
-  // import {namespace} from 'vuex-class'
-  // const Nav = namespace('nav')
+  import { OrgTreeItem } from '@/model/org'
 
   @Component({
     name: 'OrgContainer',
@@ -27,7 +30,7 @@
     },
   })
   export default class OrgContainer extends Vue {
-    // @Prop() public value!: boolean
+    @Prop() public treeNode!: OrgTreeItem
     // @User.State('typeList') public userTypeList!: UserTypeItem[]
   }
 </script>

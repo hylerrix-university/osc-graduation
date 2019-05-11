@@ -29,12 +29,18 @@
   import { getProductTree } from '@/api/product-tree.ts'
   import AppLoading from '@/components/app-loading.vue'
 
+  import { OrgTreeItem } from '@/model/org'
+
   @Component({
     name: 'ProductTree',
     components: { AppLoading },
   })
   export default class ProductTree extends Vue {
-    @Prop() public treeList: any
+    @Prop({
+      required: true,
+    }) public treeList!: any
+    // BUG: 异步 treeList 无法直接写在 v-treeview 里否则视图先加载报错没数据
+    // public lazyTreeList: OrgTreeItem[] = []
     public loading = {
       treeList: false,
     }
@@ -44,6 +50,11 @@
     public created() {
       // BUG：默认选择第一个
     }
+
+    // @Watch('treeList')
+    // onTreeListChange() {
+    //   this.lazyTreeList = this.treeList
+    // }
 
     @Watch('treeSel')
     public onTreeSelChange() {

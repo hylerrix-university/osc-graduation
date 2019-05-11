@@ -30,16 +30,7 @@
     components: {},
   })
   export default class TreeNode extends Vue {
-    @Prop({
-      // BUG：必须手动编写 default 才能刚加载时不报错说操作的是 undefined
-      default: () => {
-        return {
-          id: '000000001', isParent: false, path: '/',
-          name: '仪表盘', icon: 'dashboard', description: '',
-          pid: '000', children: [],
-        }
-      },
-    }) public treeNode!: ProductTreeItem
+    @Prop() public treeNode!: ProductTreeItem
     public headers: any[] = [
       { text: '节点名称', sortable: true, value: 'name' },
       { text: '节点路径', sortable: true, value: 'path' },

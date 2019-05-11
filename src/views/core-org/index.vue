@@ -8,7 +8,10 @@
         ></product-tree>
       </v-flex>
       <v-flex xs9 class="pl-4">
-        <org-container></org-container>
+        <org-container
+          v-if="treeNode"
+          :treeNode="treeNode"
+        ></org-container>
       </v-flex>
     </v-layout>
   </v-container>
@@ -31,10 +34,16 @@
     },
   })
   export default class CoreOrg extends Vue {
-    @Org.State('list') public orgTree!: OrgTreeItem[]
+    @Org.Getter public orgTree!: OrgTreeItem[]
     @Org.Action public setOrgList!: any
-    public treeNode!: OrgTreeItem
-    public nodeInfo: OrgTreeItem = this.treeNode
+
+    // BUG: 以下两种方式均错，第一种不能初始化，第二种必须初始化时不能为 undefined 或 null
+    // public treeNode!: OrgTreeItem
+    // public treeNode: OrgTreeItem = {}
+    public treeNode: OrgTreeItem = {
+      id: '000001', isParent: true, name: '城市拓展部',
+      description: '', owner: '1', pid: '000', children: [],
+    }
 
     public created() {
       this.setOrgList().then()

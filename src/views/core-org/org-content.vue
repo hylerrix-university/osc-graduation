@@ -1,21 +1,20 @@
 <template>
   <v-card>
-    Card-Content
+    {{ treeNode }}
   </v-card>
 </template>
 
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
-  // import {namespace} from 'vuex-class'
-  // const Nav = namespace('nav')
+  import { OrgTreeItem } from '@/model/org'
 
   @Component({
     name: 'OrgContent',
     components: {},
   })
   export default class OrgContent extends Vue {
-    // @Prop() public value!: boolean
+    @Prop() public treeNode!: OrgTreeItem
     // @User.State('typeList') public userTypeList!: UserTypeItem[]
   }
 </script>

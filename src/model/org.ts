@@ -1,10 +1,9 @@
 export interface OrgItem {
   id: string,
   isParent: boolean,
-  path: string,
   name: string,
-  icon: string,
   description: string,
+  owner: string,
   pid: string,
 }
 

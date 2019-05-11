@@ -44,19 +44,19 @@ const getters = {
 
 const actions = {
   async setNavList({ commit }: any) {
-    commit('LOADING_START')
+    commit('LOADING_NAV_START')
     const {rows}: any = await getNavList()
     if (rows) {
       commit('SET_NAV_LIST', rows)
     }
-    commit('LOADING_END', rows)
+    commit('LOADING_NAV_END', rows)
   },
 }
 
 const mutations = {
-  ['LOADING_START']: (s: NavState) => s.loading = true,
+  ['LOADING_NAV_START']: (s: NavState) => s.loading = true,
   ['SET_NAV_LIST']: (s: NavState, data: NavItem[]) => s.list = data,
-  ['LOADING_END']: (s: NavState) => s.loading = false,
+  ['LOADING_NAV_END']: (s: NavState) => s.loading = false,
 }
 
 const namespaced = true
