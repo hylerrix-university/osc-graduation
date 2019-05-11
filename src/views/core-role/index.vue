@@ -1,7 +1,9 @@
 <template>
-  <app-window
-    :windowList="windowList">
-  </app-window>
+  <v-card>
+    <app-window
+      :windowList="windowList">
+    </app-window>
+  </v-card>
 </template>
 
 <script lang='ts'>

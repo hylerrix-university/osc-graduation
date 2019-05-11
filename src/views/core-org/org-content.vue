@@ -1,21 +1,28 @@
 <template>
   <v-card>
-    {{ treeNode }}
+    <app-window
+      :windowList="windowList"
+    ></app-window>
   </v-card>
 </template>
 
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+  import AppWindow from '@/components/app-window.vue'
+  import OrgIntro from './org-intro.vue'
 
-  import { OrgTreeItem } from '@/model/org'
+  import { AppWindowItem } from '@/model/app'
 
   @Component({
     name: 'OrgContent',
-    components: {},
+    components: {
+      AppWindow,
+    },
   })
   export default class OrgContent extends Vue {
-    @Prop() public treeNode!: OrgTreeItem
-    // @User.State('typeList') public userTypeList!: UserTypeItem[]
+    public windowList: AppWindowItem[] = [
+      { title: '部门简介', comp: OrgIntro},
+    ]
   }
 </script>
 

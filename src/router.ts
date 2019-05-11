@@ -59,16 +59,22 @@ const router =  new Router({
       meta: { title: '三方招聘管理' },
     },
     {
-      path: '/service/chat/third',
-      name: 'ServiceChatThird',
-      component: () => import('@/views/service-chat-third/index.vue'),
-      meta: { title: '三方群聊管理' },
-    },
-    {
       path: '/service/form/third',
       name: 'ServiceFormThird',
       component: () => import('@/views/service-form-third/index.vue'),
       meta: { title: '三方表单管理' },
+    },
+    {
+      path: '/service/chat',
+      name: 'ServiceChat',
+      component: () => import('@/views/service-chat/index.vue'),
+      meta: { title: '社区群聊管理' },
+    },
+    {
+      path: '/service/activity',
+      name: 'ServiceActivity',
+      component: () => import('@/views/service-activity/index.vue'),
+      meta: { title: '三方活动管理' },
     },
     // 社区建设管理
     {

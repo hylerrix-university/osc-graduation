@@ -1,11 +1,11 @@
 <template>
   <v-card>
     <v-card-title>
-      {{ treeNode.name }}
+      {{ curOrgNode ? curOrgNode.name : '' }}
       <v-chip small color="primary" text-color="white">一级部门</v-chip>
     </v-card-title>
-    <v-card-text v-if="treeNode.owners">
-      负责人: {{ getOwnersName(treeNode.owners) }}
+    <v-card-text v-if="curOrgNode">
+      负责人: {{ getOwnersName(curOrgNode.owners) }}
     </v-card-text>
   </v-card>
 </template>
@@ -16,6 +16,7 @@
   import { OrgTreeItem } from '@/model/org'
   import { AdminItem } from '@/model/admin'
   import { namespace } from 'vuex-class'
+  const Org = namespace('org')
   const Admin = namespace('admin')
 
   @Component({
@@ -23,7 +24,7 @@
     components: {},
   })
   export default class OrgHeader extends Vue {
-    @Prop() public treeNode!: OrgTreeItem
+    @Org.State public curOrgNode!: OrgTreeItem
     @Admin.State('list') public adminList!: AdminItem[]
     @Admin.Action public setAdminList!: any
 

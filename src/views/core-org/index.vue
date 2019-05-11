@@ -9,8 +9,7 @@
       </v-flex>
       <v-flex xs9 class="pl-4">
         <org-container
-          v-if="treeNode"
-          :treeNode="treeNode"
+          v-if="curOrgNode"
         ></org-container>
       </v-flex>
     </v-layout>
@@ -34,8 +33,10 @@
     },
   })
   export default class CoreOrg extends Vue {
+    @Org.State public curOrgNode!: OrgTreeItem
     @Org.Getter public orgTree!: OrgTreeItem[]
     @Org.Action public setOrgList!: any
+    @Org.Action public selectOrgTree!: any
 
     // BUG: 以下两种方式均错，必须用 any 解决
     // * 第一种不初始化视图没数据
@@ -45,16 +46,14 @@
     //   id: '000001', isParent: true, name: '城市拓展部',
     //   description: '', owner: '1', pid: '000', children: [],
     // }
-    public treeNode: any = {}
+    // public treeNode: any = {}
 
     public created() {
-      this.setOrgList().then(() => {
-        this.treeNode = this.orgTree[0]
-      })
+      this.setOrgList().then()
     }
 
-    public onTreeSelChange(treeSel: OrgTreeItem[]) {
-      this.treeNode = treeSel[0]
+    public async onTreeSelChange(treeSel: OrgTreeItem[]) {
+      await this.selectOrgTree(treeSel[0])
     }
   }
 </script>

@@ -1,23 +1,21 @@
 <template>
-  <v-card class="window-card">
-    <v-window v-model="window">
-      <v-btn
-        v-for="(i, index) in windowList" :key="index"
-        :color="index === window ? 'primary' : ''"
-        @click="window = index"
-        flat
-      >
-        {{ i.title }}
-      </v-btn>
-      <v-window-item
-        v-for="(i, index) in windowList"
-        :key="index + '-item'"
-        lazy
-        :value="index">
-        <component :is="i.comp"></component>
-      </v-window-item>
-    </v-window>
-  </v-card>
+  <v-window v-model="window">
+    <v-btn
+      v-for="(i, index) in windowList" :key="index"
+      :color="index === window ? 'primary' : ''"
+      @click="window = index"
+      flat
+    >
+      {{ i.title }}
+    </v-btn>
+    <v-window-item
+      v-for="(i, index) in windowList"
+      :key="index + '-item'"
+      lazy
+      :value="index">
+      <component :is="i.comp"></component>
+    </v-window-item>
+  </v-window>
 </template>
 
 <script lang="ts">
@@ -35,7 +33,4 @@
 </script>
 
 <style scoped>
-  .window-card {
-    width: 100%;
-  }
 </style>

@@ -2,14 +2,10 @@
   <v-container fluid class="ma-0 pa-0">
     <v-layout row wrap>
       <v-flex xs12>
-        <org-header
-          :treeNode="treeNode"
-        ></org-header>
+        <org-header></org-header>
       </v-flex>
       <v-flex xs12 class="mt-4">
-        <org-content
-          :treeNode="treeNode"
-        ></org-content>
+        <org-content></org-content>
       </v-flex>
     </v-layout>
   </v-container>
@@ -30,8 +26,6 @@
     },
   })
   export default class OrgContainer extends Vue {
-    @Prop() public treeNode!: OrgTreeItem
-    // @User.State('typeList') public userTypeList!: UserTypeItem[]
   }
 </script>
 
