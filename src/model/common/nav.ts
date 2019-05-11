@@ -5,5 +5,6 @@ export interface NavItem {
     path: string,
     icon: string,
     isParent: boolean,
+    status: string,
     description: string,
 }

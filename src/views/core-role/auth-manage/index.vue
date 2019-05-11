@@ -54,8 +54,8 @@
     // 因此，先手动初始化为通用页面
     public treeNode: ProductTreeItem = {
       id: '000000', isParent: true, path: '/',
-      name: '通用页面', icon: 'dashboard', description: '',
-      pid: '000', children: [],
+      name: '通用页面', icon: 'dashboard', status: 'CODING',
+      description: '', pid: '000', children: [],
     }
     // BUG(组件传参)：必须初始化 {} 子组件才能跟随 prop 改变
     // 因此，先手动初始化为仪表盘

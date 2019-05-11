@@ -14,6 +14,8 @@
         <td>{{ props.item.id }}</td>
         <td>{{ props.item.name }}</td>
         <td>{{ props.item.path }}</td>
+        <td>{{ getStatusName(props.item.status) }}</td>
+        <td>{{ props.item.description }}</td>
       </template>
     </v-data-table>
   </v-card>
@@ -21,9 +23,10 @@
 
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+  import { NavStatus } from '@/config/nav'
 
   import { NavItem } from '@/model/common/nav'
-  import {namespace} from 'vuex-class'
+  import { namespace } from 'vuex-class'
   const Nav = namespace('nav')
 
   @Component({
@@ -34,10 +37,16 @@
     @Nav.State('list') public navList!: NavItem[]
 
     public headers = [
-      { text: '节点名称', sortable: true, value: 'name' },
+      { text: '节点名称', sortable: false, value: 'name' },
       { text: '节点路径', sortable: true, value: 'path' },
       { text: '节点编号', sortable: true, value: 'code' },
+      { text: '节点状态', sortable: false, value: 'status' },
+      { text: '节点备注', sortable: false, value: 'description' },
     ]
+
+    public getStatusName(status: string) {
+      return NavStatus[status]
+    }
   }
 </script>
 
