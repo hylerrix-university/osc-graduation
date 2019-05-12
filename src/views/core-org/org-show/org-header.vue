@@ -1,17 +1,18 @@
 <template>
-  <v-card>
+  <v-card v-if="curOrgNode">
     <v-card-title>
-      {{ curOrgNode ? curOrgNode.name : '' }}
+      {{ curOrgNode.name }}
       <v-chip small color="primary" text-color="white">一级部门</v-chip>
     </v-card-title>
-    <v-card-text v-if="curOrgNode">
-      负责人: {{ getOwnersName(curOrgNode.owners) }}
+    <v-card-text>
+      负责人: {{ getOwnersNameByIds(curOrgNode.owners) }}
     </v-card-text>
   </v-card>
 </template>
 
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+  import { getOwnersNameByIds } from '@/commons/admin'
 
   import { OrgTreeItem } from '@/model/org'
   import { AdminItem } from '@/model/admin'
@@ -26,24 +27,9 @@
   export default class OrgHeader extends Vue {
     @Org.State public curOrgNode!: OrgTreeItem
     @Admin.State('list') public adminList!: AdminItem[]
-    @Admin.Action public setAdminList!: any
 
-    public created() {
-      this.setAdminList().then()
-    }
-
-    public getOwnersName(owners: string) {
-      const curOwenerList: string[] = []
-      owners.split(',').forEach((id) => {
-        console.log(id)
-        const foundAdmin = this.adminList.find((admin: AdminItem) => {
-          return admin.id === id
-        })
-        if (foundAdmin)  {
-          curOwenerList.push(foundAdmin.username)
-        }
-      })
-      return curOwenerList.join(', ')
+    public getOwnersNameByIds(owners: string) {
+      return getOwnersNameByIds(owners, this.adminList)
     }
   }
 </script>

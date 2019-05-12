@@ -1,59 +1,44 @@
 <template>
-  <v-container fluid>
-    <v-layout>
-      <v-flex xs3>
-        <product-tree
-          :treeList="orgTree"
-          @on-tree-sel-change="onTreeSelChange"
-        ></product-tree>
-      </v-flex>
-      <v-flex xs9 class="pl-4">
-        <org-container
-          v-if="curOrgNode"
-        ></org-container>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <v-card>
+    <app-window
+      :windowList="windowList"
+    ></app-window>
+  </v-card>
 </template>
 
 <script lang='ts'>
-  import { Component, Vue } from 'vue-property-decorator'
-  import ProductTree from '@/components/product-tree.vue'
-  import OrgContainer from './org-container.vue'
+  import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+  import AppWindow from '@/components/app-window.vue'
+  import OrgShow from './org-show/index.vue'
+  import OrgManage from './org-manage/index.vue'
 
-  import { OrgTreeItem } from '@/model/org'
+  import { AppWindowItem } from '@/model/app'
+  import { AdminItem } from '@/model/admin'
   import { namespace } from 'vuex-class'
+  const Admin = namespace('admin')
   const Org = namespace('org')
 
   @Component({
     name: 'CoreOrg',
     components: {
-      ProductTree,
-      OrgContainer,
+      AppWindow,
+      OrgShow,
+      OrgManage,
     },
   })
   export default class CoreOrg extends Vue {
-    @Org.State public curOrgNode!: OrgTreeItem
-    @Org.Getter public orgTree!: OrgTreeItem[]
+    @Admin.Action public setAdminList!: any
     @Org.Action public setOrgList!: any
-    @Org.Action public selectOrgTree!: any
 
-    // BUG: 以下两种方式均错，必须用 any 解决
-    // * 第一种不初始化视图没数据
-    // * 第二种初始化时不能为 {}、undefined 或 null，只能写死
-    // public treeNode!: OrgTreeItem
-    // public treeNode: OrgTreeItem = {
-    //   id: '000001', isParent: true, name: '城市拓展部',
-    //   description: '', owner: '1', pid: '000', children: [],
-    // }
-    // public treeNode: any = {}
+    public windowList: AppWindowItem[] = [
+      { title: '部门展示', comp: OrgShow },
+      { title: '部门管理', comp: OrgManage },
+    ]
 
     public created() {
-      this.setOrgList().then()
-    }
-
-    public async onTreeSelChange(treeSel: OrgTreeItem[]) {
-      await this.selectOrgTree(treeSel[0])
+      this.setAdminList().then(() => {
+        this.setOrgList().then()
+      })
     }
   }
 </script>

@@ -23,6 +23,15 @@ const actions = {
     }
     commit('LOADING_ADMIN_END', data)
   },
+  // 重构：暂时不能正确将此函数绑定在 vuex 里直接调用
+  // getOwnersNameByIds(context: any, owners: string) {
+  //   const curOwenerList: string[] = []
+  //   owners.split(',').forEach((id) => {
+  //     const foundAdmin = context.state.list.find((admin: AdminItem) => admin.id === id)
+  //     if (foundAdmin)  { curOwenerList.push(foundAdmin.username) }
+  //   })
+  //   return curOwenerList.join(', ')
+  // },
 }
 
 const mutations = {

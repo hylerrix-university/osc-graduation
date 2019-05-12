@@ -38,12 +38,12 @@
     ]
 
     public created() {
-      console.log(this.$route)
+      // console.log(this.$route)
     }
 
     @Watch('navList')
     public onNavListChange() {
-      console.log(this.navList)
+      // console.log(this.navList)
     }
   }
 </script>
