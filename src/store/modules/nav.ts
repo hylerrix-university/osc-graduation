@@ -47,7 +47,8 @@ const actions = {
     commit('LOADING_NAV_START')
     const { data }: any = await getNavList()
     if (data) {
-      commit('SET_NAV_LIST', data)
+      // commit('SET_NAV_LIST', data)
+      commit('SET_FILTER_NAV_LIST', data)
     }
     commit('LOADING_NAV_END', data)
   },
@@ -56,6 +57,8 @@ const actions = {
 const mutations = {
   ['LOADING_NAV_START']: (s: NavState) => s.loading = true,
   ['SET_NAV_LIST']: (s: NavState, data: NavItem[]) => s.list = data,
+  ['SET_FILTER_NAV_LIST']: (s: NavState, data: NavItem[]) =>
+    s.list = data.filter((nav) => nav.status !== 'DISABLED'),
   ['LOADING_NAV_END']: (s: NavState) => s.loading = false,
 }
 

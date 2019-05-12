@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-toolbar flat>
-      <v-toolbar-title>社区成员管理</v-toolbar-title>
+      <v-toolbar-title>社区活动管理</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-data-table
