@@ -9,6 +9,7 @@
       :items="navList"
       class="elevation-1"
       hide-actions
+      disable-initial-sort
     >
       <template v-slot:items="props">
         <td>{{ props.item.id }}</td>
@@ -37,7 +38,7 @@
     @Nav.State('list') public navList!: NavItem[]
 
     public headers = [
-      { text: '节点名称', sortable: false, value: 'name' },
+      { text: '节点名称', sortable: true, value: 'name' },
       { text: '节点路径', sortable: true, value: 'path' },
       { text: '节点编号', sortable: true, value: 'code' },
       { text: '节点状态', sortable: false, value: 'status' },

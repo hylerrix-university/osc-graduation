@@ -20,8 +20,8 @@
   })
   export default class CoreRole extends Vue {
     public windowList: AppWindowItem[] = [
-      { title: '权限管理', comp: AuthManage},
-      { title: '角色授权', comp: RoleManage},
+      // { title: '权限管理', comp: AuthManage},
+      { title: '角色管理', comp: RoleManage},
     ]
   }
 </script>

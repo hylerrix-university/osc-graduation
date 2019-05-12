@@ -32,7 +32,7 @@
   export default class TreeNode extends Vue {
     @Prop() public treeNode!: ProductTreeItem
     public headers: any[] = [
-      { text: '节点名称', sortable: false, value: 'name' },
+      { text: '节点名称', sortable: true, value: 'name' },
       { text: '节点路径', sortable: true, value: 'path' },
       { text: '节点编号', sortable: true, value: 'id' },
     ]

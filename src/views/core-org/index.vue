@@ -13,9 +13,7 @@
   import OrgManage from './org-manage/index.vue'
 
   import { AppWindowItem } from '@/model/app'
-  import { AdminItem } from '@/model/admin'
   import { namespace } from 'vuex-class'
-  const Admin = namespace('admin')
   const Org = namespace('org')
 
   @Component({
@@ -27,18 +25,14 @@
     },
   })
   export default class CoreOrg extends Vue {
-    @Admin.Action public setAdminList!: any
     @Org.Action public setOrgList!: any
-
     public windowList: AppWindowItem[] = [
-      { title: '部门展示', comp: OrgShow },
       { title: '部门管理', comp: OrgManage },
+      { title: '部门展示', comp: OrgShow },
     ]
 
     public created() {
-      this.setAdminList().then(() => {
-        this.setOrgList().then()
-      })
+      this.setOrgList().then()
     }
   }
 </script>

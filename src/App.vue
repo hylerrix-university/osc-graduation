@@ -21,6 +21,10 @@
   import AppBreadcrumbs from '@/components/app-breadcrumbs.vue'
   import AppDashboard from '@/views/app-dashboard/index.vue'
 
+  import { namespace } from 'vuex-class'
+  const Admin = namespace('admin')
+  const Role = namespace('role')
+
   @Component({
     components: {
       AppNavbar,
@@ -29,6 +33,16 @@
     },
   })
   export default class App extends Vue {
+    @Admin.Action public setAdminList!: any
+    @Role.Action public setRoleList!: any
+
+    public created() {
+      // 思考：一次加载太多数据会让初始页面很卡，分别加载又有点啰嗦，如何优化？
+      // 加载通用数据
+      this.setAdminList().then(() => {
+        this.setRoleList().then()
+      })
+    }
   }
 </script>
 

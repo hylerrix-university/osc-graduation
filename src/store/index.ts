@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import nav from './modules/nav'
 import org from './modules/org'
 import admin from './modules/admin'
+import role from './modules/role'
 import createLogger from 'vuex/dist/logger'
 
 Vue.use(Vuex)
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     nav,
     org,
     admin,
+    role,
   },
 
   strict: debug,

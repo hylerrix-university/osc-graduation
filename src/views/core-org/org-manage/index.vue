@@ -3,7 +3,7 @@
     <edit-dialog
       v-model="dialog"
       :editedIndex="editedIndex"
-      :item="editedOrgNode"
+      :item="editedItem"
       @close-dialog="onDialogClose"
     ></edit-dialog>
     <v-card-title flat>
@@ -89,22 +89,22 @@
     public search: string = ''
     public dialog: boolean = false
     public editedIndex: number = -1
-    // BUG: public editedOrgNode!: OrgTreeItem 时，要么初始化时写假数据要么不能初始化报错未定义
-    public editedOrgNode: any = {}
+    // BUG: public editedItem!: OrgTreeItem 时，要么初始化时写假数据要么不能初始化报错未定义
+    public editedItem: any = {}
 
     public onDialogClose() {
       this.editedIndex = -1
     }
 
     public addItem() {
-      this.editedOrgNode = {}
+      this.editedItem = {}
       this.editedIndex = -1
       this.dialog = true
     }
 
     public editItem(editedItem: any) {
       this.editedIndex = this.orgTree.indexOf(editedItem)
-      this.editedOrgNode = editedItem
+      this.editedItem = editedItem
       this.dialog = true
     }
 
