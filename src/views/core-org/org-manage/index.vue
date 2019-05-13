@@ -84,7 +84,7 @@
       { text: '部门名称', sortable: false, value: 'name' },
       { text: '负责人', sortable: false, value: 'owners' },
       { text: '部门描述', sortable: false, value: 'description' },
-      { text: '操作', sortable: false, value: 'name' },
+      { text: '操作', sortable: false, value: '' },
     ]
     public search: string = ''
     public dialog: boolean = false

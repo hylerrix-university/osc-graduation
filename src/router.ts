@@ -147,9 +147,9 @@ const router =  new Router({
       meta: { title: '数据字典管理' },
     },
     {
-      path: '/doc/operate',
-      name: 'DocOperate',
-      component: () => import('@/views/doc-operate/index.vue'),
+      path: '/doc/log',
+      name: 'DocLog',
+      component: () => import('@/views/doc-log/index.vue'),
       meta: { title: '操作日志管理' },
     },
     // 运营人员中心

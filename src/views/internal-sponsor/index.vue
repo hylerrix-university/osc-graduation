@@ -61,7 +61,7 @@
       { text: '赞助内容', sortable: true, value: 'content' },
       { text: '赞助单位', sortable: true, value: 'unit' },
       { text: '赞助时间', sortable: true, value: 'time' },
-      { text: '操作', sortable: true, value: 'type' },
+      { text: '操作', sortable: true, value: '' },
     ]
 
     public created() {

@@ -60,7 +60,7 @@
     public headers = [
       { text: '用户 ID', sortable: true, value: 'id' },
       { text: '用户名', sortable: true, value: 'username' },
-      { text: '操作', sortable: false, value: 'id' },
+      { text: '操作', sortable: false, value: '' },
     ]
 
     public onDialogClose() {

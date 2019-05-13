@@ -302,7 +302,7 @@ export const NavList: NavItem[] = [
   {
     id: '000006002',
     isParent: false,
-    path: '/doc/operate',
+    path: '/doc/log',
     name: '操作日志管理',
     icon: 'dashboard',
     status: 'CODING',

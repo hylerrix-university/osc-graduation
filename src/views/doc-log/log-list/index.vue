@@ -18,6 +18,7 @@
       :rows-per-page-text="table.rowsPerPageText"
       :rows-per-page-items="table.rowsPerPageItems"
       class="elevation-1"
+      disable-initial-sort
     >
       <!-- <v-progress-linear
         v-slot:progress
@@ -27,7 +28,7 @@
       <template v-slot:items="props">
         <td>{{ props.item.id }}</td>
         <td>{{ props.item.tableName }}</td>
-        <td>{{ props.item.operatePage }}</td>
+        <td>{{ props.item.module }}</td>
         <td>{{ props.item.adminName }}</td>
         <td>{{ props.item.type }}</td>
         <td>{{ props.item.time }}</td>
@@ -55,15 +56,15 @@
 
 <script lang='ts'>
   import { Component, Vue } from 'vue-property-decorator'
-  import { OperateLogItem } from '@/model/log'
+  import { LogItem } from '@/model/log'
 
   @Component({
-    name: 'OperateList',
+    name: 'LogList',
     components: {},
   })
-  export default class OperateList extends Vue {
+  export default class LogList extends Vue {
     public table = {
-      loading: true,
+      loading: false,
       rowsPerPageText: '每行显示:',
       rowsPerPageItems: [10, 25, 50, 100],
     }
@@ -75,18 +76,18 @@
         value: 'id',
       },
       { text: '表名', value: 'tableName' },
-      { text: '业务名称', value: 'operatePage' },
+      { text: '业务名称', value: 'module' },
       { text: '操作人', value: 'adminName' },
       { text: '操作类型', value: 'type' },
       { text: '操作时间', value: 'time' },
       { text: '成功状态', value: 'status' },
-      { text: '操作', value: 'operate', sortable: false },
+      { text: '操作', sortable: false, value: '' },
     ]
-    public desserts: OperateLogItem[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((n) => {
+    public desserts: LogItem[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((n) => {
       return {
         id: n,
         tableName: 'menu',
-        operatePage: '平台导航管理',
+        module: '平台导航管理',
         adminName: 'hylerrix',
         type: '新增',
         time: '2019-04-2' + n,

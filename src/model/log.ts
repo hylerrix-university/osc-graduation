@@ -1,7 +1,7 @@
-export interface OperateLogItem {
+export interface LogItem {
     id: number,
     tableName: string,
-    operatePage: string,
+    module: string,
     adminName: string,
     type: string,
     time: string,
