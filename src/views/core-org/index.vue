@@ -28,7 +28,7 @@
     @Org.Action public setOrgList!: any
     public windowList: AppWindowItem[] = [
       { title: '部门管理', comp: OrgManage },
-      { title: '部门展示', comp: OrgShow },
+      // { title: '部门展示', comp: OrgShow },
     ]
 
     public created() {
