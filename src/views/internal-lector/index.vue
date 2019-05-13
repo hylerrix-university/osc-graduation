@@ -29,18 +29,6 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <!-- <v-data-table
-      :headers="headers"
-      :items="navList"
-      class="elevation-1"
-      hide-actions
-    >
-      <template v-slot:items="props">
-        <td>{{ props.item.id }}</td>
-        <td>{{ props.item.name }}</td>
-        <td>{{ props.item.path }}</td>
-      </template>
-    </v-data-table> -->
   </v-card>
 </template>
 

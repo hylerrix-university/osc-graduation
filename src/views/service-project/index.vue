@@ -1,9 +1,9 @@
 <template>
   <v-card>
     <v-toolbar flat>
-      <v-toolbar-title>社区活动管理</v-toolbar-title>
+      <v-toolbar-title>社区项目管理</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn @click="editItem()">新增活动</v-btn>
+      <v-btn @click="editItem()">新增项目</v-btn>
     </v-toolbar>
     <edit-dialog
       v-model="dialog"
@@ -15,17 +15,17 @@
       <v-layout row wrap>
         <v-flex
           xs6
-          v-for="activity in activityList"
-          :key="activity.id"
+          v-for="project in projectList"
+          :key="project.id"
           class="pa-2"
         >
           <v-toolbar dense>
             <v-spacer></v-spacer>
-            <v-btn small>编辑活动</v-btn>
+            <v-btn small>编辑项目</v-btn>
           </v-toolbar>
-          <activity-card
-            :activity="activity"
-          ></activity-card>
+          <project-card
+            :project="project"
+          ></project-card>
         </v-flex>
       </v-layout>
     </v-container>
@@ -34,25 +34,25 @@
 
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-  import ActivityCard from './activity-card.vue'
-  import { getActivityList } from '@/api/activity'
+  import ProjectCard from './project-card.vue'
+  import { getProjectList } from '@/api/project'
   import EditDialog from './edit-dialog.vue'
 
   import { NavItem } from '@/model/nav'
-  import { ActivityItem } from '@/model/activity'
+  import { ProjectItem } from '@/model/project'
   import { namespace } from 'vuex-class'
   const Nav = namespace('nav')
 
   @Component({
-    name: 'ServiceActivity',
+    name: 'ServiceProject',
     components: {
-      ActivityCard,
+      ProjectCard,
       EditDialog,
     },
   })
-  export default class ServiceActivity extends Vue {
+  export default class ServiceProject extends Vue {
     @Nav.State('list') public navList!: NavItem[]
-    public activityList: ActivityItem[] = []
+    public projectList: ProjectItem[] = []
     public dialog: boolean = false
     public editedIndex: number = -1
     public editedItem: any = {}
@@ -63,12 +63,12 @@
     ]
 
     public created() {
-      this.getActivityList()
+      this.getProjectList()
     }
 
-    public async getActivityList() {
-      const { data } = await getActivityList()
-      this.activityList = data
+    public async getProjectList() {
+      const { data } = await getProjectList()
+      this.projectList = data
     }
 
     public onDialogClose() {
@@ -82,7 +82,7 @@
     }
 
     public editItem(editedItem: any) {
-      this.editedIndex = this.activityList.indexOf(editedItem)
+      this.editedIndex = this.projectList.indexOf(editedItem)
       this.editedItem = editedItem
       this.dialog = true
     }

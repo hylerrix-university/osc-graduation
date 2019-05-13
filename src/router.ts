@@ -74,7 +74,13 @@ const router =  new Router({
       path: '/service/activity',
       name: 'ServiceActivity',
       component: () => import('@/views/service-activity/index.vue'),
-      meta: { title: '三方活动管理' },
+      meta: { title: '社区活动管理' },
+    },
+    {
+      path: '/service/project',
+      name: 'ServiceProject',
+      component: () => import('@/views/service-project/index.vue'),
+      meta: { title: '社区项目管理' },
     },
     // 社区建设管理
     {
