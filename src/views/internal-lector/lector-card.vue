@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <!-- {{ lectorInfo }} -->
-    <v-layout>
+    <!-- <v-layout>
       <v-flex xs4>
         <v-img
           :src="lector.avatar"
@@ -9,15 +9,15 @@
           contain
         ></v-img>
       </v-flex>
-      <v-flex xs8>
+      <v-flex xs8> -->
         <v-card-title primary-title>
           {{ lector.name }}
         </v-card-title>
         <v-card-text>
           Github ID：{{ lector.github }}
         </v-card-text>
-      </v-flex>
-    </v-layout>
+      <!-- </v-flex>
+    </v-layout> -->
   </v-card>
 </template>
 
