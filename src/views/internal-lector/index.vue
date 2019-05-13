@@ -50,7 +50,7 @@
   import { getLectorList } from '@/api/lector'
   import EditDialog from './edit-dialog.vue'
 
-  import { NavItem } from '@/model/common/nav'
+  import { NavItem } from '@/model/nav'
   import { LectorItem } from '@/model/lector'
   import { namespace } from 'vuex-class'
   const Nav = namespace('nav')

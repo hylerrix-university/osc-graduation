@@ -1,4 +1,4 @@
-import { NavItem } from '@/model/common/nav'
+import { NavItem } from '@/model/nav'
 
 // 9 位 id: 123456789 —— 123 代表产品 ID、456 代表树 ID、789 代表功能 ID
 export const NavList: NavItem[] = [

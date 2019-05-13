@@ -1,5 +1,13 @@
-import { NavItem } from '@/model/common/nav'
-import { OrgItem } from '@/model/org'
+export interface NavItem {
+    id: string,
+    pid: string,
+    name: string,
+    path: string,
+    icon: string,
+    isParent: boolean,
+    status: string,
+    description: string,
+}
 
 // 重构：这里假装后台返回的列表里没有 children 都是扁平化的
 // 最后考虑改为直接返回包含 children 的，或者分别为两个接口

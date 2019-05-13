@@ -23,7 +23,7 @@
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
-  import { ProductTreeItem } from '@/model/common/tree.ts'
+  import { ProductTreeItem } from '@/model/nav.ts'
 
   @Component({
     name: 'TreeNode',

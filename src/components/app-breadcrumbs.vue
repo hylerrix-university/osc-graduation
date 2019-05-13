@@ -12,7 +12,7 @@
   // 参考：https://www.cnblogs.com/minigrasshopper/p/7928311.html
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
-  import { ProductTreeItem } from '@/model/common/tree'
+  import { ProductTreeItem } from '@/model/nav'
   import { namespace } from 'vuex-class'
   const Nav = namespace('nav')
 

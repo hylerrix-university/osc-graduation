@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-toolbar flat>
-      <v-toolbar-title>社区讲师管理</v-toolbar-title>
+      <v-toolbar-title>社区场地管理</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn @click="editItem()">新增场地</v-btn>
     </v-toolbar>
@@ -50,7 +50,7 @@
   import { getYardList } from '@/api/yard'
   import EditDialog from './edit-dialog.vue'
 
-  import { NavItem } from '@/model/common/nav'
+  import { NavItem } from '@/model/nav'
   import { YardItem } from '@/model/yard'
   import { namespace } from 'vuex-class'
   const Nav = namespace('nav')

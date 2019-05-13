@@ -38,7 +38,7 @@
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   import EditDialog from './edit-dialog.vue'
 
-  import { NavItem } from '@/model/common/nav'
+  import { NavItem } from '@/model/nav'
   import { AdminItem } from '@/model/admin'
   import { namespace } from 'vuex-class'
 

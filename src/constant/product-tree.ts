@@ -1,4 +1,4 @@
-import { NodeAuthItem } from '@/model/common/tree'
+import { NodeAuthItem } from '@/model/nav'
 
 export const NodeAuthList: NodeAuthItem[] = [{
   group: '第三方平台信息',

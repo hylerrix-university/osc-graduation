@@ -23,7 +23,7 @@
   import LittleCard from './little-card.vue'
   import CardWrap from './card-wrap.vue'
 
-  import { NavItem } from '@/model/common/nav'
+  import { NavItem } from '@/model/nav'
   import { LittleCardItem } from '@/model/dashboard'
   import { namespace } from 'vuex-class'
   const Nav = namespace('nav')

@@ -22,7 +22,7 @@
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
   import { getNodeAuthList } from '@/api/product-tree.ts'
-  import { ProductTreeItem, NodeAuthItem } from '@/model/common/tree.ts'
+  import { ProductTreeItem, NodeAuthItem } from '@/model/nav.ts'
 
   @Component({
     name: 'NodeInfo',

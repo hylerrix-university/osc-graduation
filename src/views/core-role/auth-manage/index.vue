@@ -35,7 +35,7 @@
   import TreeNode from './tree-node.vue'
   import NodeInfo from './node-info.vue'
   
-  import { ProductTreeItem } from '@/model/common/tree.ts'
+  import { ProductTreeItem } from '@/model/nav.ts'
   import { namespace } from 'vuex-class'
   const Nav = namespace('nav')
 

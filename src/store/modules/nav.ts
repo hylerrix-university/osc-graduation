@@ -1,7 +1,6 @@
 import { getNavList } from '@/api/nav'
-import { RouterItem } from '@/model/base/vue-router'
-import { NavItem } from '@/model/common/nav'
-import { ProductTreeItem } from '@/model/common/tree'
+import { NavItem } from '@/model/nav'
+import { ProductTreeItem } from '@/model/nav'
 
 interface NavState {
   list: NavItem[],

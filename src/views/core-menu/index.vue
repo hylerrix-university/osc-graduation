@@ -39,7 +39,7 @@
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   import EditDialog from './edit-dialog.vue'
 
-  import { NavItem } from '@/model/common/nav'
+  import { NavItem } from '@/model/nav'
   import { namespace } from 'vuex-class'
   const Nav = namespace('nav')
 
@@ -54,7 +54,6 @@
     public dialog: boolean = false
     public editedIndex: number = -1
     public editedItem: any = {}
-
     public headers = [
       { text: '节点名称', sortable: true, value: 'name' },
       { text: '节点路径', sortable: true, value: 'path' },
