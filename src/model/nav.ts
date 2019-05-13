@@ -1,12 +1,12 @@
 export interface NavItem {
-    id: string,
-    pid: string,
-    name: string,
-    path: string,
-    icon: string,
-    isParent: boolean,
-    status: string,
-    description: string,
+    id: string
+    pid: string
+    name: string
+    path: string
+    icon: string
+    isParent: boolean
+    status: string
+    description: string
 }
 
 // 重构：这里假装后台返回的列表里没有 children 都是扁平化的
@@ -14,11 +14,11 @@ export interface NavItem {
 // 重构，不需要 common/tree.ts 考虑放在 nav 里
 export interface ProductTreeItem extends NavItem {
   // ...
-  children: [],
+  children: []
 }
 
 export interface NodeAuthItem {
-  group: string,
-  path: string,
-  type: string,
+  group: string
+  path: string
+  type: string
 }
