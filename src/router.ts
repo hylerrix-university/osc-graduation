@@ -14,6 +14,12 @@ const router =  new Router({
       component: () => import('@/views/app-dashboard/index.vue'),
       meta: { title: '仪表盘' },
     },
+    {
+      path: '/dashboard',
+      name: 'AppDashboard',
+      component: () => import('@/views/app-dashboard/index.vue'),
+      meta: { title: '仪表盘' },
+    },
     // 核心运营管理
     {
       path: '/core/org',
@@ -46,24 +52,6 @@ const router =  new Router({
       meta: { title: '平台卡片管理' },
     },
     // 社区服务管理
-    {
-      path: '/service/activity/third',
-      name: 'ServiceActivityThird',
-      component: () => import('@/views/service-activity-third/index.vue'),
-      meta: { title: '三方活动管理' },
-    },
-    {
-      path: '/service/recruit/third',
-      name: 'ServiceRecruitThird',
-      component: () => import('@/views/service-recruit-third/index.vue'),
-      meta: { title: '三方招聘管理' },
-    },
-    {
-      path: '/service/form/third',
-      name: 'ServiceFormThird',
-      component: () => import('@/views/service-form-third/index.vue'),
-      meta: { title: '三方表单管理' },
-    },
     {
       path: '/service/chat',
       name: 'ServiceChat',

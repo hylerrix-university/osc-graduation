@@ -32,7 +32,6 @@
       <template v-slot:items="props">
         <td>{{ props.item.code }}</td>
         <td>{{ props.item.name }}</td>
-        <td>见编辑框...</td>
         <td>
           <v-icon small class="mr-2" @click="editItem(props.item)">
             edit
@@ -74,7 +73,6 @@
       public headers = [
         { text: '权限编号', sortable: true, value: 'code' },
         { text: '权限名称', sortable: true, value: 'name' },
-        { text: '权限详情', sortable: true, value: 'code' },
         { text: '节点操作', sortable: false, value: 'code' },
       ]
 

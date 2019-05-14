@@ -55,9 +55,9 @@
     public editedIndex: number = -1
     public editedItem: any = {}
     public headers = [
+      { text: '节点编号', sortable: true, value: 'code' },
       { text: '节点名称', sortable: true, value: 'name' },
       { text: '节点路径', sortable: true, value: 'path' },
-      { text: '节点编号', sortable: true, value: 'code' },
       { text: '节点操作', sortable: false, value: 'name' },
     ]
 
