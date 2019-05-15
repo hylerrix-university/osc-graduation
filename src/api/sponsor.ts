@@ -1,6 +1,11 @@
-import { SponsorList } from '@/constant/sponsor'
+import { cms } from '@/commons/ajax'
+// import { SponsorList } from '@/constant/sponsor'
 
-export const getSponsorList = () => Promise.resolve({
-  success: true,
-  data: SponsorList,
-})
+export const getSponsorList = () =>
+  cms.get(`sponsor`)
+
+export const createSponsor = (role: any) =>
+  cms.post(`sponsor`, role)
+
+export const deleteSponsor = (id: number) =>
+  cms.delete(`/sponsor`, { data: { id } })

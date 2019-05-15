@@ -1,23 +1,27 @@
 import { LectorItem } from '@/model/lector'
 
 export const LectorList: LectorItem[] = [{
-  id: '1',
-  name: '韩亦乐',
+  id: 1,
+  username: 'hylerrix',
+  password: '123456',
+  email: 'hylerrix@foxmail.com',
+  nickname: '韩亦乐',
+  sex: 1,
+  phone: '188xxxx3255',
   github: 'hylerrix',
-  avatar: 'https://avatars0.githubusercontent.com/u/19285461?s=460&v=4',
+  avatar: 'https://avatars1.githubusercontent.com/u/25200451?s=460&v=4',
+  count: 1,
+  status: 1,
 }, {
-  id: '2',
-  name: '王冬梅',
+  id: 2,
+  username: 'WolfGirlM',
+  password: '123456',
+  email: '188xxxx1124@163.com',
+  nickname: '王冬梅',
+  sex: 1,
+  phone: '188xxxx1124',
   github: 'WolfGirlM',
   avatar: 'https://avatars1.githubusercontent.com/u/25200451?s=460&v=4',
-}, {
-  id: '3',
-  name: '韩亦乐',
-  github: 'hylerrix',
-  avatar: 'https://avatars0.githubusercontent.com/u/19285461?s=460&v=4',
-}, {
-  id: '4',
-  name: '王冬梅',
-  github: 'WolfGirlM',
-  avatar: 'https://avatars1.githubusercontent.com/u/25200451?s=460&v=4',
+  count: 1,
+  status: 1,
 }]

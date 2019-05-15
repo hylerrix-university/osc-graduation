@@ -15,8 +15,8 @@ const state = {
 
 const getters = {
   // 分别获取一、二级导航
-  nav1: (s: NavState) => s.list.filter((i: NavItem) => i.id.length === 6),
-  nav2: (s: NavState) => s.list.filter((i) => i.id.length === 9),
+  nav1: (s: NavState) => s.list.filter((i: NavItem) => i.code.length === 6),
+  nav2: (s: NavState) => s.list.filter((i: NavItem) => i.code.length === 9),
   // 拼装 children，获取层次化分明的导航
   // 重构：这里只支持一二级导航的生成
   navTree: (s: NavState) => {
@@ -57,7 +57,7 @@ const mutations = {
   ['LOADING_NAV_START']: (s: NavState) => s.loading = true,
   ['SET_NAV_LIST']: (s: NavState, data: NavItem[]) => s.list = data,
   ['SET_FILTER_NAV_LIST']: (s: NavState, data: NavItem[]) =>
-    s.list = data.filter((nav) => nav.status !== 'DISABLED'),
+    s.list = data.filter((nav) => nav.status !== 0),
   ['LOADING_NAV_END']: (s: NavState) => s.loading = false,
 }
 

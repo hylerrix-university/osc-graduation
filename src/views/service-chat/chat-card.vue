@@ -4,7 +4,9 @@
       群聊名称：{{ chat.name }}
     </v-card-title>
     <v-card-text>
-      群聊类型：{{ chat.type }}
+      <p>群聊类型：{{ chat.type }}</p>
+      <p>群聊状态：{{ chat.status ? '已解散' : '已建立' }}</p>
+      <p>群聊描述：{{ chat.remark }}</p>
     </v-card-text>
   </v-card>
 </template>

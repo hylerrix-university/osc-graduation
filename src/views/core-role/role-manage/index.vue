@@ -19,19 +19,21 @@
       v-model="dialog"
       :editedIndex="editedIndex"
       :item="editedItem"
-      @close-dialog="onDialogClose"
+      @save-dialog="onDialogSave"
     ></edit-dialog>
     <v-data-table
       :headers="headers"
-      :items="navList"
+      :items="roleList"
       :search="search"
       class="elevation-1"
       disable-initial-sort
       hide-actions
+      :loading="loading"
     >
       <template v-slot:items="props">
-        <td>{{ props.item.code }}</td>
         <td>{{ props.item.name }}</td>
+        <td>{{ props.item.status ? '开启' : '失效' }}</td>
+        <td>{{ props.item.remark }}</td>
         <td>
           <v-icon small class="mr-2" @click="editItem(props.item)">
             edit
@@ -53,6 +55,7 @@
 <script lang="ts">
     import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
     import EditDialog from './edit-dialog.vue'
+    import { createRole, deleteRole } from '@/api/role'
 
     import { RoleItem } from '@/model/role'
     import { namespace } from 'vuex-class'
@@ -65,20 +68,19 @@
         },
     })
     export default class RoleManage extends Vue {
-      @Role.State('list') public navList!: RoleItem[]
+      @Role.State('list') public roleList!: RoleItem[]
+      @Role.State public loading!: boolean
+      @Role.Action public setRoleList!: any
       public dialog: boolean = false
       public editedIndex: number = -1
       public editedItem: any = {}
       public search: string = ''
       public headers = [
-        { text: '权限编号', sortable: true, value: 'code' },
         { text: '权限名称', sortable: true, value: 'name' },
-        { text: '节点操作', sortable: false, value: 'code' },
+        { text: '权限状态', sortable: true, value: 'status' },
+        { text: '权限备注', sortable: true, value: 'remark' },
+        { text: '节点操作', sortable: false, value: 'status' },
       ]
-
-      public onDialogClose() {
-        this.editedIndex = -1
-      }
 
       public addItem() {
         this.editedItem = {}
@@ -87,13 +89,34 @@
       }
 
       public editItem(editedItem: any) {
-        this.editedIndex = this.navList.indexOf(editedItem)
+        this.editedIndex = this.roleList.indexOf(editedItem)
         this.editedItem = editedItem
         this.dialog = true
       }
 
-      public deleteItem() {
-        console.log('delete')
+      public async onDialogSave(editedItem: any) {
+        try {
+          await createRole(editedItem)
+          await this.setRoleList().then(() => {
+            this.dialog = false
+          })
+        } catch {
+          alert('保存失败，请联系管理员！')
+        }
+        this.editedIndex = -1
+      }
+
+      public async deleteItem(item: any) {
+        const isDelete = confirm(`确认删除 ${ item.name }？`)
+        if (!isDelete) { return }
+        try {
+          const { data } = await deleteRole(item.id)
+          await this.setRoleList().then(() => {
+            this.dialog = false
+          })
+        } catch {
+          alert('删除失败，请联系管理员！')
+        }
       }
     }
 </script>

@@ -9,19 +9,20 @@
       v-model="dialog"
       :editedIndex="editedIndex"
       :item="editedItem"
-      @close-dialog="onDialogClose"
+      @save-dialog="onDialogSave"
     ></edit-dialog>
     <v-data-table
       :headers="headers"
-      :items="assertList"
+      :items="assetList"
       class="elevation-1"
       disable-initial-sort
       hide-actions
     >
       <template v-slot:items="props">
-        <td>{{ props.item.id }}</td>
-        <td>{{ props.item.count }}</td>
+        <td>{{ props.item.type }}</td>
+        <td>{{ props.item.amount }}</td>
         <td>{{ props.item.unit }}</td>
+        <td>{{ props.item.adminId }}</td>
         <td>{{ props.item.time }}</td>
         <td>
           <v-icon small class="mr-2" @click="editItem(props.item)">
@@ -39,40 +40,37 @@
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   import EditDialog from './edit-dialog.vue'
-  import { getAssertList } from '@/api/assert'
+  import { getAssetList, createAsset, deleteAsset } from '@/api/asset'
 
-  import { AssertItem } from '@/model/assert'
+  import { AssetItem } from '@/model/asset'
 
   @Component({
-    name: 'ResourceAssert',
+    name: 'ResourceAsset',
     components: {
       EditDialog,
     },
   })
-  export default class ResourceAssert extends Vue {
+  export default class ResourceAsset extends Vue {
     public dialog: boolean = false
     public editedIndex: number = -1
     public editedItem: any = {}
-    public assertList: AssertItem[] = []
+    public assetList: AssetItem[] = []
     public headers = [
-      { text: '赞助编号', sortable: true, value: 'id' },
-      { text: '赞助数量', sortable: true, value: 'count' },
+      { text: '记录类型', sortable: true, value: 'type' },
+      { text: '金额数量', sortable: true, value: 'amount' },
       { text: '赞助单位', sortable: true, value: 'unit' },
-      { text: '赞助时间', sortable: true, value: 'time' },
+      { text: '负责人', sortable: true, value: 'adminId' },
+      { text: '记录时间', sortable: true, value: 'time' },
       { text: '操作', sortable: false, value: '' },
     ]
 
     public created() {
-      this.getAssertList().then()
+      this.getAssetList().then()
     }
 
-    public async getAssertList() {
-      const { data } = await getAssertList()
-      this.assertList = data
-    }
-
-    public onDialogClose() {
-      this.editedIndex = -1
+    public async getAssetList() {
+      const { data } = await getAssetList()
+      this.assetList = data
     }
 
     public addItem() {
@@ -82,13 +80,34 @@
     }
 
     public editItem(editedItem: any) {
-      this.editedIndex = this.assertList.indexOf(editedItem)
+      this.editedIndex = this.assetList.indexOf(editedItem)
       this.editedItem = editedItem
       this.dialog = true
     }
 
-    public deleteItem() {
-      console.log('delete')
+    public async onDialogSave(editedItem: any) {
+      try {
+        await createAsset(editedItem)
+        await this.getAssetList().then(() => {
+          this.dialog = false
+        })
+      } catch {
+        alert('保存失败，请联系管理员！')
+      }
+      this.editedIndex = -1
+    }
+
+    public async deleteItem(item: any) {
+      const isDelete = confirm(`确认删除 ${ item.name }？`)
+      if (!isDelete) { return }
+      try {
+        const { data } = await deleteAsset(item.id)
+        await this.getAssetList().then(() => {
+          this.dialog = false
+        })
+      } catch {
+        alert('删除失败，请联系管理员！')
+      }
     }
   }
 </script>

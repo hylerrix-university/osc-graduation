@@ -1,5 +1,7 @@
 export interface ProjectItem {
-  id: string
+  id: number
   name: string
-  platform: string
+  type: string
+  status: number
+  remark: string
 }

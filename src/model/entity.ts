@@ -1,7 +1,9 @@
 export interface EntityItem {
-  id: string
-  count: string
+  id: number
   name: string
+  count: number
   unit: string
   time: string
+  adminId: number
+  status: number
 }

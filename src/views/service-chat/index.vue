@@ -9,7 +9,7 @@
       v-model="dialog"
       :editedIndex="editedIndex"
       :item="editedItem"
-      @close-dialog="onDialogClose"
+      @save-dialog="onDialogSave"
     ></edit-dialog>
     <v-container>
       <v-layout row wrap>
@@ -21,7 +21,8 @@
         >
           <v-toolbar dense>
             <v-spacer></v-spacer>
-            <v-btn small>编辑群聊</v-btn>
+            <v-btn small @click="editItem(chat)">编辑</v-btn>
+            <v-btn small @click="deleteItem(chat)">删除</v-btn>
           </v-toolbar>
           <chat-card
             :chat="chat"
@@ -35,8 +36,8 @@
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   import ChatCard from './chat-card.vue'
-  import { getChatList } from '@/api/chat'
   import EditDialog from './edit-dialog.vue'
+  import { getChatList, createChat, deleteChat } from '@/api/chat'
 
   import { NavItem } from '@/model/nav'
   import { ChatItem } from '@/model/chat'
@@ -71,10 +72,6 @@
       this.chatList = data
     }
 
-    public onDialogClose() {
-      this.editedIndex = -1
-    }
-
     public addItem() {
       this.editedItem = {}
       this.editedIndex = -1
@@ -87,8 +84,29 @@
       this.dialog = true
     }
 
-    public deleteItem() {
-      console.log('delete')
+    public async onDialogSave(editedItem: any) {
+      try {
+        await createChat(editedItem)
+        await this.getChatList().then(() => {
+          this.dialog = false
+        })
+      } catch {
+        alert('保存失败，请联系管理员！')
+      }
+      this.editedIndex = -1
+    }
+
+    public async deleteItem(item: any) {
+      const isDelete = confirm(`确认删除 ${ item.name }？`)
+      if (!isDelete) { return }
+      try {
+        const { data } = await deleteChat(item.id)
+        await this.getChatList().then(() => {
+          this.dialog = false
+        })
+      } catch {
+        alert('删除失败，请联系管理员！')
+      }
     }
   }
 </script>

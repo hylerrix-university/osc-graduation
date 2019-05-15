@@ -1,11 +1,12 @@
 export interface NavItem {
-    id: string
-    pid: string
-    name: string
-    path: string
-    isParent: boolean
-    status: string
-    remark: string
+  id: number
+  code: string
+  name: string
+  path: string
+  status: number
+  remark: string
+  isParent: number
+  pid: string
 }
 
 // 重构：这里假装后台返回的列表里没有 children 都是扁平化的
@@ -20,4 +21,13 @@ export interface NodeAuthItem {
   group: string
   path: string
   type: string
+}
+
+export interface CreateNavItem {
+  name: string
+  path: string
+  pid: string
+  status: string
+  isParent: number
+  remark: string
 }

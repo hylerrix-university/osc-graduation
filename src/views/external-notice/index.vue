@@ -11,7 +11,7 @@
       hide-actions
     >
       <template v-slot:items="props">
-        <td>{{ props.item.id }}</td>
+        <td>{{ props.item.code }}</td>
         <td>{{ props.item.name }}</td>
         <td>{{ props.item.path }}</td>
       </template>
@@ -34,9 +34,9 @@
     @Nav.State('list') public navList!: NavItem[]
 
     public headers = [
+      { text: '节点编号', sortable: true, value: 'code' },
       { text: '节点名称', sortable: true, value: 'name' },
       { text: '节点路径', sortable: true, value: 'path' },
-      { text: '节点编号', sortable: true, value: 'code' },
     ]
   }
 </script>

@@ -1,15 +1,23 @@
 import { RoleItem } from '@/model/role'
 
 export const RoleList: RoleItem[] = [{
-  id: '001',
+  id: 1,
   name: '管理员',
-  code: '1',
+  status: 1,
+  remark: '',
 }, {
-  id: '002',
+  id: 2,
   name: '运营人员',
-  code: '2',
+  status: 1,
+  remark: '',
 }, {
-  id: '003',
+  id: 3,
   name: '开发者',
-  code: '3',
+  status: 1,
+  remark: '',
+}, {
+  id: 4,
+  name: '游客',
+  status: 1,
+  remark: '',
 }]

@@ -9,7 +9,7 @@
       v-model="dialog"
       :editedIndex="editedIndex"
       :item="editedItem"
-      @close-dialog="onDialogClose"
+      @save-dialog="onDialogSave"
     ></edit-dialog>
     <v-container>
       <v-layout row wrap>
@@ -21,7 +21,8 @@
         >
           <v-toolbar dense>
             <v-spacer></v-spacer>
-            <v-btn small>编辑平台</v-btn>
+            <v-btn small @click="editItem(platform)">编辑</v-btn>
+            <v-btn small @click="deleteItem(platform)">删除</v-btn>
           </v-toolbar>
           <platform-card
             :platform="platform"
@@ -35,7 +36,7 @@
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   import PlatformCard from './platform-card.vue'
-  import { getPlatformList } from '@/api/platform'
+  import { getPlatformList, createPlatform, deletePlatform } from '@/api/platform'
   import EditDialog from './edit-dialog.vue'
 
   import { NavItem } from '@/model/nav'
@@ -71,10 +72,6 @@
       this.platformList = data
     }
 
-    public onDialogClose() {
-      this.editedIndex = -1
-    }
-
     public addItem() {
       this.editedItem = {}
       this.editedIndex = -1
@@ -87,8 +84,29 @@
       this.dialog = true
     }
 
-    public deleteItem() {
-      console.log('delete')
+    public async onDialogSave(editedItem: any) {
+      try {
+        await createPlatform(editedItem)
+        await this.getPlatformList().then(() => {
+          this.dialog = false
+        })
+      } catch {
+        alert('保存失败，请联系管理员！')
+      }
+      this.editedIndex = -1
+    }
+
+    public async deleteItem(item: any) {
+      const isDelete = confirm(`确认删除 ${ item.name }？`)
+      if (!isDelete) { return }
+      try {
+        const { data } = await deletePlatform(item.id)
+        await this.getPlatformList().then(() => {
+          this.dialog = false
+        })
+      } catch {
+        alert('删除失败，请联系管理员！')
+      }
     }
   }
 </script>

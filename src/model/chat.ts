@@ -1,5 +1,7 @@
 export interface ChatItem {
-  id: string
-  name: string
+  id: number
   type: string
+  name: string
+  status: number
+  remark: string
 }

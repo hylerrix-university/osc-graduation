@@ -11,7 +11,15 @@
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
-            <!-- 弹出框内容 -->
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.name" label="权限名称"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.status" label="权限状态"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.remark" label="权限备注"></v-text-field>
+            </v-flex>
           </v-layout>
         </v-container>
       </v-card-text>
@@ -52,7 +60,7 @@
     }
 
     public save() {
-      this.$emit('close-dialog', this.editedItem)
+      this.$emit('save-dialog', this.editedItem)
     }
 
     public close() {

@@ -1,6 +1,11 @@
-import { ActivityList } from '@/constant/activity'
+import { cms } from '@/commons/ajax'
+// import { ActivityList } from '@/constant/activity'
 
-export const getActivityList = () => Promise.resolve({
-  success: true,
-  data: ActivityList,
-})
+export const getActivityList = () =>
+  cms.get(`/activity`)
+
+export const createActivity = (item: any) =>
+  cms.post(`/activity`, item)
+
+export const deleteActivity = (id: number) =>
+  cms.delete(`/activity`, { data: { id } })

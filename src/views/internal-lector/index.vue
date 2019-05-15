@@ -9,23 +9,24 @@
       v-model="dialog"
       :editedIndex="editedIndex"
       :item="editedItem"
-      @close-dialog="onDialogClose"
+      @save-dialog="onDialogSave"
     ></edit-dialog>
     <v-container>
       <v-layout row wrap>
         <v-flex
-          xs6
+          xs4
           v-for="lector in lectorList"
           :key="lector.id"
           class="pa-2"
         >
           <v-toolbar dense>
             <v-spacer></v-spacer>
-            <v-btn small>编辑讲师</v-btn>
+            <v-btn small @click="editItem(lector)">编辑</v-btn>
+            <v-btn small @click="deleteItem(lector)">删除</v-btn>
           </v-toolbar>
-          <lector-card
-            :lector="lector"
-          ></lector-card>
+          <person-card
+            :person="lector"
+          ></person-card>
         </v-flex>
       </v-layout>
     </v-container>
@@ -34,44 +35,58 @@
 
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-  import LectorCard from './lector-card.vue'
-  import { getLectorList } from '@/api/lector'
   import EditDialog from './edit-dialog.vue'
+  import PersonCard from '@/components/person/person-card.vue'
+  import { createLector, deleteLector } from '@/api/lector'
 
   import { NavItem } from '@/model/nav'
   import { LectorItem } from '@/model/lector'
   import { namespace } from 'vuex-class'
+
   const Nav = namespace('nav')
+  const Lector = namespace('lector')
 
   @Component({
-    name: 'InternalLector',
+    name: 'CoreLector',
     components: {
-      LectorCard,
       EditDialog,
+      PersonCard,
     },
   })
-  export default class InternalLector extends Vue {
+  export default class CoreLector extends Vue {
     @Nav.State('list') public navList!: NavItem[]
-    public lectorList: LectorItem[] = []
+    @Lector.State('list') public lectorList!: LectorItem[]
+    @Lector.Action public setLectorList!: any
     public dialog: boolean = false
     public editedIndex: number = -1
     public editedItem: any = {}
     public headers = [
-      { text: '节点名称', sortable: true, value: 'name' },
-      { text: '节点路径', sortable: true, value: 'path' },
-      { text: '节点编号', sortable: true, value: 'code' },
+      { text: '用户名', sortable: true, value: 'username' },
+      { text: '密码', sortable: true, value: 'password' },
+      { text: '邮箱', sortable: true, value: 'email' },
+      { text: '昵称', sortable: true, value: 'nickname' },
+      { text: '姓名', sortable: true, value: 'sex' },
+      { text: '电话', sortable: true, value: 'phone' },
+      { text: 'Github', sortable: true, value: 'github' },
+      // { text: '头像', sortable: true, value: 'avatar' },
+      { text: '登录次数', sortable: true, value: 'count' },
+      { text: '封禁状态', sortable: false, value: 'status' },
+      { text: '操作', sortable: false, value: '' },
     ]
 
     public created() {
-      this.getLectorList()
+      this.setLectorList().then()
     }
 
-    public async getLectorList() {
-      const { data } = await getLectorList()
-      this.lectorList = data
-    }
-
-    public onDialogClose() {
+    public async onDialogSave(editedItem: any) {
+      try {
+        await createLector(editedItem)
+        await this.setLectorList().then(() => {
+          this.dialog = false
+        })
+      } catch {
+        alert('保存失败，请联系管理员！')
+      }
       this.editedIndex = -1
     }
 
@@ -87,8 +102,17 @@
       this.dialog = true
     }
 
-    public deleteItem() {
-      console.log('delete')
+    public async deleteItem(item: any) {
+      const isDelete = confirm(`确认删除 ${ item.username }？`)
+      if (!isDelete) { return }
+      try {
+        const { data } = await deleteLector(item.id)
+        await this.setLectorList().then(() => {
+          this.dialog = false
+        })
+      } catch {
+        alert('删除失败，请联系管理员！')
+      }
     }
   }
 </script>

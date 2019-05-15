@@ -1,6 +1,6 @@
-import { AssertItem } from '@/model/assert'
+import { AssetItem } from '@/model/asset'
 
-export const AssertList: AssertItem[] = [{
+export const AssetList: AssetItem[] = [{
   id: '1',
   count: '1000',
   unit: '西安邮电大学',

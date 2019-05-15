@@ -11,7 +11,18 @@
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
-            
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.name" label="场地名称"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.position" label="地理位置"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.contact" label="联系方式"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.status" label="场地状态"></v-text-field>
+            </v-flex>
           </v-layout>
         </v-container>
       </v-card-text>
@@ -52,7 +63,7 @@
     }
 
     public save() {
-      this.$emit('close-dialog', this.editedItem)
+      this.$emit('save-dialog', this.editedItem)
     }
 
     public close() {

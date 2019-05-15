@@ -33,7 +33,7 @@
               <v-list-tile-content>{{ i.name }}</v-list-tile-content>
             </v-list-tile>
             <v-list dense class="deepDark grey--text">
-              <v-list-tile v-for="j in getChildNav(i.id)" :key="j.name" :to="j.path">
+              <v-list-tile v-for="j in getChildNav(i.code)" :key="j.name" :to="j.path">
                 <v-list-tile-content>{{ j.name }}</v-list-tile-content>
               </v-list-tile>
             </v-list>
@@ -130,8 +130,8 @@
     public openLink(url: string, param: string) {
       openLink(url, param)
     }
-    public getChildNav(id: string) {
-      return this.nav2.filter((i) => i.pid === id)
+    public getChildNav(code: string) {
+      return this.nav2.filter((i) => i.pid === code)
     }
     public toggleDrawer() {
       this.drawer.permanent = !this.drawer.permanent

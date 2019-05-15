@@ -9,7 +9,7 @@
       v-model="dialog"
       :editedIndex="editedIndex"
       :item="editedItem"
-      @close-dialog="onDialogClose"
+      @save-dialog="onDialogSave"
     ></edit-dialog>
     <v-data-table
       :headers="headers"
@@ -19,10 +19,10 @@
       hide-actions
     >
       <template v-slot:items="props">
-        <td>{{ props.item.id }}</td>
-        <td>{{ props.item.platform }}</td>
+        <td>{{ props.item.name }}</td>
         <td>{{ props.item.account }}</td>
         <td>{{ props.item.password }}</td>
+        <td>{{ props.item.status ? '待定中' : '使用中' }}</td>
         <td>{{ props.item.remark }}</td>
         <td>
           <v-icon small class="mr-2" @click="editItem(props.item)">
@@ -40,7 +40,7 @@
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   import EditDialog from './edit-dialog.vue'
-  import { getAccountList } from '@/api/account'
+  import { getAccountList, createAccount, deleteAccount } from '@/api/account'
 
   import { AccountItem } from '@/model/account'
 
@@ -56,10 +56,10 @@
     public editedItem: any = {}
     public accountList: AccountItem[] = []
     public headers = [
-      { text: '账号编号', sortable: true, value: 'id' },
-      { text: '所属平台', sortable: true, value: 'platform' },
+      { text: '所属平台', sortable: true, value: 'name' },
       { text: '账号名称', sortable: true, value: 'account' },
       { text: '账号密码', sortable: true, value: 'password' },
+      { text: '账号状态', sortable: true, value: 'status' },
       { text: '账号备注', sortable: true, value: 'remark' },
       { text: '操作', sortable: false, value: '' },
     ]
@@ -71,10 +71,6 @@
     public async getAccountList() {
       const { data } = await getAccountList()
       this.accountList = data
-    }
-
-    public onDialogClose() {
-      this.editedIndex = -1
     }
 
     public addItem() {
@@ -89,8 +85,29 @@
       this.dialog = true
     }
 
-    public deleteItem() {
-      console.log('delete')
+    public async onDialogSave(editedItem: any) {
+      try {
+        await createAccount(editedItem)
+        await this.getAccountList().then(() => {
+          this.dialog = false
+        })
+      } catch {
+        alert('保存失败，请联系管理员！')
+      }
+      this.editedIndex = -1
+    }
+
+    public async deleteItem(item: any) {
+      const isDelete = confirm(`确认删除 ${ item.name }？`)
+      if (!isDelete) { return }
+      try {
+        const { data } = await deleteAccount(item.id)
+        await this.getAccountList().then(() => {
+          this.dialog = false
+        })
+      } catch {
+        alert('删除失败，请联系管理员！')
+      }
     }
   }
 </script>

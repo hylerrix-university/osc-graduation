@@ -24,9 +24,11 @@
   import CardWrap from './card-wrap.vue'
 
   import { NavItem } from '@/model/nav'
+  import { AdminItem } from '@/model/admin'
   import { LittleCardItem } from '@/model/dashboard'
   import { namespace } from 'vuex-class'
   const Nav = namespace('nav')
+  const Admin = namespace('admin')
 
   @Component({
     name: 'AppDashboard',
@@ -37,6 +39,7 @@
   })
   export default class AppDashboard extends Vue {
     @Nav.State('list') public navList!: NavItem[]
+    @Admin.State('list') public adminList!: AdminItem[]
     public cardInfoList: LittleCardItem[] = []
 
     public created() {
@@ -45,7 +48,7 @@
 
     public getCardInfoList() {
       this.cardInfoList = [
-        { title: '运营人员', count: 3, unit: '人', icon: '' },
+        { title: '运营人员', count: this.adminList.length, unit: '人', icon: '' },
         { title: '管理模块', count: this.navList.length, unit: '个', icon: '' },
         { title: '本周操作', count: 235, unit: '次', icon: '' },
       ]

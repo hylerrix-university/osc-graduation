@@ -4,7 +4,9 @@
       活动名称：{{ activity.name }}
     </v-card-title>
     <v-card-text>
-      举办时间：{{ activity.time }}
+      <p>举办时间：{{ activity.time }}</p>
+      <p>活动状态：{{ activity.status }}</p>
+      <p>活动备注：{{ activity.remark }}</p>
     </v-card-text>
   </v-card>
 </template>

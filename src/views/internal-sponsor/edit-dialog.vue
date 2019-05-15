@@ -11,7 +11,18 @@
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
-            <!-- 弹出框内容 -->
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.type" label="赞助类型"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.content" label="赞助内容"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.unit" label="赞助单位"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.time" label="赞助时间"></v-text-field>
+            </v-flex>
           </v-layout>
         </v-container>
       </v-card-text>
@@ -52,7 +63,7 @@
     }
 
     public save() {
-      this.$emit('close-dialog', this.editedItem)
+      this.$emit('save-dialog', this.editedItem)
     }
 
     public close() {

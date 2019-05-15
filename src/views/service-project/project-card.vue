@@ -4,7 +4,9 @@
       项目名称：{{ project.name }}
     </v-card-title>
     <v-card-text>
-      所属平台：{{ project.platform }}
+      <p>所属平台：{{ project.type }}</p>
+      <p>项目状态：{{ project.status ? '开发中' : '已上线' }}</p>
+      <p>备注：{{ project.remark }}</p>
     </v-card-text>
   </v-card>
 </template>

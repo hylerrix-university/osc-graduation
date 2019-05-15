@@ -1,15 +1,21 @@
 import { ProjectItem } from '@/model/project'
 
 export const ProjectList: ProjectItem[] = [{
-  id: '1',
+  id: 1,
   name: 'ningo-cms',
-  platform: 'Gitlab',
+  type: 'Gitlab',
+  status: 1,
+  remark: '',
 }, {
-  id: '2',
+  id: 2,
   name: 'ningo-cms-node',
-  platform: 'Gitlab',
+  type: 'Gitlab',
+  status: 1,
+  remark: '',
 }, {
-  id: '3',
+  id: 3,
   name: 'ningo-circle',
-  platform: 'Github',
+  type: 'Gitlab',
+  status: 1,
+  remark: '',
 }]

@@ -11,10 +11,10 @@
       </v-flex>
       <v-flex xs8> -->
         <v-card-title primary-title>
-          平台名称：{{ platform.name }}
+          <p>平台名称：{{ platform.type }}</p>
         </v-card-title>
         <v-card-text>
-          <!-- Github ID：{{ platform.github }} -->
+          <p>备注：{{ platform.remark }}</p>
         </v-card-text>
       <!-- </v-flex>
     </v-layout> -->

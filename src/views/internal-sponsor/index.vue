@@ -9,7 +9,7 @@
       v-model="dialog"
       :editedIndex="editedIndex"
       :item="editedItem"
-      @close-dialog="onDialogClose"
+      @save-dialog="onDialogSave"
     ></edit-dialog>
     <v-data-table
       :headers="headers"
@@ -40,7 +40,7 @@
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   import EditDialog from './edit-dialog.vue'
-  import { getSponsorList } from '@/api/sponsor'
+  import { getSponsorList, createSponsor, deleteSponsor } from '@/api/sponsor'
 
   import { SponsorItem } from '@/model/sponsor'
 
@@ -73,10 +73,6 @@
       this.sponsorList = data
     }
 
-    public onDialogClose() {
-      this.editedIndex = -1
-    }
-
     public addItem() {
       this.editedItem = {}
       this.editedIndex = -1
@@ -89,8 +85,29 @@
       this.dialog = true
     }
 
-    public deleteItem() {
-      console.log('delete')
+    public async onDialogSave(editedItem: any) {
+      try {
+        await createSponsor(editedItem)
+        await this.getSponsorList().then(() => {
+          this.dialog = false
+        })
+      } catch {
+        alert('保存失败，请联系管理员！')
+      }
+      this.editedIndex = -1
+    }
+
+    public async deleteItem(item: any) {
+      const isDelete = confirm(`确认删除 ${ item.name }？`)
+      if (!isDelete) { return }
+      try {
+        const { data } = await deleteSponsor(item.id)
+        await this.getSponsorList().then(() => {
+          this.dialog = false
+        })
+      } catch {
+        alert('删除失败，请联系管理员！')
+      }
     }
   }
 </script>

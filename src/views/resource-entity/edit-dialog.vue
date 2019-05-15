@@ -11,7 +11,24 @@
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
-            
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.name" label="物资名称"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.count" label="物资数量"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.unit" label="赞助单位"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.time" label="赞助时间"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.adminId" label="负责人"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.status" label="物资状态"></v-text-field>
+            </v-flex>
           </v-layout>
         </v-container>
       </v-card-text>
@@ -52,7 +69,7 @@
     }
 
     public save() {
-      this.$emit('close-dialog', this.editedItem)
+      this.$emit('save-dialog', this.editedItem)
     }
 
     public close() {

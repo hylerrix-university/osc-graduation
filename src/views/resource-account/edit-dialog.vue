@@ -11,7 +11,21 @@
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
-            
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.account" label="账号"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.password" label="密码"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.name" label="所属平台"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.status" label="账号状态"></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field v-model="editedItem.remark" label="备注"></v-text-field>
+            </v-flex>
           </v-layout>
         </v-container>
       </v-card-text>
@@ -52,7 +66,7 @@
     }
 
     public save() {
-      this.$emit('close-dialog', this.editedItem)
+      this.$emit('save-dialog', this.editedItem)
     }
 
     public close() {

@@ -1,5 +1,6 @@
 export interface RoleItem {
-  id: string
+  id: number
   name: string
-  code: string
+  status: number
+  remark: string
 }

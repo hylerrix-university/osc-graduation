@@ -11,7 +11,21 @@
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
-            
+            <v-flex xs12 md4>
+              <v-text-field v-model="editedItem.type" label="记录类型"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md4>
+              <v-text-field v-model="editedItem.amount" label="金额数量"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md4>
+              <v-text-field v-model="editedItem.unit" label="赞助单位"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.adminId" label="负责人"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.time" label="记录时间"></v-text-field>
+            </v-flex>
           </v-layout>
         </v-container>
       </v-card-text>
@@ -52,7 +66,7 @@
     }
 
     public save() {
-      this.$emit('close-dialog', this.editedItem)
+      this.$emit('save-dialog', this.editedItem)
     }
 
     public close() {

@@ -1,13 +1,21 @@
-// import { cms } from '@/commons/ajax'
-import { NavList } from '@/constant/nav'
-
-// export const getNavList = () =>
-//     cmdb.get('/core/card/?username=ZmF%2B3FLqAStF6jHWrOTNjQ%3D%3D')
+import { cms } from '@/commons/ajax'
+// import { NavList } from '@/constant/nav'
+import { CreateNavItem } from '@/model/nav'
 
 /**
- * 根据加密用户名获取导航
+ * 获取导航
  */
-export const getNavList = () => Promise.resolve({
-    success: true,
-    data: [...NavList],
-})
+export const getNavList = () =>
+  cms.get(`/menu`)
+
+/**
+ * 新增导航
+ */
+export const createNav = (navItem: CreateNavItem) =>
+  cms.post(`menu`, navItem)
+
+/**
+ * 删除导航
+ */
+export const deleteNav = (id: number) =>
+  cms.delete(`/menu`, { data: { id } })

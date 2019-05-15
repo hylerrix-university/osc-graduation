@@ -15,7 +15,31 @@
           </v-layout>
         </v-container>
       </v-card-text>
-
+      <v-container grid-list-md>
+          <v-layout wrap>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.code" label="菜单编号"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.name" label="菜单名称"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.path" label="菜单路径"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.pid" label="父节点"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.isParent" label="是否有子节点"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md12>
+              <v-text-field v-model="editedItem.status" label="菜单状态"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md12>
+              <v-text-field v-model="editedItem.remark" label="菜单备注"></v-text-field>
+            </v-flex>
+          </v-layout>
+        </v-container>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="blue darken-1" flat @click="close">返回</v-btn>
@@ -52,7 +76,7 @@
     }
 
     public save() {
-      this.$emit('close-dialog', this.editedItem)
+      this.$emit('save-dialog', this.editedItem)
     }
 
     public close() {
