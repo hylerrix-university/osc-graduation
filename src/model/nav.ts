@@ -5,7 +5,7 @@ export interface NavItem {
     path: string
     isParent: boolean
     status: string
-    description: string
+    remark: string
 }
 
 // 重构：这里假装后台返回的列表里没有 children 都是扁平化的

@@ -5,17 +5,17 @@ export const AccountList: AccountItem[] = [{
   platform: 'Github',
   account: 'hylerrix',
   password: '123456',
-  description: '666',
+  remark: '666',
 }, {
   id: '2',
   platform: 'Gitlab',
   account: 'hylerrix',
   password: '123456',
-  description: '666',
+  remark: '666',
 }, {
   id: '3',
   platform: '金数据',
   account: 'hylerrix',
   password: '123456',
-  description: '666',
+  remark: '666',
 }]

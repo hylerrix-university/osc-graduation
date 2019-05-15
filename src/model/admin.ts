@@ -1,4 +1,4 @@
 export interface AdminItem {
-  id: string
+  id: number
   username: string
 }

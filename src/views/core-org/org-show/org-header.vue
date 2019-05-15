@@ -2,19 +2,19 @@
   <v-card v-if="curOrgNode">
     <v-card-title>
       {{ curOrgNode.name }}
-      <v-chip small color="primary" text-color="white">一级部门</v-chip>
+      <v-chip small color="primary" text-color="white">一级组织</v-chip>
     </v-card-title>
     <v-card-text>
-      负责人: {{ getOwnersNameByIds(curOrgNode.owners) }}
+      负责人: {{ getOwnerNameByIds(curOrgNode.owner) }}
     </v-card-text>
   </v-card>
 </template>
 
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-  import { getOwnersNameByIds } from '@/commons/admin'
+  import { getOwnerNameByIds } from '@/commons/admin'
 
-  import { OrgTreeItem } from '@/model/org'
+  import { OrgItem } from '@/model/org'
   import { AdminItem } from '@/model/admin'
   import { namespace } from 'vuex-class'
   const Org = namespace('org')
@@ -25,11 +25,11 @@
     components: {},
   })
   export default class OrgHeader extends Vue {
-    @Org.State public curOrgNode!: OrgTreeItem
+    @Org.State public curOrgNode!: OrgItem
     @Admin.State('list') public adminList!: AdminItem[]
 
-    public getOwnersNameByIds(owners: string) {
-      return getOwnersNameByIds(owners, this.adminList)
+    public getOwnerNameByIds(owner: string) {
+      return getOwnerNameByIds(owner, this.adminList)
     }
   }
 </script>

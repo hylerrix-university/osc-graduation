@@ -3,5 +3,5 @@ export interface AccountItem {
   platform: string
   account: string
   password: string
-  description: string
+  remark: string
 }

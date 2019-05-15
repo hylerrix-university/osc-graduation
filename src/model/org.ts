@@ -1,13 +1,16 @@
 export interface OrgItem {
-  id: string
-  isParent: boolean
+  id: number
+  code: string
   name: string
-  description: string
-  owners: string
-  pid: string,
+  owner: string
+  remark: string
+  isParent: number
+  pid: string
 }
 
-export interface OrgTreeItem extends OrgItem {
-  children: []
+export interface CreateOrgItem {
+  code: string
+  name: string
+  owner: number
+  remark: string
 }
-

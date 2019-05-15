@@ -16,7 +16,7 @@
         <td>{{ props.item.name }}</td>
         <td>{{ props.item.path }}</td>
         <td>{{ getStatusName(props.item.status) }}</td>
-        <td>{{ props.item.description }}</td>
+        <td>{{ props.item.remark }}</td>
       </template>
     </v-data-table>
   </v-card>
@@ -42,7 +42,7 @@
       { text: '节点路径', sortable: true, value: 'path' },
       { text: '节点编号', sortable: true, value: 'code' },
       { text: '节点状态', sortable: false, value: 'status' },
-      { text: '节点备注', sortable: false, value: 'description' },
+      { text: '节点备注', sortable: false, value: 'remark' },
     ]
 
     public getStatusName(status: string) {

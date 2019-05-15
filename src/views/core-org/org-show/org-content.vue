@@ -21,7 +21,7 @@
   })
   export default class OrgContent extends Vue {
     public windowList: AppWindowItem[] = [
-      { title: '部门简介', comp: OrgIntro},
+      { title: '组织简介', comp: OrgIntro},
     ]
   }
 </script>

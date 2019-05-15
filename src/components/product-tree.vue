@@ -30,8 +30,6 @@
   import { getProductTree } from '@/api/product-tree.ts'
   import AppLoading from '@/components/app-loading.vue'
 
-  import { OrgTreeItem } from '@/model/org'
-
   @Component({
     name: 'ProductTree',
     components: { AppLoading },

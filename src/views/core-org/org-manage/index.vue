@@ -4,7 +4,7 @@
       v-model="dialog"
       :editedIndex="editedIndex"
       :item="editedItem"
-      @close-dialog="onDialogClose"
+      @save-dialog="onDialogSave"
     ></edit-dialog>
     <v-card-title flat>
       <v-layout>
@@ -18,26 +18,25 @@
           ></v-text-field>
         </v-flex>
         <v-spacer></v-spacer>
-        <v-btn @click="editItem()">新增部门</v-btn>
+        <v-btn @click="editItem()">新增组织</v-btn>
       </v-layout>
     </v-card-title>
     <v-data-table
       :headers="headers"
       :items="orgTree"
       :search="search"
+      :loading="loading"
       hide-actions
     >
       <template v-slot:items="props">
-        <td>{{ props.item.id }}</td>
+        <td>{{ props.item.code }}</td>
         <td>{{ props.item.name }}</td>
         <td>
           <username-tooltip
-            v-for="(name, j) in getOwnersNameByIds(props.item.owners).split(',')"
-            :key="j"
-            :username="name"
+            :username="getOwnerNameByIds(props.item.owner)"
           ></username-tooltip>
         </td>
-        <td>{{ props.item.descrition }}</td>
+        <td>{{ props.item.remark }}</td>
         <td>
           <v-icon small class="mr-2" @click="editItem(props.item)">
             edit
@@ -60,9 +59,10 @@
   import { Component, Vue } from 'vue-property-decorator'
   import EditDialog from './edit-dialog.vue'
   import UsernameTooltip from '@/components/username-tooltip.vue'
-  
-  import { getOwnersNameByIds } from '@/commons/admin'
-  import { OrgTreeItem } from '@/model/org'
+  import { getOwnerNameByIds } from '@/commons/admin'
+  import { createOrg } from '@/api/org'
+
+  import { OrgItem } from '@/model/org'
   import { AdminItem } from '@/model/admin'
   import { namespace } from 'vuex-class'
   const Admin = namespace('admin')
@@ -76,23 +76,39 @@
     },
   })
   export default class OrgManage extends Vue {
-    @Org.Getter public orgTree!: OrgTreeItem[]
+    @Org.Getter public orgTree!: OrgItem[]
+    @Org.Action public setOrgList!: any
+    @Org.State public loading!: boolean
     @Admin.State('list') public adminList!: AdminItem[]
-
     public headers: any = [
-      { text: '部门编号', sortable: false, value: 'id' },
-      { text: '部门名称', sortable: false, value: 'name' },
-      { text: '负责人', sortable: false, value: 'owners' },
-      { text: '部门描述', sortable: false, value: 'description' },
+      { text: '组织编号', sortable: false, value: 'id' },
+      { text: '组织名称', sortable: false, value: 'name' },
+      { text: '负责人', sortable: false, value: 'owner' },
+      { text: '组织描述', sortable: false, value: 'remark' },
       { text: '操作', sortable: false, value: '' },
     ]
     public search: string = ''
     public dialog: boolean = false
     public editedIndex: number = -1
-    // BUG: public editedItem!: OrgTreeItem 时，要么初始化时写假数据要么不能初始化报错未定义
+    // BUG: public editedItem!: OrgItem 时，要么初始化时写假数据要么不能初始化报错未定义
     public editedItem: any = {}
 
-    public onDialogClose() {
+    // 重构：圈复杂度太深
+    public async onDialogSave(editedItem: any) {
+      if (this.editedIndex === -1) {
+        // 新增组织
+        try {
+          const { data } = await createOrg(editedItem)
+          await this.setOrgList().then(() => {
+            this.dialog = false
+          })
+        } catch {
+          alert('有错误！')
+        }
+      } else {
+        // 编辑组织
+        console.log(editedItem)
+      }
       this.editedIndex = -1
     }
 
@@ -112,8 +128,9 @@
       console.log('delete')
     }
 
-    public getOwnersNameByIds(owners: string) {
-      return getOwnersNameByIds(owners, this.adminList)
+    public getOwnerNameByIds(owner: string) {
+      const curOwner: any = getOwnerNameByIds(owner, this.adminList)
+      return curOwner ? curOwner.username : '暂无负责人'
     }
   }
 </script>

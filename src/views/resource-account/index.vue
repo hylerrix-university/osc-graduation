@@ -23,7 +23,7 @@
         <td>{{ props.item.platform }}</td>
         <td>{{ props.item.account }}</td>
         <td>{{ props.item.password }}</td>
-        <td>{{ props.item.description }}</td>
+        <td>{{ props.item.remark }}</td>
         <td>
           <v-icon small class="mr-2" @click="editItem(props.item)">
             edit
@@ -60,7 +60,7 @@
       { text: '所属平台', sortable: true, value: 'platform' },
       { text: '账号名称', sortable: true, value: 'account' },
       { text: '账号密码', sortable: true, value: 'password' },
-      { text: '账号备注', sortable: true, value: 'description' },
+      { text: '账号备注', sortable: true, value: 'remark' },
       { text: '操作', sortable: false, value: '' },
     ]
 

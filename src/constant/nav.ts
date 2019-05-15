@@ -9,7 +9,7 @@ export const NavList: NavItem[] = [
     path: '/',
     name: '通用页面',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000',
   },
   {
@@ -18,7 +18,7 @@ export const NavList: NavItem[] = [
     path: '/dashboard',
     name: '仪表盘',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000000',
   },
   // 核心运营管理
@@ -28,7 +28,7 @@ export const NavList: NavItem[] = [
     path: '/',
     name: '核心运营管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000',
   },
   {
@@ -37,7 +37,7 @@ export const NavList: NavItem[] = [
     path: '/core/org',
     name: '组织架构管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000001',
   },
   {
@@ -46,7 +46,7 @@ export const NavList: NavItem[] = [
     path: '/core/admin',
     name: '运营人员管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000001',
   },
   {
@@ -55,7 +55,7 @@ export const NavList: NavItem[] = [
     path: '/core/menu',
     name: '平台导航管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000001',
   },
   {
@@ -64,7 +64,7 @@ export const NavList: NavItem[] = [
     path: '/core/role',
     name: '平台角色管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000001',
   },
   {
@@ -73,7 +73,7 @@ export const NavList: NavItem[] = [
     path: '/core/card',
     name: '平台卡片管理',
     status: 'DISABLED',
-    description: '',
+    remark: '',
     pid: '000001',
   },
   // 社区服务管理
@@ -83,7 +83,7 @@ export const NavList: NavItem[] = [
     path: '/',
     name: '社区服务管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000',
   },
   {
@@ -92,7 +92,7 @@ export const NavList: NavItem[] = [
     path: '/service/activity',
     name: '社区活动管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000002',
   },
   {
@@ -101,7 +101,7 @@ export const NavList: NavItem[] = [
     path: '/service/project',
     name: '社区项目管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000002',
   },
   {
@@ -110,7 +110,7 @@ export const NavList: NavItem[] = [
     path: '/service/chat',
     name: '社区群聊管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000002',
   },
   // 社区建设管理
@@ -120,7 +120,7 @@ export const NavList: NavItem[] = [
     path: '/',
     name: '社区建设管理',
     status: 'DISABLED',
-    description: '',
+    remark: '',
     pid: '000',
   },
   {
@@ -129,7 +129,7 @@ export const NavList: NavItem[] = [
     path: '/external/member',
     name: '社区成员管理',
     status: 'DISABLED',
-    description: '',
+    remark: '',
     pid: '000003',
   },
   {
@@ -138,7 +138,7 @@ export const NavList: NavItem[] = [
     path: '/external/notice',
     name: '社区公告管理',
     status: 'DISABLED',
-    description: '',
+    remark: '',
     pid: '000003',
   },
   // 平台资源管理
@@ -148,7 +148,7 @@ export const NavList: NavItem[] = [
     path: '/',
     name: '平台资源管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000',
   },
   {
@@ -157,7 +157,7 @@ export const NavList: NavItem[] = [
     path: '/resource/platform',
     name: '社区平台管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000004',
   },
   {
@@ -166,7 +166,7 @@ export const NavList: NavItem[] = [
     path: '/resource/entity',
     name: '实体物资管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000004',
   },
   {
@@ -175,7 +175,7 @@ export const NavList: NavItem[] = [
     path: '/resource/account',
     name: '虚拟账号管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000004',
   },
   {
@@ -184,7 +184,7 @@ export const NavList: NavItem[] = [
     path: '/resource/file',
     name: '线上文件管理',
     status: 'DISABLED',
-    description: '',
+    remark: '',
     pid: '000004',
   },
   {
@@ -193,7 +193,7 @@ export const NavList: NavItem[] = [
     path: '/resource/asset',
     name: '金融资产管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000004',
   },
   // 平台建设管理
@@ -203,7 +203,7 @@ export const NavList: NavItem[] = [
     path: '/',
     name: '平台建设管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000',
   },
   {
@@ -212,7 +212,7 @@ export const NavList: NavItem[] = [
     path: '/internal/lector',
     name: '社区讲师管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000005',
   },
   {
@@ -221,7 +221,7 @@ export const NavList: NavItem[] = [
     path: '/internal/yard',
     name: '社区场地管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000005',
   },
   {
@@ -230,7 +230,7 @@ export const NavList: NavItem[] = [
     path: '/internal/sponsor',
     name: '社区赞助管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000005',
   },
   // 平台文档管理
@@ -240,7 +240,7 @@ export const NavList: NavItem[] = [
     path: '/',
     name: '平台文档管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000',
   },
   {
@@ -249,7 +249,7 @@ export const NavList: NavItem[] = [
     path: '/doc/dictionary',
     name: '数据字典管理',
     status: 'DISABLED',
-    description: '',
+    remark: '',
     pid: '000006',
   },
   {
@@ -258,7 +258,7 @@ export const NavList: NavItem[] = [
     path: '/doc/log',
     name: '操作日志管理',
     status: 'CODING',
-    description: '',
+    remark: '',
     pid: '000006',
   },
   // 运营人员中心
@@ -268,7 +268,7 @@ export const NavList: NavItem[] = [
     path: '/',
     name: '运营人员中心',
     status: 'DISABLED',
-    description: '',
+    remark: '',
     pid: '000',
   },
   {
@@ -277,7 +277,7 @@ export const NavList: NavItem[] = [
     path: '/admin/profile',
     name: '个人资料管理',
     status: 'DISABLED',
-    description: '',
+    remark: '',
     pid: '000007',
   },
   {
@@ -286,7 +286,7 @@ export const NavList: NavItem[] = [
     path: '/admin/custom',
     name: '平台定制管理',
     status: 'DISABLED',
-    description: '',
+    remark: '',
     pid: '000007',
   },
 ]

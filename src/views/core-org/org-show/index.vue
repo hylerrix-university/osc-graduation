@@ -21,7 +21,7 @@
   import ProductTree from '@/components/product-tree.vue'
   import OrgContainer from './org-container.vue'
 
-  import { OrgTreeItem } from '@/model/org'
+  import { OrgItem } from '@/model/org'
   import { namespace } from 'vuex-class'
   const Org = namespace('org')
 
@@ -33,21 +33,21 @@
     },
   })
   export default class OrgShow extends Vue {
-    @Org.State public curOrgNode!: OrgTreeItem
-    @Org.Getter public orgTree!: OrgTreeItem[]
+    @Org.State public curOrgNode!: OrgItem
+    @Org.Getter public orgTree!: OrgItem[]
     @Org.Action public selectOrgTree!: any
 
     // BUG: 以下两种方式均错，必须用 any 解决
     // * 第一种不初始化视图没数据
     // * 第二种初始化时不能为 {}、undefined 或 null，只能写死
-    // public treeNode!: OrgTreeItem
-    // public treeNode: OrgTreeItem = {
+    // public treeNode!: OrgItem
+    // public treeNode: OrgItem = {
     //   id: '000001', isParent: true, name: '城市拓展部',
-    //   description: '', owner: '1', pid: '000', children: [],
+    //   remark: '', owner: '1', pid: '000', children: [],
     // }
     // public treeNode: any = {}
 
-    public async onTreeSelChange(treeSel: OrgTreeItem[]) {
+    public async onTreeSelChange(treeSel: OrgItem[]) {
       await this.selectOrgTree(treeSel[0])
     }
   }

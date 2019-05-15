@@ -16,7 +16,7 @@
   import OrgHeader from './org-header.vue'
   import OrgContent from './org-content.vue'
 
-  import { OrgTreeItem } from '@/model/org'
+  import { OrgItem } from '@/model/org'
 
   @Component({
     name: 'OrgContainer',

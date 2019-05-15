@@ -1,13 +1,13 @@
 <template>
   <v-card-text>
-    {{ curOrgNode.description ? curOrgNode.description : '暂无简介' }}
+    {{ curOrgNode.remark ? curOrgNode.remark : '暂无简介' }}
   </v-card-text>
 </template>
 
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   
-  import { OrgTreeItem } from '@/model/org'
+  import { OrgItem } from '@/model/org'
   import { namespace } from 'vuex-class'
   const Org = namespace('org')
   
@@ -16,7 +16,7 @@
     components: {},
   })
   export default class OrgIntro extends Vue {
-    @Org.State public curOrgNode!: OrgTreeItem
+    @Org.State public curOrgNode!: OrgItem
   }
 </script>
 
