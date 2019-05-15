@@ -1,5 +1,5 @@
 import { cms } from '@/commons/ajax'
-import { CreateOrgItem } from '@/model/org'
+import { CreateOrgItem, DeleteOrgItem } from '@/model/org'
 // import { OrgList } from '@/constant/org'
 
 /**
@@ -13,3 +13,9 @@ export const getOrgList = () =>
  */
 export const createOrg = (orgItem: CreateOrgItem) =>
   cms.post(`/org`, orgItem)
+
+/**
+ * 删除一个组织
+ */
+export const deleteOrg = (orgItem: DeleteOrgItem) =>
+  cms.delete(`/org`, { data: { code: orgItem } })

@@ -60,7 +60,7 @@
   import EditDialog from './edit-dialog.vue'
   import UsernameTooltip from '@/components/username-tooltip.vue'
   import { getOwnerNameByIds } from '@/commons/admin'
-  import { createOrg } from '@/api/org'
+  import { createOrg, deleteOrg } from '@/api/org'
 
   import { OrgItem } from '@/model/org'
   import { AdminItem } from '@/model/admin'
@@ -93,29 +93,20 @@
     // BUG: public editedItem!: OrgItem 时，要么初始化时写假数据要么不能初始化报错未定义
     public editedItem: any = {}
 
-    // 重构：圈复杂度太深
     public async onDialogSave(editedItem: any) {
-      if (this.editedIndex === -1) {
-        // 新增组织
-        try {
-          const { data } = await createOrg(editedItem)
-          await this.setOrgList().then(() => {
-            this.dialog = false
-          })
-        } catch {
-          alert('有错误！')
-        }
-      } else {
-        // 编辑组织
-        console.log(editedItem)
+      // 重构：暂时因为创建和更新很类似，只复用一个新增接口
+      // 因此存在一点小的不足之处：返回的状态码都是 201 Created
+      // 新增组织、编辑组织复用一个接口
+      // if (this.editedIndex === -1) { // 新增 }
+      // else { // 编辑 }
+      try {
+        await createOrg(editedItem)
+        await this.setOrgList().then(() => {
+          this.dialog = false
+        })
+      } catch {
+        alert('保存失败，请联系管理员！')
       }
-      this.editedIndex = -1
-    }
-
-    public addItem() {
-      this.editedItem = {}
-      this.editedIndex = -1
-      this.dialog = true
     }
 
     public editItem(editedItem: any) {
@@ -124,8 +115,17 @@
       this.dialog = true
     }
 
-    public deleteItem() {
-      console.log('delete')
+    public async deleteItem(item: any) {
+      const isDelete = confirm(`确认删除 ${ item.name }？`)
+      if (!isDelete) { return }
+      try {
+        const { data } = await deleteOrg(item.code)
+        await this.setOrgList().then(() => {
+          this.dialog = false
+        })
+      } catch {
+        alert('删除失败，请联系管理员！')
+      }
     }
 
     public getOwnerNameByIds(owner: string) {

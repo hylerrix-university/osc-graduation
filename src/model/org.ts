@@ -14,3 +14,7 @@ export interface CreateOrgItem {
   owner: number
   remark: string
 }
+
+export interface DeleteOrgItem {
+  code: string
+}
