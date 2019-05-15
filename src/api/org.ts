@@ -17,5 +17,5 @@ export const createOrg = (orgItem: CreateOrgItem) =>
 /**
  * 删除一个组织
  */
-export const deleteOrg = (orgItem: DeleteOrgItem) =>
-  cms.delete(`/org`, { data: { code: orgItem } })
+export const deleteOrg = (code: DeleteOrgItem) =>
+  cms.delete(`/org`, { data: { code } })

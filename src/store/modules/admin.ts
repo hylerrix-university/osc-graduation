@@ -17,6 +17,7 @@ const getters = {
 const actions = {
   async setAdminList({ commit }: any) {
     commit('LOADING_ADMIN_START')
+    // const { data }: any = await getAllAdmin()
     const { data }: any = await getAllAdmin()
     if (data) {
       commit('SET_ADMIN_LIST', data)

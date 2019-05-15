@@ -11,7 +11,33 @@
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
-            
+            <v-flex xs12 md6>
+              <v-text-field disabled v-model="editedItem.username" label="用户名"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.password" label="密码"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.email" label="邮箱"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.nickname" label="昵称"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.sex" label="性别"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.phone" label="电话"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md12>
+              <v-text-field v-model="editedItem.avatar" label="头像地址"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.github" label="Github"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.status" label="封禁状态"></v-text-field>
+            </v-flex>
           </v-layout>
         </v-container>
       </v-card-text>
@@ -52,7 +78,7 @@
     }
 
     public save() {
-      this.$emit('close-dialog', this.editedItem)
+      this.$emit('save-dialog', this.editedItem)
     }
 
     public close() {
