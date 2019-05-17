@@ -12,7 +12,7 @@
         <v-container grid-list-md>
           <v-layout wrap>
             <v-flex xs12 md6>
-              <v-text-field disabled v-model="editedItem.username" label="用户名"></v-text-field>
+              <v-text-field v-model="editedItem.username" label="用户名"></v-text-field>
             </v-flex>
             <v-flex xs12 md6>
               <v-text-field v-model="editedItem.password" label="密码"></v-text-field>

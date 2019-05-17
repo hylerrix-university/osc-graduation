@@ -12,10 +12,16 @@
         <v-container grid-list-md>
           <v-layout wrap>
             <v-flex xs12 md6>
-              <v-text-field v-model="editedItem.code" label="组织编号"></v-text-field>
+              <v-text-field
+                v-model="editedItem.code"
+                label="组织编号">
+              </v-text-field>
             </v-flex>
             <v-flex xs12 md6>
-              <v-text-field v-model="editedItem.name" label="组织名称"></v-text-field>
+              <v-text-field
+                v-model="editedItem.name"
+                label="组织名称">
+              </v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-autocomplete
@@ -91,6 +97,12 @@
     }
     public editedItem: any = this.defaultItem
     public adminNameList: string[] = []
+    // public error: any = {
+    //   code: { status: false, message: '组织编号必须填写'},
+    //   name: { status: false, message: '组织名称必须填写'},
+    //   owner: { status: false, message: '负责人必须选择'},
+    //   remark: { status: false, message: '组织备注必须选择'},
+    // }
 
     public created() {
       this.adminNameList = this.adminList.map((admin) => admin.username)
@@ -108,7 +120,7 @@
     }
 
     public save() {
-      // 重新将 owner 改为 id 值
+      // 重新将 owner 的 name 值改为 id 值
       const owner: any = this.adminList.find((admin) =>  {
         return admin.username === this.editedItem.owner
       })
@@ -119,6 +131,7 @@
     public close() {
       this.$emit('input', false)
     }
+
   }
 </script>
 

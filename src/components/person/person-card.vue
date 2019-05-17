@@ -10,13 +10,13 @@
       </v-flex>
       <v-flex xs8> -->
         <v-card-title>
-          {{ person.nickname }}
+          {{ person.username }}
         </v-card-title>
         <v-card-text>
-          <p>用户名：{{ person.username }}</p>
+          <p>昵称：{{ person.nickname }}</p>
           <p>密码：{{ person.password }}</p>
           <p>邮箱：{{ person.email }}</p>
-          <p>性别：{{ person.sex }}</p>
+          <p>性别：{{ person.sex ? '男' : '女' }}</p>
           <p>电话：{{ person.phone }}</p>
           <p>Github：{{ person.github }}</p>
         </v-card-text>
