@@ -14,7 +14,7 @@ export const ProjectList: ProjectItem[] = [{
   remark: '',
 }, {
   id: 3,
-  name: 'ningo-circle',
+  name: 'ningo-osc',
   type: 'Gitlab',
   status: 1,
   remark: '',
