@@ -24,7 +24,7 @@
 
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-  import { NavStatus } from '@/config/nav'
+  import { NavStatus } from '@/constant/nav'
 
   import { NavItem } from '@/model/nav'
   import { namespace } from 'vuex-class'
@@ -35,7 +35,7 @@
     components: {},
   })
   export default class NavShow extends Vue {
-    @Nav.State('list') public navList!: NavItem[]
+    @Nav.State('allList') public navList!: NavItem[]
 
     public headers = [
       { text: '节点编号', sortable: true, value: 'code' },

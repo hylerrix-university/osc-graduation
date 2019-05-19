@@ -4,6 +4,7 @@ import { ProductTreeItem } from '@/model/nav'
 
 interface NavState {
   list: NavItem[],
+  allList: NavItem[],
   loading: boolean
 }
 
@@ -46,7 +47,7 @@ const actions = {
     commit('LOADING_NAV_START')
     const { data }: any = await getNavList()
     if (data) {
-      // commit('SET_NAV_LIST', data)
+      commit('SET_NAV_LIST', data)
       commit('SET_FILTER_NAV_LIST', data)
     }
     commit('LOADING_NAV_END', data)
@@ -55,7 +56,7 @@ const actions = {
 
 const mutations = {
   ['LOADING_NAV_START']: (s: NavState) => s.loading = true,
-  ['SET_NAV_LIST']: (s: NavState, data: NavItem[]) => s.list = data,
+  ['SET_NAV_LIST']: (s: NavState, data: NavItem[]) => s.allList = data,
   ['SET_FILTER_NAV_LIST']: (s: NavState, data: NavItem[]) =>
     s.list = data.filter((nav) => nav.status !== 0),
   ['LOADING_NAV_END']: (s: NavState) => s.loading = false,

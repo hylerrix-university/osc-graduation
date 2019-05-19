@@ -1,5 +1,11 @@
 import { NavItem } from '@/model/nav'
 
+export const NavStatus: any = {
+  0: '设计中',
+  1: '开发中',
+  2: '上线中',
+}
+
 // 9 位 code: 123456789 —— 123 代表产品 ID、456 代表树 ID、789 代表功能 ID
 export const NavList: NavItem[] = [
   // 通用页面
