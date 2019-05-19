@@ -133,6 +133,24 @@ const router =  new Router({
       component: () => import('@/views/internal-sponsor/index.vue'),
       meta: { title: '社区赞助管理' },
     },
+    {
+      path: '/internal/topic',
+      name: 'InternalTopic',
+      component: () => import('@/views/internal-topic/index.vue'),
+      meta: { title: '分享主题管理' },
+    },
+    {
+      path: '/internal/unit',
+      name: 'InternalUnit',
+      component: () => import('@/views/internal-unit/index.vue'),
+      meta: { title: '入驻单位管理' },
+    },
+    {
+      path: '/internal/college',
+      name: 'InternalCollege',
+      component: () => import('@/views/internal-college/index.vue'),
+      meta: { title: '校园联盟管理' },
+    },
     // 平台文档管理
     {
       path: '/doc/dictionary',
@@ -146,6 +164,24 @@ const router =  new Router({
       component: () => import('@/views/doc-log/index.vue'),
       meta: { title: '操作日志管理' },
     },
+    {
+      path: '/doc/report',
+      name: 'DocReport',
+      component: () => import('@/views/doc-report/index.vue'),
+      meta: { title: '月度报告管理' },
+    },
+    {
+      path: '/doc/history',
+      name: 'DocHistory',
+      component: () => import('@/views/doc-history/index.vue'),
+      meta: { title: '发展历史管理' },
+    },
+    {
+      path: '/doc/demand',
+      name: 'DocDemand',
+      component: () => import('@/views/doc-demand/index.vue'),
+      meta: { title: '社区需求管理' },
+    },
     // 运营人员中心
     {
       path: '/admin/profile',
@@ -158,6 +194,12 @@ const router =  new Router({
       name: 'AdminCustom',
       component: () => import('@/views/admin-custom/index.vue'),
       meta: { title: '平台定制管理' },
+    },
+    {
+      path: '/admin/task',
+      name: 'AdminTask',
+      component: () => import('@/views/admin-task/index.vue'),
+      meta: { title: '个人任务管理' },
     },
   ],
 })

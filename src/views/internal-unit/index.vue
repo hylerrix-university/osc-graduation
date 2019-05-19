@@ -9,10 +9,10 @@
   // const Nav = namespace('nav')
 
   @Component({
-    name: 'DocDemand',
+    name: 'InternalUnit',
     components: {},
   })
-  export default class DocDemand extends Vue {
+  export default class InternalUnit extends Vue {
     // @Prop() public value!: boolean
     // @User.State('typeList') public userTypeList!: UserTypeItem[]
   }
