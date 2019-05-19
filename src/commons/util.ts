@@ -11,7 +11,7 @@ export const openLink = (url: string, param: string) => {
 
 /**
  * 将 JSON 对象格式化为 get 请求 URL 上的字符串
- * 如：{ ningowood: '...', cms: '...' } => "ningowood=...&cms=..."
+ * 如：{ ningowood: '...', osc: '...' } => "ningowood=...&osc=..."
  * @param json JSON 对象
  */
 export const formatJsonToQuery = (json: any) => Object.keys(json).map((key) => {

@@ -60,7 +60,7 @@
           class="grey--text link-title"
           to="/"
         >
-          <span>凝果开源社 - 后台管理系统</span>
+          <span>凝果开源社</span>
           <span class="sub-title"> v0.0.1</span>
         </router-link>
       <v-spacer></v-spacer>
@@ -120,7 +120,7 @@
     }
     // platform 集合凝果屋的各个系统，点击后跳转至相应系统中并实现单点登录
     public paltform: any = [{
-      title: '凝果开源社 - 内容管理系统',
+      title: '凝果开源社',
       link: 'https://gitlab.com/ningowood',
     }]
 

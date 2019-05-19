@@ -1,4 +1,4 @@
-import { cms } from '@/commons/ajax'
+import { osc } from '@/commons/ajax'
 import { CreateOrgItem, DeleteOrgItem } from '@/model/org'
 // import { OrgList } from '@/constant/org'
 
@@ -6,16 +6,16 @@ import { CreateOrgItem, DeleteOrgItem } from '@/model/org'
  * 获取组织架构列表
  */
 export const getOrgList = () =>
-  cms.get(`/org`)
+  osc.get(`/org`)
 
 /**
  * 新增一个组织
  */
 export const createOrg = (orgItem: CreateOrgItem) =>
-  cms.post(`/org`, orgItem)
+  osc.post(`/org`, orgItem)
 
 /**
  * 删除一个组织
  */
 export const deleteOrg = (code: DeleteOrgItem) =>
-  cms.delete(`/org`, { data: { code } })
+  osc.delete(`/org`, { data: { code } })

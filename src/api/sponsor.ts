@@ -1,11 +1,11 @@
-import { cms } from '@/commons/ajax'
+import { osc } from '@/commons/ajax'
 // import { SponsorList } from '@/constant/sponsor'
 
 export const getSponsorList = () =>
-  cms.get(`sponsor`)
+  osc.get(`sponsor`)
 
 export const createSponsor = (role: any) =>
-  cms.post(`sponsor`, role)
+  osc.post(`sponsor`, role)
 
 export const deleteSponsor = (id: number) =>
-  cms.delete(`/sponsor`, { data: { id } })
+  osc.delete(`/sponsor`, { data: { id } })

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-export const cms = axios.create({
-    baseURL: '/cms',
+export const osc = axios.create({
+    baseURL: '/osc',
 })
 
-cms.interceptors.response.use((r: any) => r.data)
+osc.interceptors.response.use((r: any) => r.data)

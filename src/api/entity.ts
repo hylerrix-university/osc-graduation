@@ -1,11 +1,11 @@
-import { cms } from '@/commons/ajax'
+import { osc } from '@/commons/ajax'
 // import { EntityList } from '@/constant/entity'
 
 export const getEntityList = () =>
-  cms.get(`/entity`)
+  osc.get(`/entity`)
 
 export const createEntity = (item: any) =>
-  cms.post(`/entity`, item)
+  osc.post(`/entity`, item)
 
 export const deleteEntity = (id: number) =>
-  cms.delete(`/entity`, { data: { id } })
+  osc.delete(`/entity`, { data: { id } })

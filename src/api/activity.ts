@@ -1,11 +1,11 @@
-import { cms } from '@/commons/ajax'
+import { osc } from '@/commons/ajax'
 // import { ActivityList } from '@/constant/activity'
 
 export const getActivityList = () =>
-  cms.get(`/activity`)
+  osc.get(`/activity`)
 
 export const createActivity = (item: any) =>
-  cms.post(`/activity`, item)
+  osc.post(`/activity`, item)
 
 export const deleteActivity = (id: number) =>
-  cms.delete(`/activity`, { data: { id } })
+  osc.delete(`/activity`, { data: { id } })
