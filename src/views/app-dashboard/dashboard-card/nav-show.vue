@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-toolbar flat>
-      <v-toolbar-title>平台导航一栏</v-toolbar-title>
+      <v-toolbar-title>平台导航全览</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-data-table
@@ -36,7 +36,6 @@
   })
   export default class NavShow extends Vue {
     @Nav.State('allList') public navList!: NavItem[]
-
     public headers = [
       { text: '节点编号', sortable: true, value: 'code' },
       { text: '节点名称', sortable: true, value: 'name' },

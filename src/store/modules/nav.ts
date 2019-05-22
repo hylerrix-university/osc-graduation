@@ -11,6 +11,7 @@ interface NavState {
 const state = {
   list: [], // NavItem[]
   loading: false, // boolean
+  allList: [],
   curNav: {}, // NavItem
 }
 
