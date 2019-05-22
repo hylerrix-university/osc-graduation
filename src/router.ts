@@ -182,6 +182,12 @@ const router =  new Router({
       component: () => import('@/views/doc-demand/index.vue'),
       meta: { title: '社区需求管理' },
     },
+    {
+      path: '/doc/article',
+      name: 'DocArticle',
+      component: () => import('@/views/doc-article/index.vue'),
+      meta: { title: '社区文章管理管理' },
+    },
     // 运营人员中心
     {
       path: '/admin/profile',

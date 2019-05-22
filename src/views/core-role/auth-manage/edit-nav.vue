@@ -11,15 +11,7 @@
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
-            <v-flex xs12 md6>
-              <v-text-field v-model="editedItem.name" label="权限名称"></v-text-field>
-            </v-flex>
-            <v-flex xs12 md6>
-              <v-text-field v-model="editedItem.status" label="权限状态"></v-text-field>
-            </v-flex>
-            <v-flex xs12 md6>
-              <v-text-field v-model="editedItem.remark" label="权限备注"></v-text-field>
-            </v-flex>
+            <!-- 弹出框内容 -->
           </v-layout>
         </v-container>
       </v-card-text>
@@ -37,10 +29,10 @@
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
   @Component({
-    name: 'EditDialog',
+    name: 'EditNav',
     components: {},
   })
-  export default class EditDialog extends Vue {
+  export default class EditNav extends Vue {
     @Prop() public value!: boolean
     @Prop() public item!: any
     @Prop() public editedIndex!: number
@@ -49,7 +41,7 @@
     public editedItem: any = this.defaultItem
 
     get title() {
-      return this.editedIndex === -1 ? '添加角色' : '编辑角色'
+      return '分配角色导航'
     }
 
     @Watch('item')
@@ -60,7 +52,7 @@
     }
 
     public save() {
-      this.$emit('save-dialog', this.editedItem)
+      this.$emit('close-dialog', this.editedItem)
     }
 
     public close() {

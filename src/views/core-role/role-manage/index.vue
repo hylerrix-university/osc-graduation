@@ -15,12 +15,12 @@
         <v-btn @click="editItem()">新增角色</v-btn>
       </v-layout>
     </v-card-title>
-    <edit-dialog
+    <edit-role
       v-model="dialog"
       :editedIndex="editedIndex"
       :item="editedItem"
       @save-dialog="onDialogSave"
-    ></edit-dialog>
+    ></edit-role>
     <v-data-table
       :headers="headers"
       :items="roleList"
@@ -54,7 +54,7 @@
 
 <script lang="ts">
     import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-    import EditDialog from './edit-dialog.vue'
+    import EditRole from '../edit-role.vue'
     import { createRole, deleteRole } from '@/api/role'
 
     import { RoleItem } from '@/model/role'
@@ -64,7 +64,7 @@
     @Component({
         name: 'RoleManage',
         components: {
-          EditDialog,
+          EditRole,
         },
     })
     export default class RoleManage extends Vue {

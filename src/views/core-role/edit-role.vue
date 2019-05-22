@@ -11,7 +11,15 @@
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
-            <!-- 弹出框内容 -->
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.name" label="权限名称"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.status" label="权限状态"></v-text-field>
+            </v-flex>
+            <v-flex xs12 md6>
+              <v-text-field v-model="editedItem.remark" label="权限备注"></v-text-field>
+            </v-flex>
           </v-layout>
         </v-container>
       </v-card-text>
@@ -29,10 +37,10 @@
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
   @Component({
-    name: 'EditDialog',
+    name: 'EditRole',
     components: {},
   })
-  export default class EditDialog extends Vue {
+  export default class EditRole extends Vue {
     @Prop() public value!: boolean
     @Prop() public item!: any
     @Prop() public editedIndex!: number
@@ -41,7 +49,7 @@
     public editedItem: any = this.defaultItem
 
     get title() {
-      return this.editedIndex === -1 ? '添加人员' : '编辑人员'
+      return this.editedIndex === -1 ? '添加角色' : '编辑角色'
     }
 
     @Watch('item')
