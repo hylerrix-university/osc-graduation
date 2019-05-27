@@ -45,22 +45,19 @@
   })
   export default class EditDialog extends Vue {
     @Prop() public value!: boolean
-    @Prop() public item!: any
+    @Prop() public editedItem!: any
     @Prop() public editedIndex!: number
-    // 重构: 希望不用手动赋默认值
-    public defaultItem: any = {}
-    public editedItem: any = this.defaultItem
 
     get title() {
       return this.editedIndex === -1 ? '添加项目' : '编辑项目'
     }
 
-    @Watch('item')
-    public onItemChange() {
-      // prop 的 item 为空时，editedItem 重置为默认值
-      if (!this.item) { this.editedItem = Object.assign({}, this.defaultItem) }
-      this.editedItem = Object.assign({}, this.item)
-    }
+    // @Watch('item')
+    // public onItemChange() {
+    //   // prop 的 item 为空时，editedItem 重置为默认值
+    //   if (!this.item) { this.editedItem = Object.assign({}, this.defaultItem) }
+    //   this.editedItem = Object.assign({}, this.item)
+    // }
 
     public save() {
       this.$emit('save-dialog', this.editedItem)

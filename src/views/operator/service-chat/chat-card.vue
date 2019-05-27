@@ -8,6 +8,10 @@
       <p>群聊状态：{{ chat.status ? '已解散' : '已建立' }}</p>
       <p>群聊描述：{{ chat.remark }}</p>
     </v-card-text>
+    <v-divider></v-divider>
+    <v-card-text>
+      相关人员：{{ chat.admins.map((admin) => admin.username) }}
+    </v-card-text>
   </v-card>
 </template>
 

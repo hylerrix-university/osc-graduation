@@ -6,12 +6,13 @@
   >
     <v-card>
       <v-card-title>
-        <span class="headline">{{ title }}</span>
+        <span class="headline">给活动分配信息</span>
       </v-card-title>
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
             <!-- 弹出框内容 -->
+            分配主题、单位、志愿者、文件、外链
           </v-layout>
         </v-container>
       </v-card-text>
@@ -29,17 +30,13 @@
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
   @Component({
-    name: 'EditDialog',
+    name: 'RelateDialog',
     components: {},
   })
-  export default class EditDialog extends Vue {
+  export default class RelateDialog extends Vue {
     @Prop() public value!: boolean
     @Prop() public editedItem!: any
     @Prop() public editedIndex!: number
-
-    get title() {
-      return this.editedIndex === -1 ? '添加人员' : '编辑人员'
-    }
 
     public save() {
       this.$emit('save-dialog', this.editedItem)

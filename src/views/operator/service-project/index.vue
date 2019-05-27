@@ -6,11 +6,17 @@
       <v-btn @click="editItem()">新增项目</v-btn>
     </v-toolbar>
     <edit-dialog
-      v-model="dialog"
+      v-model="dialog.item"
+      :editedItem="editedItem"
       :editedIndex="editedIndex"
-      :item="editedItem"
       @save-dialog="onDialogSave"
     ></edit-dialog>
+    <relate-dialog
+      v-model="dialog.relate"
+      :editedItem="editedRelate"
+      :editedIndex="editedIndex"
+      @save-dialog="onRelateSave"
+    ></relate-dialog>
     <v-container>
       <v-layout row wrap>
         <v-flex
@@ -21,6 +27,7 @@
         >
           <v-toolbar dense>
             <v-spacer></v-spacer>
+            <v-btn small @click="relateItem(project)">分配</v-btn>
             <v-btn small @click="editItem(project)">编辑</v-btn>
             <v-btn small @click="deleteItem(project)">删除</v-btn>
           </v-toolbar>
@@ -36,8 +43,9 @@
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   import ProjectCard from './project-card.vue'
-  import { getProjectList, createProject, deleteProject } from '@/api/project'
   import EditDialog from './edit-dialog.vue'
+  import RelateDialog from '@/components/person/relate-dialog.vue'
+  import { getProjectList, createProject, deleteProject, relateAdmin } from '@/api/project'
 
   import { NavItem } from '@/model/nav'
   import { ProjectItem } from '@/model/project'
@@ -49,14 +57,19 @@
     components: {
       ProjectCard,
       EditDialog,
+      RelateDialog,
     },
   })
   export default class ServiceProject extends Vue {
     @Nav.State('list') public navList!: NavItem[]
     public projectList: ProjectItem[] = []
-    public dialog: boolean = false
+    public dialog: any = {
+      item: false,
+      relate: false,
+    }
     public editedIndex: number = -1
     public editedItem: any = {}
+    public editedRelate: any = {}
     public headers = [
       { text: '节点名称', sortable: true, value: 'name' },
       { text: '节点路径', sortable: true, value: 'path' },
@@ -72,16 +85,16 @@
       this.projectList = data
     }
 
-    public addItem() {
-      this.editedItem = {}
-      this.editedIndex = -1
-      this.dialog = true
-    }
-
     public editItem(editedItem: any) {
       this.editedIndex = this.projectList.indexOf(editedItem)
       this.editedItem = editedItem
-      this.dialog = true
+      this.dialog.item = true
+    }
+
+    public relateItem(editedRelate: any) {
+      this.editedIndex = this.projectList.indexOf(editedRelate)
+      this.editedRelate = editedRelate
+      this.dialog.relate = true
     }
 
     public async onDialogSave(editedItem: any) {
@@ -94,6 +107,16 @@
         alert('保存失败，请联系管理员！')
       }
       this.editedIndex = -1
+    }
+
+    public async onRelateSave(projectId: number, adminIds: number[]) {
+      try {
+        await relateAdmin(projectId, adminIds)
+        await this.getProjectList()
+        this.dialog.relate = false
+      } catch {
+        alert('分配失败，请联系管理员！')
+      }
     }
 
     public async deleteItem(item: any) {

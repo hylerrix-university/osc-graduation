@@ -9,3 +9,9 @@ export const createChat = (item: any) =>
 
 export const deleteChat = (id: number) =>
   osc.delete(`/chat`, { data: { id } })
+
+export const relateAdmin = (chatId: number, adminIds: number[]) =>
+  osc.put(`/chat/admin`, {
+    chatId,
+    adminIds,
+  })

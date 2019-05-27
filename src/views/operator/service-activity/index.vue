@@ -6,11 +6,17 @@
       <v-btn @click="editItem()">新增活动</v-btn>
     </v-toolbar>
     <edit-dialog
-      v-model="dialog"
+      v-model="dialog.item"
       :editedIndex="editedIndex"
       :item="editedItem"
       @save-dialog="onDialogSave"
     ></edit-dialog>
+    <relate-dialog
+      v-model="dialog.relate"
+      :editedIndex="editedIndex"
+      :item="editedRelate"
+      @save-dialog="onDialogSave"
+    ></relate-dialog>
     <v-container>
       <v-layout row wrap>
         <v-flex
@@ -21,6 +27,7 @@
         >
           <v-toolbar dense>
             <v-spacer></v-spacer>
+            <v-btn small @click="relateItem(activity)">分配</v-btn>
             <v-btn small @click="editItem(activity)">编辑</v-btn>
             <v-btn small @click="deleteItem(activity)">删除</v-btn>
           </v-toolbar>
@@ -36,8 +43,9 @@
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   import ActivityCard from './activity-card.vue'
-  import { getActivityList } from '@/api/activity'
   import EditDialog from './edit-dialog.vue'
+  import RelateDialog from './relate-dialog.vue'
+  import { getActivityList } from '@/api/activity'
   import { createActivity, deleteActivity } from '@/api/activity'
 
   import { NavItem } from '@/model/nav'
@@ -50,14 +58,19 @@
     components: {
       ActivityCard,
       EditDialog,
+      RelateDialog,
     },
   })
   export default class ServiceActivity extends Vue {
     @Nav.State('list') public navList!: NavItem[]
     public activityList: ActivityItem[] = []
-    public dialog: boolean = false
+    public dialog: any = {
+      item: false,
+      relate: false,
+    }
     public editedIndex: number = -1
     public editedItem: any = {}
+    public editedRelate: any = {}
     public headers = [
       { text: '节点名称', sortable: true, value: 'name' },
       { text: '节点路径', sortable: true, value: 'path' },
@@ -73,23 +86,23 @@
       this.activityList = data
     }
 
-    public addItem() {
-      this.editedItem = {}
-      this.editedIndex = -1
-      this.dialog = true
-    }
-
     public editItem(editedItem: any) {
       this.editedIndex = this.activityList.indexOf(editedItem)
       this.editedItem = editedItem
-      this.dialog = true
+      this.dialog.item = true
+    }
+
+    public relateItem(editedItem: any) {
+      this.editedIndex = this.activityList.indexOf(editedItem)
+      this.editedRelate = editedItem
+      this.dialog.relate = true
     }
 
     public async onDialogSave(editedItem: any) {
       try {
         await createActivity(editedItem)
         await this.getActivityList().then(() => {
-          this.dialog = false
+          this.dialog.item = false
         })
       } catch {
         alert('保存失败，请联系管理员！')
@@ -103,7 +116,7 @@
       try {
         await deleteActivity(item.id)
         await this.getActivityList().then(() => {
-          this.dialog = false
+          this.dialog.item = false
         })
       } catch {
         alert('删除失败，请联系管理员！')

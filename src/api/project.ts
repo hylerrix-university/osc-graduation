@@ -9,3 +9,9 @@ export const createProject = (item: any) =>
 
 export const deleteProject = (id: number) =>
   osc.delete(`/project`, { data: { id } })
+
+export const relateAdmin = (projectId: number, adminIds: number[]) =>
+  osc.put(`/project/admin`, {
+    projectId,
+    adminIds,
+  })

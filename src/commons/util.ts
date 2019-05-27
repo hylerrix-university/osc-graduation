@@ -15,5 +15,5 @@ export const openLink = (url: string, param: string) => {
  * @param json JSON 对象
  */
 export const formatJsonToQuery = (json: any) => Object.keys(json).map((key) => {
-    return encodeURIComponent(key) + '=' + encodeURIComponent(json[key]);
+    return encodeURIComponent(key) + '=' + encodeURIComponent(json[key])
 }).join('&')

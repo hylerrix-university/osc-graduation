@@ -224,11 +224,11 @@ const router =  new Router({
  */
 router.beforeEach((to: any, from: any, next: any) => {
   // const nextRoute = ['home', 'good-list', 'good-detail', 'cart', 'profile']
-  // let isLogin = global.isLogin;  // 是否登录
+  // let isLogin = global.isLogin  // 是否登录
   // // 未登录状态；当路由到 nextRoute 指定页时，跳转至login
   // if (nextRoute.indexOf(to.name) >= 0) {
   //   if (!isLogin) {
-  //     console.log('what fuck');
+  //     console.log('what fuck')
   //     router.push({ name: 'login' })
   //   }
   // }
@@ -238,7 +238,7 @@ router.beforeEach((to: any, from: any, next: any) => {
   //     router.push({ name: 'home' })
   //   }
   // }
-  next();
+  next()
 })
 
 export default router

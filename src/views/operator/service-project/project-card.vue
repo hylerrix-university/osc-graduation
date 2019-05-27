@@ -8,6 +8,10 @@
       <p>项目状态：{{ project.status ? '开发中' : '已上线' }}</p>
       <p>备注：{{ project.remark }}</p>
     </v-card-text>
+    <v-divider></v-divider>
+    <v-card-text>
+      相关人员：{{ project.admins.map((admin) => admin.username) }}
+    </v-card-text>
   </v-card>
 </template>
 
