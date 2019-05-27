@@ -16,5 +16,5 @@ export interface CreateOrgItem {
 }
 
 export interface DeleteOrgItem {
-  code: string
+  id: number
 }

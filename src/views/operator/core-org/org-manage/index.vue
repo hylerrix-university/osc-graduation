@@ -119,7 +119,7 @@
       const isDelete = confirm(`确认删除 ${ item.name }？`)
       if (!isDelete) { return }
       try {
-        const { data } = await deleteOrg(item.code)
+        const { data } = await deleteOrg(item.id)
         await this.setOrgList().then(() => {
           this.dialog = false
         })

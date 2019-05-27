@@ -4,24 +4,24 @@
       <v-btn small color="primary" @click="editRole">新增角色</v-btn>
       <edit-role 
         v-model="dialog.role"
-        @save-dialog="onDialogRoleSave"
-        :editedItem="editedRole"
+        :item="editedRole"
         :editedIndex='editedIndex'
+        @save-dialog="onDialogRoleSave"
       ></edit-role>
       <edit-admin 
         v-model="dialog.admin"
-        @save-dialog="onDialogAdminSave"
         :editedItem="editedAdmin"
         :editedIndex='editedIndex'
+        @save-dialog="onDialogAdminSave"
       ></edit-admin>
-      <edit-nav 
+      <edit-menu
         v-model="dialog.nav"
-        @save-dialog="onDialogNavSave"
-        :editedItem="editedNav"
+        :editedItem="editedMenu"
         :editedIndex='editedIndex'
-      ></edit-nav>
+        @save-dialog="onDialogMenuSave"
+      ></edit-menu>
     </v-layout>
-    <!-- <v-progress-linear v-if="loading.table" :indeterminate="loading.table"></v-progress-linear> -->
+    <v-progress-linear v-if="loading" :indeterminate="loading"></v-progress-linear>
     <v-data-iterator
       :items="roleList"
       content-tag="v-layout"
@@ -34,7 +34,7 @@
         <v-flex xs12>
           <v-card class="mt-2 mx-2">
             <v-card-title class="my-1">
-              <h4>{{ props.item.name }} - <span>{{ props.item.status ? '开启' : '失效' }}</span></h4>
+              <h4>{{ props.item.name }} - <span>{{ props.item.status ? '可用' : '已封' }}</span></h4>
               <v-spacer></v-spacer>
               <v-toolbar-items class="hidden-sm-and-down">
                 <v-btn class="mr-2" @click="editRole(props.item)">编辑角色</v-btn>
@@ -49,7 +49,7 @@
             </v-card-text>
             <v-divider></v-divider>
             <v-card-text class="pl-0 ma-0">
-              <p class="remark">拥有成员：{{ props.item.admins }}</p>
+              <p class="remark">拥有成员：{{ props.item.admins.map((admin) => admin.username) }}</p>
               <!-- <username-tooltip
                 v-for="(name, j) in props.item.usernames.split(',')" :key="j"
                 :username="name">
@@ -57,7 +57,7 @@
             </v-card-text>
             <v-divider></v-divider>
             <v-card-text class="pl-0 ma-0">
-              <p class="remark">功能权限：{{ props.item.menus }}</p>
+              <p class="remark">功能权限：{{ props.item.menus.map((menu) => `${menu.name}-(${menu.code})`) }}</p>
             </v-card-text>
           </v-card>
         </v-flex>
@@ -76,7 +76,8 @@
   import UsernameTooltip from '@/components/username-tooltip.vue'
   import EditRole from '../edit-role.vue'
   import EditAdmin from './edit-admin.vue'
-  import EditNav from './edit-nav.vue'
+  import EditMenu from './edit-menu.vue'
+  import { createRole, deleteRole, relateAdmin, relateMenu } from '@/api/role'
 
   import { RoleItem } from '@/model/role'
   import { namespace } from 'vuex-class'
@@ -88,14 +89,13 @@
       UsernameTooltip,
       EditRole,
       EditAdmin,
-      EditNav,
+      EditMenu,
     },
   })
   export default class AuthManage extends Vue {
     @Role.State('list') public roleList!: RoleItem[]
-    public loading = {
-      table: false,
-    }
+    @Role.State public loading!: boolean
+    @Role.Action public setRoleList!: any
     public dialog = {
       role: false,
       admin: false,
@@ -105,68 +105,70 @@
     // filteredUsernames: string[] = []
     public editedRole = {}
     public editedAdmin = {}
-    public editedNav = {}
+    public editedMenu = {}
     // foundName: string = ''
 
     // get noDataText() {
-    //   return this.loading.table ? '正在加载数据' : '没有相关数据'
+    //   return this.loading ? '正在加载数据' : '没有相关数据'
     // }
 
-    public async onDialogRoleSave() {
+    public async onDialogRoleSave(editedItem: any) {
+      try {
+        await createRole(editedItem)
+        await this.setRoleList()
+      } catch {
+        alert('保存失败，请联系管理员！')
+      }
       this.editedIndex = -1
-      this.editedRole = Object.assign({}, {})
-      this.dialog.role = false
-      // await this.getMasterByProductTree()
     }
 
-    public async onDialogAdminSave() {
-      this.editedIndex = -1
-      this.editedAdmin = Object.assign({}, {})
-      this.dialog.admin = false
-      // await this.getMasterByProductTree()
+    public async onDialogAdminSave(roleId: number, adminIds: number[]) {
+      try {
+        await relateAdmin(roleId, adminIds)
+        await this.setRoleList()
+        this.dialog.admin = false
+      } catch {
+        alert('分配失败，请联系管理员！')
+      }
     }
 
-    public async onDialogNavSave() {
-      this.editedIndex = -1
-      this.editedNav = Object.assign({}, {})
-      this.dialog.nav = false
-      // await this.getMasterByProductTree()
+    public async onDialogMenuSave(roleId: number, menuIds: number[]) {
+      try {
+        await relateMenu(roleId, menuIds)
+        await this.setRoleList()
+        this.dialog.nav = false
+      } catch {
+        alert('分配失败，请联系管理员！')
+      }
     }
 
     public editRole(item: RoleItem) {
       this.editedIndex = item ? this.roleList.indexOf(item) : -1
       this.editedRole = Object.assign({}, item)
-      this.editedIndex = -1
       this.dialog.role = true
     }
 
     public editAdmin(item: any) {
-      // this.editedIndex = item ? this.roleList.indexOf(item) : -1
-      // this.editedAdmin = Object.assign({}, item)
-      // this.editedIndex = -1
+      this.editedIndex = item ? this.roleList.indexOf(item) : -1
+      this.editedAdmin = Object.assign({}, item)
       this.dialog.admin = true
     }
 
     public editNav(item: any) {
-      // this.editedIndex = item ? this.roleList.indexOf(item) : -1
-      // this.editedNav = Object.assign({}, item)
-      // this.editedIndex = -1
+      this.editedIndex = item ? this.roleList.indexOf(item) : -1
+      this.editedMenu = Object.assign({}, item)
       this.dialog.nav = true
     }
 
     public async deleteItem(item: any) {
-      this.loading.table = true
-      console.log(item)
-      // const formData: BatchMasterUserItem = {
-      //   id: this.node.id,
-      // }
-      // try {
-      //   const result: any = await batchMasterUser(formData)
-      //   alert(result.msg)
-      // } catch (e) {
-      //   alert('请求失败，或您没有操作权限!')
-      // }
-      this.loading.table = false
+      const isDelete = confirm(`确认删除 ${ item.name }？`)
+      if (!isDelete) { return }
+      try {
+        const { data } = await deleteRole(item.id)
+        await this.setRoleList()
+      } catch {
+        alert('删除失败，请联系管理员！')
+      }
     }
   }
 </script>

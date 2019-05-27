@@ -9,14 +9,20 @@ const router =  new Router({
   routes: [
     // 通用页面
     {
-      // 登录页面暂时为首页，届时可以改为社区官网展示页为首页
-      path: '/',
+      path: '/login',
       name: 'AppLogin',
       component: () => import('./app-login.vue'),
       meta: { title: '登录首页' },
     },
     {
-      path: '/operator/dashboard',
+      // 仪表盘暂时为首页，届时可以改为社区官网展示页为首页
+      path: '/',
+      name: 'AppDashboard',
+      component: () => import('@/views/operator/app-dashboard/index.vue'),
+      meta: { title: '运营人员仪表盘' },
+    },
+    {
+      path: '/dashboard',
       name: 'AppDashboard',
       component: () => import('@/views/operator/app-dashboard/index.vue'),
       meta: { title: '运营人员仪表盘' },

@@ -1,5 +1,5 @@
 import { osc } from '@/commons/ajax'
-import { CreateAdminItem, DeleteAdminItem } from '@/model/admin'
+import { CreateAdminItem, UpdateAdminItem, DeleteAdminItem } from '@/model/admin'
 
 // import { AdminList } from '@/constant/admin'
 
@@ -14,6 +14,12 @@ export const getAllAdmin = () =>
  */
 export const createAdmin = (admin: CreateAdminItem) =>
   osc.post(`/admin`, admin)
+
+/**
+ * 保存一个人员
+ */
+export const updateAdmin = (admin: UpdateAdminItem) =>
+  osc.put(`/admin`, admin)
 
 /**
  * 删除一个人员

@@ -32,7 +32,7 @@
     >
       <template v-slot:items="props">
         <td>{{ props.item.name }}</td>
-        <td>{{ props.item.status ? '开启' : '失效' }}</td>
+        <td>{{ props.item.status ? '可用' : '已封' }}</td>
         <td>{{ props.item.remark }}</td>
         <td>
           <v-icon small class="mr-2" @click="editItem(props.item)">

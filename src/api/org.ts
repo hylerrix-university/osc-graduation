@@ -17,5 +17,5 @@ export const createOrg = (orgItem: CreateOrgItem) =>
 /**
  * 删除一个组织
  */
-export const deleteOrg = (code: DeleteOrgItem) =>
-  osc.delete(`/org`, { data: { code } })
+export const deleteOrg = (id: DeleteOrgItem) =>
+  osc.delete(`/org`, { data: { id } })

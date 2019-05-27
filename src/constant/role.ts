@@ -5,19 +5,27 @@ export const RoleList: RoleItem[] = [{
   name: '管理员',
   status: 1,
   remark: '',
+  admins: [],
+  menus: [],
 }, {
   id: 2,
   name: '运营人员',
   status: 1,
   remark: '',
+  admins: [],
+  menus: [],
 }, {
   id: 3,
   name: '开发者',
   status: 1,
   remark: '',
+  admins: [],
+  menus: [],
 }, {
   id: 4,
   name: '游客',
   status: 1,
   remark: '',
+  admins: [],
+  menus: [],
 }]

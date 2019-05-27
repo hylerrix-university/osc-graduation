@@ -3,7 +3,7 @@
     <v-toolbar flat>
       <v-toolbar-title>运营人员管理</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn @click="editItem()">新增人员</v-btn>
+      <v-btn @click="editItem()">手动注册</v-btn>
     </v-toolbar>
     <edit-dialog
       v-model="dialog"
@@ -14,7 +14,7 @@
     <v-container>
       <v-layout row wrap>
         <v-flex
-          xs4
+          xs3
           v-for="admin in adminList"
           :key="admin.id"
           class="pa-2"
@@ -37,12 +37,11 @@
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   import EditDialog from './edit-dialog.vue'
   import PersonCard from '@/components/person/person-card.vue'
-  import { createAdmin, deleteAdmin } from '@/api/admin'
+  import { createAdmin, updateAdmin, deleteAdmin } from '@/api/admin'
 
   import { NavItem } from '@/model/nav'
   import { AdminItem } from '@/model/admin'
   import { namespace } from 'vuex-class'
-
   const Nav = namespace('nav')
   const Admin = namespace('admin')
 
@@ -75,8 +74,23 @@
     ]
 
     public async onDialogSave(editedItem: any) {
+      (this.editedIndex === -1) ? this.createAdmin(editedItem) : this.updateAdmin(editedItem)
+    }
+
+    public async createAdmin(editedItem: any) {
       try {
         await createAdmin(editedItem)
+        await this.setAdminList().then(() => {
+          this.dialog = false
+        })
+      } catch {
+        alert('注册失败，请联系管理员！')
+      }
+    }
+
+    public async updateAdmin(editedItem: any) {
+      try {
+        await updateAdmin(editedItem)
         await this.setAdminList().then(() => {
           this.dialog = false
         })
@@ -84,12 +98,6 @@
         alert('保存失败，请联系管理员！')
       }
       this.editedIndex = -1
-    }
-
-    public addItem() {
-      this.editedItem = {}
-      this.editedIndex = -1
-      this.dialog = true
     }
 
     public editItem(editedItem: any) {

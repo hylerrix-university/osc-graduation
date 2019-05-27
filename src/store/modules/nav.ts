@@ -16,9 +16,12 @@ const state = {
 }
 
 const getters = {
-  // 分别获取一、二级导航
+  // 获取的用户一、二级导航
   nav1: (s: NavState) => s.list.filter((i: NavItem) => i.code.length === 6),
   nav2: (s: NavState) => s.list.filter((i: NavItem) => i.code.length === 9),
+  // 获取所有的一、二级导航
+  allNav1: (s: NavState) => s.allList.filter((i: NavItem) => i.code.length === 6),
+  allNav2: (s: NavState) => s.allList.filter((i: NavItem) => i.code.length === 9),
   // 拼装 children，获取层次化分明的导航
   // 重构：这里只支持一二级导航的生成
   navTree: (s: NavState) => {

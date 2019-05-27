@@ -13,8 +13,13 @@ export interface AdminItem {
 }
 
 export interface CreateAdminItem {
-  username: string
-  password: string
+  email: string
+  nickname: string
+}
+
+export interface UpdateAdminItem {
+  // username: string
+  // password: string
   email: string
   nickname: string
   sex: number
