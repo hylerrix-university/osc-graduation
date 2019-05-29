@@ -16,6 +16,7 @@
             <img :src="avatar" alt="我的头像">
           </v-avatar> -->
           <p class="white--text subheading mt-1">欢迎回来！</p>
+          <p class="white--text subheading mt-1">{{ identity.username }}</p>
         </v-flex>
       </v-layout>
       <v-list v-if="!navLoading">
@@ -78,7 +79,7 @@
         </v-list>
       </v-menu>
 
-      <v-btn flat color="grey">
+      <v-btn flat color="grey" @click="logout">
         <span>注销</span>
         <v-icon right>exit_to_app</v-icon>
       </v-btn>
@@ -87,13 +88,14 @@
 </template>
 
 <script lang='ts'>
-  import { Component, Vue, Prop } from 'vue-property-decorator'
+  import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   import Dashboard from '@/views/Dashboard.vue'
   import AppLoading from '@/components/app-loading.vue'
   import { openLink } from '@/commons/util'
   import { NavItem } from '@/model/nav'
 
   import { namespace } from 'vuex-class'
+  const Auth = namespace('auth')
   const Nav = namespace('nav')
 
   @Component({
@@ -101,11 +103,12 @@
     components: { AppLoading },
   })
   export default class AppNavbar extends Vue {
+    @Auth.State public identity!: any
+    @Auth.Action public logout!: any
     @Nav.State('loading') public navLoading!: boolean
     @Nav.Getter public nav1!: NavItem[]
     @Nav.Getter public nav2!: NavItem[]
-    @Nav.Action public setNavList!: any
-
+    @Nav.Action public setMenuByUser!: any
     public avatar: string = 'https://avatars0.githubusercontent.com/u/19285461?s=460&v=4'
     public drawer: any = {
       open: true,
@@ -125,7 +128,12 @@
     }]
 
     public created() {
-      this.setNavList().then()
+      this.setMenuByUser(this.identity.id)
+    }
+
+    @Watch('identity')
+    public onIdentityChange() {
+      this.setMenuByUser(this.identity.id)
     }
     public openLink(url: string, param: string) {
       openLink(url, param)

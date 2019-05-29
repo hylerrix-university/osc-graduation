@@ -16,7 +16,7 @@
               <person-select
                 @on-selected-change="onSelectedChange"
                 :relatedItem="editedItem"
-                :multiple="true"
+                :multiple="false"
               ></person-select>
             </v-flex>
           </v-layout>
@@ -34,9 +34,9 @@
 
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-  import PersonSelect from '@/components/person/person-select.vue'
+  import PersonSelect from './person-select.vue'
  
-  import { AdminItem } from '@/model/admin'
+  import { LectorItem } from '@/model/lector'
 
   @Component({
     name: 'RelateDialog',
@@ -46,17 +46,22 @@
   })
   export default class RelateDialog extends Vue {
     @Prop() public value!: boolean
-    @Prop() public editedItem!: any
+    @Prop() public item!: any
     @Prop() public editedIndex!: number
-    public selectedAdmins: AdminItem[] = []
+    public selectedLector!: LectorItem
+    public editedItem: any = {}
 
-    public onSelectedChange(selectedAdmins: AdminItem[]) {
-      this.selectedAdmins = selectedAdmins
+    @Watch('item')
+    public onItemChage() {
+      this.editedItem = Object.assign({}, this.item)
+    }
+
+    public onSelectedChange(selectedLector: LectorItem) {
+      this.selectedLector = selectedLector
     }
 
     public save() {
-      const selectedAdminIds = this.selectedAdmins.map((admin: AdminItem) => admin.id)
-      this.$emit('save-dialog', this.editedItem.id, selectedAdminIds)
+      this.$emit('save-dialog', this.editedItem.id, this.selectedLector.id)
     }
 
     public close() {

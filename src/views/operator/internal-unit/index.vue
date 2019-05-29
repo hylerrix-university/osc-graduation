@@ -19,7 +19,6 @@
       hide-actions
     >
       <template v-slot:items="props">
-        <td>{{ props.item.id }}</td>
         <td>{{ props.item.name }}</td>
         <td>{{ props.item.remark }}</td>
         <td>
@@ -54,7 +53,6 @@
     public editedItem: any = {}
     public unitList: UnitItem[] = []
     public headers = [
-      { text: '单位编号', sortable: true, value: 'id' },
       { text: '单位名称', sortable: true, value: 'name' },
       { text: '备注', sortable: true, value: 'remark' },
       { text: '操作', sortable: false, value: '' },

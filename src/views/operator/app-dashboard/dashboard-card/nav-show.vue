@@ -36,6 +36,7 @@
   })
   export default class NavShow extends Vue {
     @Nav.State('allList') public navList!: NavItem[]
+    @Nav.Action public setNavList!: any
     public headers = [
       { text: '节点编号', sortable: true, value: 'code' },
       { text: '节点名称', sortable: true, value: 'name' },
@@ -43,6 +44,10 @@
       { text: '节点状态', sortable: false, value: 'status' },
       { text: '节点备注', sortable: false, value: 'remark' },
     ]
+
+    public created() {
+      this.setNavList()
+    }
 
     public getStatusName(status: string) {
       return NavStatus[status]

@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
-    <!-- <app-login></app-login> -->
-    <app-cms></app-cms>
+    <app-login v-if="!identity.hasOwnProperty('id')"></app-login>
+    <app-cms v-else></app-cms>
   </v-app>
 </template>
 
@@ -10,8 +10,8 @@
   import AppLogin from './app-login.vue'
   import AppCms from './app-cms.vue'
 
-  // import { namespace } from 'vuex-class'
-  // const Admin = namespace('admin')
+  import { namespace } from 'vuex-class'
+  const Auth = namespace('auth')
 
   @Component({
     components: {
@@ -20,6 +20,7 @@
     },
   })
   export default class App extends Vue {
+    @Auth.State public identity: any
   }
 </script>
 

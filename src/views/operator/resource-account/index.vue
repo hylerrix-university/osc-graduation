@@ -19,10 +19,10 @@
       hide-actions
     >
       <template v-slot:items="props">
-        <td>{{ props.item.name }}</td>
+        <td>{{ props.item.platform.type }}</td>
         <td>{{ props.item.account }}</td>
         <td>{{ props.item.password }}</td>
-        <td>{{ props.item.status ? '待定中' : '使用中' }}</td>
+        <td>{{ props.item.status ? '使用中' : '待定中' }}</td>
         <td>{{ props.item.remark }}</td>
         <td>
           <v-icon small class="mr-2" @click="editItem(props.item)">
@@ -65,18 +65,12 @@
     ]
 
     public created() {
-      this.getAccountList().then()
+      this.getAccountList()
     }
 
     public async getAccountList() {
       const { data } = await getAccountList()
       this.accountList = data
-    }
-
-    public addItem() {
-      this.editedItem = {}
-      this.editedIndex = -1
-      this.dialog = true
     }
 
     public editItem(editedItem: any) {
@@ -86,11 +80,13 @@
     }
 
     public async onDialogSave(editedItem: any) {
+      editedItem.platformId = editedItem.platform.id
+      editedItem.status = editedItem.status.value
+      delete editedItem.platform
       try {
         await createAccount(editedItem)
-        await this.getAccountList().then(() => {
-          this.dialog = false
-        })
+        await this.getAccountList()
+        this.dialog = false
       } catch {
         alert('保存失败，请联系管理员！')
       }
@@ -98,13 +94,12 @@
     }
 
     public async deleteItem(item: any) {
-      const isDelete = confirm(`确认删除 ${ item.name }？`)
+      const isDelete = confirm(`确认删除 ${ item.platform.type }？`)
       if (!isDelete) { return }
       try {
         const { data } = await deleteAccount(item.id)
-        await this.getAccountList().then(() => {
-          this.dialog = false
-        })
+        await this.getAccountList()
+        this.dialog = false
       } catch {
         alert('删除失败，请联系管理员！')
       }

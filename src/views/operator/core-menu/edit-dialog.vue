@@ -42,7 +42,7 @@
               <v-select
                 v-model="editedItem.isParent"
                 :items="selection.isParent"
-                label="菜单状态"
+                label="是否有子节点"
                 item-text="name"
                 item-value="value"
                 return-object

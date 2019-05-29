@@ -19,10 +19,14 @@
       hide-actions
     >
       <template v-slot:items="props">
-        <td>{{ props.item.id }}</td>
         <td>{{ props.item.name }}</td>
         <td>{{ props.item.count }}</td>
         <td>{{ props.item.unit }}</td>
+        <td>
+          <username-tooltip
+            :username="props.item.user ? props.item.user.name : '暂无负责人'"
+          ></username-tooltip>
+        </td>
         <td>{{ props.item.time }}</td>
         <td>
           <v-icon small class="mr-2" @click="editItem(props.item)">
@@ -40,6 +44,7 @@
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   import EditDialog from './edit-dialog.vue'
+  import UsernameTooltip from '@/components/username-tooltip.vue'
   import { getEntityList, createEntity, deleteEntity } from '@/api/entity'
 
   import { EntityItem } from '@/model/entity'
@@ -48,6 +53,7 @@
     name: 'ResourceEntity',
     components: {
       EditDialog,
+      UsernameTooltip,
     },
   })
   export default class ResourceEntity extends Vue {
@@ -56,10 +62,10 @@
     public editedItem: any = {}
     public entityList: EntityItem[] = []
     public headers = [
-      { text: '赞助编号', sortable: true, value: 'id' },
       { text: '赞助物品', sortable: true, value: 'name' },
       { text: '赞助数量', sortable: true, value: 'count' },
       { text: '赞助单位', sortable: true, value: 'unit' },
+      { text: '负责人', sortable: true, value: 'owner' },
       { text: '赞助时间', sortable: true, value: 'time' },
       { text: '操作', sortable: false, value: '' },
     ]

@@ -12,31 +12,42 @@
         <v-container grid-list-md>
           <v-layout wrap>
             <v-flex xs12 md6>
-              <v-text-field disabled v-model="editedItem.username" label="用户名"></v-text-field>
+              <v-text-field v-model="editedItem.username" label="用户名"></v-text-field>
             </v-flex>
             <v-flex xs12 md6>
-              <v-text-field v-model="editedItem.password" label="密码"></v-text-field>
-            </v-flex>
-            <v-flex xs12 md6>
-              <v-text-field v-model="editedItem.email" label="邮箱"></v-text-field>
+              <v-select
+                v-model="editedItem.status"
+                :items="selection.status"
+                label="封禁状态"
+                item-text="name"
+                item-value="value"
+                return-object
+              ></v-select>
             </v-flex>
             <v-flex xs12 md6>
               <v-text-field v-model="editedItem.nickname" label="昵称"></v-text-field>
             </v-flex>
             <v-flex xs12 md6>
-              <v-text-field v-model="editedItem.sex" label="性别"></v-text-field>
+              <v-select
+                v-model="editedItem.sex"
+                :items="selection.sex"
+                label="性别"
+                item-text="name"
+                item-value="value"
+                return-object
+              ></v-select>
             </v-flex>
             <v-flex xs12 md6>
               <v-text-field v-model="editedItem.phone" label="电话"></v-text-field>
             </v-flex>
-            <v-flex xs12 md12>
+            <!-- <v-flex xs12 md12>
               <v-text-field v-model="editedItem.avatar" label="头像地址"></v-text-field>
-            </v-flex>
+            </v-flex> -->
             <v-flex xs12 md6>
               <v-text-field v-model="editedItem.github" label="Github"></v-text-field>
             </v-flex>
-            <v-flex xs12 md6>
-              <v-text-field v-model="editedItem.status" label="封禁状态"></v-text-field>
+            <v-flex xs12>
+              <v-text-field v-model="editedItem.email" label="邮箱"></v-text-field>
             </v-flex>
           </v-layout>
         </v-container>
@@ -65,9 +76,19 @@
     // 重构: 希望不用手动赋默认值
     public defaultItem: any = {}
     public editedItem: any = this.defaultItem
+    public selection: any = {
+      status: [
+        { name: '已封', value: 0 },
+        { name: '可用', value: 1 },
+      ],
+      sex: [
+        { name: '女', value: 0 },
+        { name: '男', value: 1 },
+      ],
+    }
 
     get title() {
-      return this.editedIndex === -1 ? '添加讲师' : '编辑讲师'
+      return this.editedIndex === -1 ? '添加人员' : '编辑人员'
     }
 
     @Watch('item')
@@ -78,6 +99,8 @@
     }
 
     public save() {
+      this.editedItem.sex = this.editedItem.sex.value
+      this.editedItem.status = this.editedItem.status.value
       this.$emit('save-dialog', this.editedItem)
     }
 

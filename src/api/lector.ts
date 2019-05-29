@@ -15,6 +15,12 @@ export const createLector = (lector: any) =>
   osc.post(`/user`, lector)
 
 /**
+ * 保存一个讲师
+ */
+export const updateLector = (admin: any) =>
+  osc.put(`/user`, admin)
+
+/**
  * 删除一个讲师
  */
 export const deleteLector = (id: number) =>

@@ -3,7 +3,7 @@
     <v-toolbar flat>
       <v-toolbar-title>社区讲师管理</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn @click="editItem()">新增讲师</v-btn>
+      <v-btn @click="editItem()">手动注册</v-btn>
     </v-toolbar>
     <edit-dialog
       v-model="dialog"
@@ -37,23 +37,22 @@
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
   import EditDialog from './edit-dialog.vue'
   import PersonCard from '@/components/person/person-card.vue'
-  import { createLector, deleteLector } from '@/api/lector'
+  import { createLector, updateLector, deleteLector } from '@/api/lector'
 
   import { NavItem } from '@/model/nav'
   import { LectorItem } from '@/model/lector'
   import { namespace } from 'vuex-class'
-
   const Nav = namespace('nav')
   const Lector = namespace('lector')
 
   @Component({
-    name: 'CoreLector',
+    name: 'InternalLector',
     components: {
       EditDialog,
       PersonCard,
     },
   })
-  export default class CoreLector extends Vue {
+  export default class InternalLector extends Vue {
     @Nav.State('list') public navList!: NavItem[]
     @Lector.State('list') public lectorList!: LectorItem[]
     @Lector.Action public setLectorList!: any
@@ -75,25 +74,32 @@
     ]
 
     public created() {
-      this.setLectorList().then()
+      this.setLectorList()
     }
 
     public async onDialogSave(editedItem: any) {
+      (this.editedIndex === -1) ? this.createLector(editedItem) : this.updateLector(editedItem)
+    }
+
+    public async createLector(editedItem: any) {
       try {
         await createLector(editedItem)
-        await this.setLectorList().then(() => {
-          this.dialog = false
-        })
+        await this.setLectorList()
+        this.dialog = false
+      } catch {
+        alert('注册失败，请联系管理员！')
+      }
+    }
+
+    public async updateLector(editedItem: any) {
+      try {
+        await updateLector(editedItem)
+        await this.setLectorList().then
+        this.dialog = false
       } catch {
         alert('保存失败，请联系管理员！')
       }
       this.editedIndex = -1
-    }
-
-    public addItem() {
-      this.editedItem = {}
-      this.editedIndex = -1
-      this.dialog = true
     }
 
     public editItem(editedItem: any) {

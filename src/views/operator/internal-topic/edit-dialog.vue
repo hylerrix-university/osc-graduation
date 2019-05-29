@@ -11,7 +11,7 @@
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
-            <v-flex xs12 md6>
+            <v-flex xs12>
               <v-text-field v-model="editedItem.name" label="主题名称"></v-text-field>
             </v-flex>
           </v-layout>
@@ -29,18 +29,22 @@
 
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+  import PersonSelect from './person-select.vue'
+
+  import { LectorItem } from '@/model/lector'
 
   @Component({
     name: 'EditDialog',
-    components: {},
+    components: {
+      PersonSelect,
+    },
   })
   export default class EditDialog extends Vue {
     @Prop() public value!: boolean
     @Prop() public item!: any
     @Prop() public editedIndex!: number
-    // 重构: 希望不用手动赋默认值
-    public defaultItem: any = {}
-    public editedItem: any = this.defaultItem
+    public editedItem: any = {}
+    public selectedLectors: LectorItem[] = []
 
     get title() {
       return this.editedIndex === -1 ? '添加主题' : '编辑主题'
@@ -48,8 +52,7 @@
 
     @Watch('item')
     public onItemChange() {
-      // prop 的 item 为空时，editedItem 重置为默认值
-      if (!this.item) { this.editedItem = Object.assign({}, this.defaultItem) }
+      if (!this.item) { this.editedItem = Object.assign({}, {}) }
       this.editedItem = Object.assign({}, this.item)
     }
 

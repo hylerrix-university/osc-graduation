@@ -3,10 +3,17 @@ import { osc } from '@/commons/ajax'
 import { CreateNavItem } from '@/model/nav'
 
 /**
- * 获取导航
+ * 获取所有导航
  */
 export const getNavList = () =>
   osc.get(`/menu`)
+
+/**
+ * 获取用户导航
+ * @param { id } userId
+ */
+export const getMenuByUser = (id: number) =>
+  osc.get(`/menu/${ id }`)
 
 /**
  * 新增导航

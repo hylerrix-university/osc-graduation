@@ -1,9 +1,11 @@
-import { getNavList } from '@/api/nav'
+import { getNavList, getMenuByUser } from '@/api/nav'
 import { NavItem } from '@/model/nav'
 import { ProductTreeItem } from '@/model/nav'
 
 interface NavState {
+  // 用户所有的导航
   list: NavItem[],
+  // 所有的导航
   allList: NavItem[],
   loading: boolean
 }
@@ -52,7 +54,16 @@ const actions = {
     const { data }: any = await getNavList()
     if (data) {
       commit('SET_NAV_LIST', data)
-      commit('SET_FILTER_NAV_LIST', data)
+    }
+    commit('LOADING_NAV_END', data)
+  },
+  // 重构：以后不需要传 userId，直接从 cookie/session 里判断哪个
+  async setMenuByUser({ commit }: any, userId: number) {
+    commit('LOADING_NAV_START')
+    const { data }: any = await getMenuByUser(userId)
+    if (data) {
+      // commit('SET_USER_NAV_LIST', data)
+      commit('SET_FILTER_USER_LIST', data)
     }
     commit('LOADING_NAV_END', data)
   },
@@ -61,7 +72,8 @@ const actions = {
 const mutations = {
   ['LOADING_NAV_START']: (s: NavState) => s.loading = true,
   ['SET_NAV_LIST']: (s: NavState, data: NavItem[]) => s.allList = data,
-  ['SET_FILTER_NAV_LIST']: (s: NavState, data: NavItem[]) =>
+  ['SET_USER_NAV_LIST']: (s: NavState, data: NavItem[]) => s.list = data,
+  ['SET_FILTER_USER_LIST']: (s: NavState, data: NavItem[]) =>
     s.list = data.filter((nav) => nav.status !== 0),
   ['LOADING_NAV_END']: (s: NavState) => s.loading = false,
 }

@@ -12,7 +12,13 @@
         <v-container grid-list-md>
           <v-layout wrap>
             <v-flex xs12 md6>
-              <v-text-field v-model="editedItem.type" label="赞助类型"></v-text-field>
+              <v-select
+                v-model="editedItem.type"
+                :items="selection.type"
+                label="赞助类型"
+                item-text="name"
+                item-value="value"
+              ></v-select>
             </v-flex>
             <v-flex xs12 md6>
               <v-text-field v-model="editedItem.content" label="赞助内容"></v-text-field>
@@ -50,6 +56,12 @@
     // 重构: 希望不用手动赋默认值
     public defaultItem: any = {}
     public editedItem: any = this.defaultItem
+    public selection: any = {
+      type: [
+        { name: '金融资产', value: 0 },
+        { name: '实体物资', value: 1 },
+      ],
+    }
 
     get title() {
       return this.editedIndex === -1 ? '添加赞助' : '编辑赞助'

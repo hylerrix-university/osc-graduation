@@ -8,3 +8,9 @@ export const createTopic = (item: any) =>
 
 export const deleteTopic = (id: number) =>
   osc.delete(`/topic`, { data: { id } })
+
+export const relateLector = (topicId: number, lectorId: number) =>
+  osc.put(`/topic/lector`, {
+    topicId,
+    userId: lectorId,
+  })

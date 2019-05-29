@@ -5,7 +5,7 @@
     chips
     color="blue-grey lighten-2"
     label="相关人员"
-    multiple
+    :multiple="multiple"
     return-object
   >
     {{ relatedItem }}
@@ -28,6 +28,7 @@
 </template>
 
 <script lang='ts'>
+  // 重构：这个成员选择只能选择 admin 列表的成员，无法和社区成员共用组件，届时合并在一起
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
   import { AdminItem } from '@/model/admin'
@@ -35,11 +36,12 @@
   const Admin = namespace('admin')
 
   @Component({
-    name: 'MutiSelect',
+    name: 'PersonSelect',
     components: {},
   })
-  export default class MutiSelect extends Vue {
+  export default class PersonSelect extends Vue {
     @Prop() public relatedItem!: any
+    @Prop() public multiple!: boolean
     @Admin.State('list') public adminList!: AdminItem[]
     public selectedAdmins: AdminItem[] = []
     public loading = {

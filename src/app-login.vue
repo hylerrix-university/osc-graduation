@@ -39,7 +39,7 @@
                 <v-flex xs12 class="mt-5 mx-5">
                   <v-text-field
                     v-model="form.username"
-                    :counter="10"
+                    :counter="30"
                     label="用户名或邮箱号"
                     required
                   ></v-text-field>
@@ -49,6 +49,7 @@
                   <v-text-field
                     v-model="form.password"
                     :counter="20"
+                    type="password"
                     label="密码"
                     required
                   ></v-text-field>
@@ -60,7 +61,7 @@
           </v-card-text>
           <v-card-actions class="mt-5">
             <v-spacer></v-spacer>
-            <v-btn color="primary">登录</v-btn>
+            <v-btn color="primary" @click="doLogin()">登录</v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-flex>
@@ -72,18 +73,26 @@
 <script lang='ts'>
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
-  // import { namespace } from 'vuex-class'
-  // const Nav = namespace('nav')
+  import { namespace } from 'vuex-class'
+  const Auth = namespace('auth')
 
   @Component({
     name: 'AppLogin',
     components: {},
   })
   export default class AppLogin extends Vue {
-    // @User.State('typeList') public userTypeList!: UserTypeItem[]
+    @Auth.Action public login!: any
     public form: object = {
       username: '',
       password: '',
+    }
+
+    public doLogin() {
+      try {
+        this.login(this.form)
+      } catch {
+        alert('账号或密码错误！')
+      }
     }
   }
 </script>

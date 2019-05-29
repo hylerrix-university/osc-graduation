@@ -19,11 +19,10 @@
       hide-actions
     >
       <template v-slot:items="props">
-        <td>{{ props.item.id }}</td>
-        <td>{{ props.item.type }}</td>
+        <td>{{ props.item.time }}</td>
+        <td>{{ props.item.type ? '实体物资' : '金融资产' }}</td>
         <td>{{ props.item.content }}</td>
         <td>{{ props.item.unit }}</td>
-        <td>{{ props.item.time }}</td>
         <td>
           <v-icon small class="mr-2" @click="editItem(props.item)">
             edit
@@ -56,11 +55,10 @@
     public editedIndex: number = -1
     public editedItem: any = {}
     public headers = [
-      { text: '编号', sortable: true, value: 'id' },
+      { text: '赞助时间', sortable: true, value: 'time' },
       { text: '赞助类型', sortable: true, value: 'type' },
       { text: '赞助内容', sortable: true, value: 'content' },
       { text: '赞助单位', sortable: true, value: 'unit' },
-      { text: '赞助时间', sortable: true, value: 'time' },
       { text: '操作', sortable: true, value: '' },
     ]
 

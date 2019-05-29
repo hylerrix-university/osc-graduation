@@ -14,7 +14,7 @@
     <v-container>
       <v-layout row wrap>
         <v-flex
-          xs6
+          xs4
           v-for="platform in platformList"
           :key="platform.id"
           class="pa-2"
