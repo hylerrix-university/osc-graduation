@@ -26,7 +26,7 @@
     >
       <template v-slot:items="props">
         <td>{{ props.item.name }}</td>
-        <td>{{ props.item.user ? props.item.user.username : '尚未分配' }}</td>
+        <td>{{ props.item.user ? props.item.user.nickname : '尚未分配' }}</td>
         <td>{{ props.item.activity ? props.item.activity.name : '尚未分配' }}</td>
         <td>{{ props.item.time }}</td>
         <td>

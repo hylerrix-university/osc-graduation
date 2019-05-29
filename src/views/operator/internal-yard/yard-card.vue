@@ -7,7 +7,7 @@
     <v-card-text>
       <p>场地地址：{{ yard.position }}</p>
       <p>联系方式：{{ yard.contact }}</p>
-      <p>场地状态：{{ yard.status }}</p>
+      <p>场地状态：{{ yard.status ? '使用中' : '弃用中' }}</p>
     </v-card-text>
   </v-card>
 </template>

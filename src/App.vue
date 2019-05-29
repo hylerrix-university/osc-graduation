@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <app-login v-if="!identity.hasOwnProperty('id')"></app-login>
     <app-cms v-else></app-cms>
   </v-app>

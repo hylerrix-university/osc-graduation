@@ -11,7 +11,7 @@
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
-            <v-flex xs12 md6>
+            <v-flex xs12>
               <v-text-field v-model="editedItem.name" label="单位名称"></v-text-field>
             </v-flex>
           </v-layout>

@@ -23,7 +23,7 @@
         <td>{{ props.item.account }}</td>
         <td>{{ props.item.password }}</td>
         <td>{{ props.item.status ? '使用中' : '待定中' }}</td>
-        <td>{{ props.item.remark }}</td>
+        <!-- <td>{{ props.item.remark }}</td> -->
         <td>
           <v-icon small class="mr-2" @click="editItem(props.item)">
             edit
@@ -60,7 +60,7 @@
       { text: '账号名称', sortable: true, value: 'account' },
       { text: '账号密码', sortable: true, value: 'password' },
       { text: '账号状态', sortable: true, value: 'status' },
-      { text: '账号备注', sortable: true, value: 'remark' },
+      // { text: '账号备注', sortable: true, value: 'remark' },
       { text: '操作', sortable: false, value: '' },
     ]
 

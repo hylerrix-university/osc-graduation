@@ -20,7 +20,7 @@
     <v-container>
       <v-layout row wrap>
         <v-flex
-          xs4
+          xs6
           v-for="project in projectList"
           :key="project.id"
           class="pa-2"
