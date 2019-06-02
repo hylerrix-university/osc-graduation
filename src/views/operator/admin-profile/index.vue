@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout>
-      <v-spacer></v-spacer>
+      <!-- <v-spacer></v-spacer> -->
       <v-flex xs6>
         <v-card>
           <v-toolbar>我的资料</v-toolbar>

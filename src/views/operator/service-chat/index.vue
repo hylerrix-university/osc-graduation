@@ -20,7 +20,7 @@
     <v-container>
       <v-layout row wrap>
         <v-flex
-          xs4
+          xs6
           v-for="chat in chatList"
           :key="chat.id"
           class="pa-2"

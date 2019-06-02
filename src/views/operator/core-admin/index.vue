@@ -14,7 +14,7 @@
     <v-container>
       <v-layout row wrap>
         <v-flex
-          xs3
+          xs4
           v-for="admin in adminList"
           :key="admin.id"
           class="pa-2"

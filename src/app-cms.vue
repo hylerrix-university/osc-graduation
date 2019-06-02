@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <app-navbar></app-navbar>
     <v-content class="mx-4 mb-4">
       <!-- 待做：面包屑功能尚未实现 -->

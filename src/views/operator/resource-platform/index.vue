@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-toolbar flat>
-      <v-toolbar-title>社区平台管理</v-toolbar-title>
+      <v-toolbar-title>三方平台管理</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn @click="editItem()">新增平台</v-btn>
     </v-toolbar>

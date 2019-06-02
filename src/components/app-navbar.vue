@@ -15,8 +15,8 @@
           <!-- <v-avatar size="80">
             <img :src="avatar" alt="我的头像">
           </v-avatar> -->
-          <p class="white--text subheading mt-1">欢迎回来！</p>
-          <p class="white--text subheading mt-1">{{ identity.username }}</p>
+          <p class="subheading mt-1">欢迎回来！</p>
+          <p class="subheading mt-1">{{ identity.username }}</p>
         </v-flex>
       </v-layout>
       <v-list v-if="!navLoading">
@@ -28,7 +28,6 @@
             nudge-right="100"
             transition="slide-x-transition"
             style="display: block"
-            class="white--text"
           >
             <v-list-tile :key="i.id" slot="activator">
               <v-list-tile-content>{{ i.name }}</v-list-tile-content>

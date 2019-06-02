@@ -178,7 +178,7 @@ export const NavList: NavItem[] = [
     code: '000004001',
     isParent: 0,
     path: '/resource/platform',
-    name: '社区平台管理',
+    name: '三方平台管理',
     status: 1,
     remark: '',
     pid: '000004',
