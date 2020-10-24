@@ -4,4 +4,4 @@
 
 ![](./intro.png)
 
-* [跨平台开源社区运营管理系统的设计与实现 - 毕业设计论文](http://qiniu.ningo.cloud/open-source-community-paper.pdf)
+* [跨平台开源社区运营管理系统的设计与实现 - 毕业设计论文](http://qiniu.ningo.cloud/ningo/open-source-community-paper.pdf)
